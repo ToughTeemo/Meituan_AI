@@ -1,12 +1,15 @@
+import { AppTopNav } from "@/components/AppTopNav";
 import { ThreeColumnWorkspace } from "./ThreeColumnWorkspace";
 
 interface DashboardLayoutProps {
   onConfirm: () => void;
+  onHome?: () => void;
 }
 
-export function DashboardLayout({ onConfirm }: DashboardLayoutProps) {
+export function DashboardLayout({ onConfirm, onHome }: DashboardLayoutProps) {
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden bg-[linear-gradient(135deg,#FFF9F2_0%,#F8F2E8_55%,#FFFDF9_100%)] text-[#3C342F]">
+      <AppTopNav statusLabel="已生成方案" onHomeClick={onHome} />
       <div className="min-h-0 flex-1 overflow-x-auto overflow-y-hidden">
         <ThreeColumnWorkspace onConfirm={onConfirm} />
       </div>

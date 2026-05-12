@@ -46,7 +46,10 @@ export default function App() {
 
   return (
     <DashboardProviders>
-      <DashboardLayout onConfirm={() => setView("confirm")} />
+      <DashboardLayout
+        onConfirm={() => setView("confirm")}
+        onHome={() => setView("home")}
+      />
     </DashboardProviders>
   );
 }
