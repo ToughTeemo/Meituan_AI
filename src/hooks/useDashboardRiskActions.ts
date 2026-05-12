@@ -62,9 +62,8 @@ export function useDashboardRiskActions(): {
       cards: structuredClone(initialPlan.cards),
     });
 
-    const active = initialPlan.cards.find((c) => c.status === "active");
-    const focusId =
-      active?.card_id ?? initialPlan.cards[0]?.card_id ?? "c2";
+    const active = initialPlan.cards.find((card) => card.status === "active");
+    const focusId = active?.card_id ?? initialPlan.cards[0]?.card_id ?? "c2";
 
     uiDispatch({ type: "DEMO_RESET", focusedCardId: focusId });
   }, [cancelActiveReplan, planDispatch, send, uiDispatch]);
@@ -78,7 +77,7 @@ export function useDashboardRiskActions(): {
       if (m === "REPLANNING") {
         uiDispatch({
           type: "APPEND_LOG",
-          message: "风险触发被跳过：REPLANNING 中不接受新的 Trigger。",
+          message: "正在调整中，先等这次安排完成后再处理新的变化。",
         });
         return;
       }
@@ -86,14 +85,14 @@ export function useDashboardRiskActions(): {
       if (m !== "EXECUTING") {
         uiDispatch({
           type: "APPEND_LOG",
-          message: "风险触发被跳过：当前不在 EXECUTING（演示控场）。",
+          message: "当前安排还没开始执行，暂时不用处理新的变化。",
         });
         return;
       }
       if (u.activeRisk) {
         uiDispatch({
           type: "APPEND_LOG",
-          message: "风险触发被跳过：已存在未处理风险。",
+          message: "已有一个变化待处理，先确认是否调整当前方案。",
         });
         return;
       }
@@ -102,7 +101,7 @@ export function useDashboardRiskActions(): {
       if (affected.length === 0) {
         uiDispatch({
           type: "APPEND_LOG",
-          message: "风险触发失败：未找到可标记的活动/缓冲片段。",
+          message: "暂时没有找到需要调整的活动节点。",
         });
         return;
       }
@@ -110,8 +109,8 @@ export function useDashboardRiskActions(): {
       const signal = createRiskSignalForDemoTrigger(trigger, affected);
       const snapshot: Record<string, (typeof p.cards)[number]["status"]> = {};
       for (const id of affected) {
-        const c = p.cards.find((x) => x.card_id === id);
-        if (c) snapshot[id] = c.status;
+        const card = p.cards.find((item) => item.card_id === id);
+        if (card) snapshot[id] = card.status;
       }
 
       planDispatch({
@@ -132,7 +131,10 @@ export function useDashboardRiskActions(): {
 
       uiDispatch({
         type: "APPEND_LOG",
-        message: `风险已触发：${signal.title}`,
+        message:
+          signal.type === "queue"
+            ? "发现儿童乐园排队变长，可能影响后续安排。"
+            : `发现新变化：${signal.title}。`,
       });
 
       if (options?.markAutoConsumed) {
@@ -155,7 +157,7 @@ export function useDashboardRiskActions(): {
     planDispatch({ type: "APPLY_CARD_PATCHES", patches });
     uiDispatch({ type: "CLEAR_RISK_UI" });
     send({ type: "IGNORE_RISK" });
-    uiDispatch({ type: "APPEND_LOG", message: "用户选择：忽略风险建议。" });
+    uiDispatch({ type: "APPEND_LOG", message: "已暂不调整，继续按当前安排推进。" });
   }, [cancelActiveReplan, planDispatch, send, uiDispatch]);
 
   const acceptRiskSuggestion = useCallback(() => {
@@ -165,7 +167,7 @@ export function useDashboardRiskActions(): {
     if (machineRef.current === "REPLANNING") {
       uiDispatch({
         type: "APPEND_LOG",
-        message: "接受建议被跳过：Replan 进行中（避免重复触发）。",
+        message: "方案正在调整中，稍等片刻就能看到新路线。",
       });
       return;
     }
@@ -176,7 +178,7 @@ export function useDashboardRiskActions(): {
     if (replanLockRef.current) {
       uiDispatch({
         type: "APPEND_LOG",
-        message: "接受建议被跳过：Replan 流程已在启动中。",
+        message: "方案正在调整中，稍等片刻就能看到新路线。",
       });
       return;
     }
@@ -185,7 +187,7 @@ export function useDashboardRiskActions(): {
     if (!trig) {
       uiDispatch({
         type: "APPEND_LOG",
-        message: "局部替换失败：当前风险类型未配置替换片段。",
+        message: "这类变化暂时没有合适的替代方案，先保留当前安排。",
       });
       return;
     }
@@ -194,14 +196,13 @@ export function useDashboardRiskActions(): {
     if (!next) {
       uiDispatch({
         type: "APPEND_LOG",
-        message: "局部替换失败：时间窗无法容纳替换片段。",
+        message: "当前时间窗口较紧，暂时无法插入新的替代地点。",
       });
       return;
     }
 
     cancelReplanRef.current?.();
     cancelReplanRef.current = null;
-
     replanLockRef.current = true;
 
     const inner = startReplanFlow({
@@ -221,7 +222,7 @@ export function useDashboardRiskActions(): {
 
     uiDispatch({
       type: "APPEND_LOG",
-      message: "用户选择：接受建议（进入 Replan 动画流程）。",
+      message: "已按你的选择开始调整方案。",
     });
   }, [planDispatch, releaseReplanLock, send, uiDispatch]);
 

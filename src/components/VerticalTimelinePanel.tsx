@@ -13,17 +13,16 @@ import { ReplanOverlay } from "@/components/ReplanOverlay";
 import { VerticalTaskCard } from "@/components/VerticalTaskCard";
 import { formatClockFromStart } from "@/utils/timeline";
 
-/** 仅纵向时间轴轨道 + Replan 覆盖（标题、风险条、日志由 CenterTimelineColumn 承载） */
 export function VerticalTimelinePanel() {
   const { state: plan } = usePlan();
   const { state: machine } = useMachine();
   const { state: ui, dispatch: uiDispatch } = useUI();
 
-  const constraints = plan.constraints;
-
   const sortedCards = useMemo(() => {
     return [...plan.cards].sort((a, b) => a.start_minute - b.start_minute);
   }, [plan.cards]);
+
+  const visibleStops = sortedCards.filter((card) => card.type !== "buffer").length;
 
   const onSelectCard = useMemo(() => {
     return (cardId: string) => {
@@ -33,32 +32,38 @@ export function VerticalTimelinePanel() {
   }, [machine, uiDispatch]);
 
   return (
-    <div className="flex h-full min-h-0 flex-col bg-slate-950">
-      <div className="relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 pb-4 pt-1">
+    <section className="flex h-full min-h-0 flex-col bg-[#FFFDF9]/30">
+      <div className="flex h-14 shrink-0 items-center justify-between border-b border-[rgba(120,90,60,0.06)] px-6">
+        <div>
+          <h2 className="text-base font-bold text-[#3C342F]">今天的路线安排</h2>
+          <p className="mt-0.5 text-xs text-[#8A7666]">
+            共 {visibleStops} 站 · 预计 20:00 前到家
+          </p>
+        </div>
+      </div>
+
+      <div className="relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-6 pb-4 pt-3">
         <ReplanOverlay phase={ui.replanPhase} machine={machine} />
 
         <motion.div
-          className="relative min-h-[min(320px,45vh)]"
+          className="relative"
           animate={{
             filter:
               ui.replanPhase === "freezing"
                 ? `blur(${REPLAN_FREEZING_BLUR_PX}px)`
                 : "blur(0px)",
             opacity:
-              ui.replanPhase === "freezing"
-                ? REPLAN_VERTICAL_FREEZING_OPACITY
-                : 1,
+              ui.replanPhase === "freezing" ? REPLAN_VERTICAL_FREEZING_OPACITY : 1,
           }}
           transition={{ duration: REPLAN_OVERLAY_FADE_S }}
         >
           <AnimatePresence initial={false} mode="popLayout">
-            {sortedCards.map((card: Card, idx) => {
-              const isLast = idx === sortedCards.length - 1;
+            {sortedCards.map((card: Card, index) => {
               const startLabel = formatClockFromStart(
-                constraints.time_start,
+                plan.constraints.time_start,
                 card.start_minute,
               );
-              const enterIdx =
+              const enterIndex =
                 ui.replanPhase === "animating" && ui.replanInsertedOrder
                   ? ui.replanInsertedOrder.indexOf(card.card_id)
                   : -1;
@@ -69,12 +74,12 @@ export function VerticalTimelinePanel() {
                   card={card}
                   machine={machine}
                   replanPhase={ui.replanPhase}
-                  replanEnterIndex={enterIdx}
+                  replanEnterIndex={enterIndex}
                   isFocused={card.card_id === ui.focusedCardId}
-                  planStart={constraints.time_start}
+                  planStart={plan.constraints.time_start}
                   startLabel={startLabel}
-                  isFirst={idx === 0}
-                  isLast={isLast}
+                  isFirst={index === 0}
+                  isLast={index === sortedCards.length - 1}
                   onSelect={() => onSelectCard(card.card_id)}
                 />
               );
@@ -82,6 +87,6 @@ export function VerticalTimelinePanel() {
           </AnimatePresence>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

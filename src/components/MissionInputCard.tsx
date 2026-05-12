@@ -1,138 +1,92 @@
 import { motion } from "framer-motion";
-import type { MachineState, ReplanPhase } from "@/types/plan";
-import { useMachine } from "@/context/MachineContext";
 import { usePlan } from "@/context/PlanContext";
 import { useUI } from "@/context/UIContext";
 
-function missionStatusLabel(
-  machine: MachineState,
-  replanPhase: ReplanPhase,
-): string {
-  if (machine === "REPLANNING" && replanPhase !== "idle") {
-    return "重新规划中";
-  }
-  if (machine === "RISK_DETECTED") return "风险检测中";
-  if (machine === "EXECUTING") return "执行中";
-  if (machine === "COMPLETED") return "已完成";
-  return "就绪";
-}
-
-function splitGoal(goal: string): { title: string; subtitle: string | null } {
-  const m = goal.match(/^(.+?)（([^）]+)）\s*$/);
-  if (m) return { title: m[1].trim(), subtitle: m[2].trim() };
-  return { title: goal, subtitle: null };
-}
-
-function missionTags(c: {
-  preference_tags: string[];
-  transport_mode: string;
-  pace: string;
-}): string[] {
-  const tags: string[] = [];
-  if (c.preference_tags.includes("户外")) tags.push("户外");
-  if (c.preference_tags.includes("亲子")) tags.push("亲子");
-  if (
-    c.transport_mode.includes("地铁") ||
-    c.preference_tags.some((t) => t.includes("地铁"))
-  ) {
-    tags.push("地铁可达");
-  }
-  tags.push("预算可控");
-  tags.push(`${c.pace}节奏`);
-  return tags;
-}
+const TAGS = ["户外", "亲子友好", "地铁可达", "预算可控"];
 
 export function MissionInputCard() {
   const { state: plan } = usePlan();
-  const { state: machine } = useMachine();
-  const { state: ui, dispatch: uiDispatch } = useUI();
+  const { dispatch: uiDispatch } = useUI();
   const c = plan.constraints;
-  const tags = missionTags(c);
-  const status = missionStatusLabel(machine, ui.replanPhase);
-  const { title: goalTitle, subtitle: goalSubtitle } = splitGoal(c.goal);
 
-  const mockAction = (msg: string) => {
-    uiDispatch({ type: "APPEND_LOG", message: msg });
+  const appendLog = (message: string) => {
+    uiDispatch({ type: "APPEND_LOG", message });
   };
 
+  const summaries = [
+    ["出发地", c.departure],
+    ["时间", `${c.time_start} - ${c.time_end}`],
+    ["同行", `${c.adults} 位成人 · ${c.children} 位 ${c.children_age} 岁儿童`],
+    ["预算", `¥${c.budget}`],
+  ];
+
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-950/80 px-3 py-3 shadow-inner">
-      <div className="flex flex-wrap items-start justify-between gap-2 border-b border-slate-800/80 pb-2">
-        <p className="text-[10px] font-medium uppercase tracking-wide text-slate-500">
-          当前任务
-        </p>
-        <span className="shrink-0 rounded-full border border-slate-600 bg-slate-900 px-2 py-0.5 text-[11px] font-medium text-slate-200">
-          {status}
+    <section className="rounded-[1.55rem] border border-[rgba(120,90,60,0.10)] bg-[#FFFDF9] p-4 shadow-[0_10px_26px_rgba(120,80,40,0.055)]">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-bold text-[#8A5A2F]">我的周末愿望</p>
+          <p className="mt-1 text-[11px] leading-5 text-[#A08C7C]">
+            AI 已帮你记住这些偏好
+          </p>
+        </div>
+        <span className="shrink-0 rounded-full border border-[#B7C9A8]/45 bg-[#EFF5E9] px-2.5 py-1 text-[10px] font-semibold text-[#526849]">
+          已记住偏好
         </span>
       </div>
 
-      <p className="mt-2 text-base font-semibold leading-snug text-slate-50">
-        {goalTitle}
-      </p>
-      {goalSubtitle ? (
-        <p className="mt-1 text-[12px] leading-snug text-slate-400">
-          {goalSubtitle}
+      <div className="mt-3">
+        <p className="text-[17px] font-bold leading-snug text-[#3C342F]">
+          周末下午带孩子出去玩
         </p>
-      ) : null}
+        <p className="mt-1 text-[13px] leading-relaxed text-[#6E6259]">
+          户外 + 亲子 + 可控预算
+        </p>
+      </div>
 
-      <div className="mt-2 flex flex-wrap gap-1.5">
-        {tags.map((tag) => (
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {TAGS.map((tag, index) => (
           <span
             key={tag}
-            className="rounded-md border border-sky-900/45 bg-sky-950/35 px-2 py-0.5 text-[11px] text-sky-100/95"
+            className={
+              index === 1
+                ? "rounded-full bg-[#EFF5E9] px-2.5 py-1 text-[10px] font-medium text-[#526849]"
+                : "rounded-full bg-[#F7EEDF]/68 px-2.5 py-1 text-[10px] font-medium text-[#6E6259]"
+            }
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <dl className="mt-3 space-y-1.5 border-t border-slate-800/80 pt-3 text-[11px]">
-        <div className="flex justify-between gap-2">
-          <dt className="text-slate-500">出发地</dt>
-          <dd className="text-right font-medium text-slate-200">{c.departure}</dd>
-        </div>
-        <div className="flex justify-between gap-2">
-          <dt className="text-slate-500">时间</dt>
-          <dd className="text-right tabular-nums text-slate-200">
-            {c.time_start} – {c.time_end}
-          </dd>
-        </div>
-        <div className="flex justify-between gap-2">
-          <dt className="text-slate-500">成员</dt>
-          <dd className="text-right text-slate-200">
-            成人 {c.adults}，儿童 {c.children}（{c.children_age} 岁）
-          </dd>
-        </div>
-        <div className="flex justify-between gap-2">
-          <dt className="text-slate-500">预算</dt>
-          <dd className="text-right font-medium tabular-nums text-slate-200">
-            ¥{c.budget}
-          </dd>
-        </div>
+      <dl className="mt-3 divide-y divide-[rgba(120,90,60,0.08)] rounded-[1.15rem] bg-[#FFF9F2]/46 px-3 py-1.5 text-[12px]">
+        {summaries.map(([label, value]) => (
+          <div key={label} className="flex items-center justify-between gap-3 py-1.5">
+            <dt className="shrink-0 text-[#9A8575]">{label}</dt>
+            <dd className="text-right font-semibold tabular-nums text-[#3C342F]">
+              {value}
+            </dd>
+          </div>
+        ))}
       </dl>
 
       <div className="mt-3 flex flex-wrap gap-2">
         <motion.button
           type="button"
           whileTap={{ scale: 0.98 }}
-          className="rounded-lg border border-slate-600 bg-slate-900 px-3 py-1.5 text-[12px] font-semibold text-slate-100 hover:bg-slate-800"
-          onClick={() =>
-            mockAction("（演示）生成新计划：当前为本地 Mock 方案。")
-          }
+          className="rounded-full border border-[#F2A65A]/22 bg-[#FFF4DE]/60 px-3.5 py-1.5 text-[11px] font-semibold text-[#7A5527] transition hover:bg-[#FFF1D4]"
+          onClick={() => appendLog("已重新生成一版更轻松的周末安排。")}
         >
-          生成新计划
+          重新生成
         </motion.button>
         <motion.button
           type="button"
           whileTap={{ scale: 0.98 }}
-          className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-[12px] font-semibold text-slate-200 hover:bg-slate-900"
-          onClick={() =>
-            mockAction("（演示）重新生成：未接 LLM，仍展示当前方案。")
-          }
+          className="rounded-full border border-[rgba(120,90,60,0.12)] bg-white/58 px-3.5 py-1.5 text-[11px] font-semibold text-[#6E6259] transition hover:bg-white"
+          onClick={() => appendLog("已换个思路，优先保留轻松节奏和少排队。")}
         >
-          重新生成
+          换个思路
         </motion.button>
       </div>
-    </div>
+    </section>
   );
 }
