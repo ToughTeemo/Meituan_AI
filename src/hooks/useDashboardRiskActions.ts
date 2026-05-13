@@ -10,7 +10,7 @@ import {
   resolveAffectedCardIds,
   RISK_AUTO_DELAY_MS,
 } from "@/mock/riskPresets";
-import { demoTriggerFromRiskType, mergeLocalReplanSegment } from "@/mock/localReplan";
+import { replanPlan } from "@/services/api";
 import { startReplanFlow } from "@/replan/startReplanFlow";
 
 export function useDashboardRiskActions(): {
@@ -160,7 +160,7 @@ export function useDashboardRiskActions(): {
     uiDispatch({ type: "APPEND_LOG", message: "已暂不调整，继续按当前安排推进。" });
   }, [cancelActiveReplan, planDispatch, send, uiDispatch]);
 
-  const acceptRiskSuggestion = useCallback(() => {
+  const acceptRiskSuggestion = useCallback(async () => {
     const risk = uiRef.current.activeRisk;
     if (!risk) return;
 
@@ -183,27 +183,36 @@ export function useDashboardRiskActions(): {
       return;
     }
 
-    const trig = demoTriggerFromRiskType(risk.type);
-    if (!trig) {
+    cancelReplanRef.current?.();
+    cancelReplanRef.current = null;
+    replanLockRef.current = true;
+
+    let next = planRef.current.cards;
+    try {
+      const result = await replanPlan({
+        currentPlan: planRef.current.cards,
+        riskSignal: risk,
+        userAction: "accept",
+      });
+      next = result.cards;
+    } catch (error) {
+      releaseReplanLock();
       uiDispatch({
         type: "APPEND_LOG",
-        message: "这类变化暂时没有合适的替代方案，先保留当前安排。",
+        message: "暂时无法生成新的替代路线，先保留当前安排。",
       });
+      console.warn("Replan failed without fallback.", error);
       return;
     }
 
-    const next = mergeLocalReplanSegment(planRef.current.cards, trig);
-    if (!next) {
+    if (next.length === 0) {
+      releaseReplanLock();
       uiDispatch({
         type: "APPEND_LOG",
         message: "当前时间窗口较紧，暂时无法插入新的替代地点。",
       });
       return;
     }
-
-    cancelReplanRef.current?.();
-    cancelReplanRef.current = null;
-    replanLockRef.current = true;
 
     const inner = startReplanFlow({
       nextCards: next,

@@ -48,6 +48,8 @@ interface PlanningPageProps {
   prompt: string;
   onBack: () => void;
   onViewPlan: () => void;
+  planReady?: boolean;
+  fallbackNotice?: boolean;
 }
 
 function StatusIcon({ state, index }: { state: StepState; index: number }) {
@@ -107,7 +109,13 @@ function ProgressSummary({ isGenerated }: { isGenerated: boolean }) {
   );
 }
 
-export function PlanningPage({ prompt, onBack, onViewPlan }: PlanningPageProps) {
+export function PlanningPage({
+  prompt,
+  onBack,
+  onViewPlan,
+  planReady = true,
+  fallbackNotice = false,
+}: PlanningPageProps) {
   const displayPrompt = prompt.trim() || DEFAULT_PROMPT;
   const [isGenerated, setIsGenerated] = useState(false);
 
@@ -119,6 +127,8 @@ export function PlanningPage({ prompt, onBack, onViewPlan }: PlanningPageProps) 
 
     return () => window.clearTimeout(timer);
   }, [prompt]);
+
+  const canViewPlan = isGenerated && planReady;
 
   return (
     <main className="relative min-h-screen overflow-y-auto bg-[linear-gradient(135deg,#FFF9F2_0%,#F8F2E8_58%,#FFFDF9_100%)] text-[#3C342F]">
@@ -167,12 +177,18 @@ export function PlanningPage({ prompt, onBack, onViewPlan }: PlanningPageProps) 
             </div>
           </section>
 
-          <ProgressSummary isGenerated={isGenerated} />
+          <ProgressSummary isGenerated={canViewPlan} />
+
+          {fallbackNotice ? (
+            <p className="mt-3 rounded-full bg-[#FFF4DE] px-4 py-2 text-center text-xs font-semibold text-[#8A5A2F]">
+              已切换到本地演示数据
+            </p>
+          ) : null}
 
           <section className="mt-4 flex flex-col gap-3">
             {STEPS.map((step, index) => {
               const state: StepState =
-                step.state === "current" && isGenerated ? "done" : step.state;
+                step.state === "current" && canViewPlan ? "done" : step.state;
               const isCurrent = state === "current";
               return (
                 <motion.div
@@ -208,23 +224,25 @@ export function PlanningPage({ prompt, onBack, onViewPlan }: PlanningPageProps) 
           <footer className="mt-4 flex items-center justify-between gap-4 rounded-[1.35rem] border border-[rgba(120,90,60,0.08)] bg-[#FFF9F2]/72 px-5 py-3">
             <p className="text-sm leading-6 text-[#6E6259]">
               {isGenerated
-                ? "方案已经生成，可以查看完整的周末路线。"
+                ? planReady
+                  ? "方案已经生成，可以查看完整的周末路线。"
+                  : "方案已整理完成，正在同步路线数据。"
                 : "方案即将生成，正在检查排队、预算和返程时间。"}
             </p>
             <motion.button
               type="button"
               whileTap={{ scale: 0.98 }}
-              disabled={!isGenerated}
+              disabled={!canViewPlan}
               onClick={() => {
-                if (isGenerated) onViewPlan();
+                if (canViewPlan) onViewPlan();
               }}
               className={
-                isGenerated
+                canViewPlan
                   ? "shrink-0 rounded-full bg-[#F2A65A] px-7 py-3 text-sm font-bold text-[#3C342F] shadow-[0_14px_32px_rgba(242,166,90,0.30)] transition hover:bg-[#F6C65B]"
                   : "shrink-0 cursor-not-allowed rounded-full bg-[#F7EEDF] px-7 py-3 text-sm font-bold text-[#9A8575] shadow-none"
               }
             >
-              {isGenerated ? "查看我的周末方案" : "正在生成方案…"}
+              {canViewPlan ? "查看我的周末方案" : "正在生成方案…"}
             </motion.button>
           </footer>
         </motion.section>

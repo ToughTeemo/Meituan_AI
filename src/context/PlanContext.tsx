@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useReducer, type ReactNode } from "react";
-import type { PlanAction, PlanState } from "@/types/plan";
+import type { Constraints, PlanAction, PlanBundle, PlanState } from "@/types/plan";
 import { constraints, initialPlan } from "@/mock";
 import { createInitialPlanState, planReducer } from "@/context/planReducer";
 
@@ -10,13 +10,23 @@ type PlanContextValue = {
 
 const PlanContext = createContext<PlanContextValue | null>(null);
 
-export function PlanProvider({ children }: { children: ReactNode }) {
+interface PlanProviderProps {
+  children: ReactNode;
+  initialBundle?: PlanBundle;
+  initialConstraints?: Constraints;
+}
+
+export function PlanProvider({
+  children,
+  initialBundle = initialPlan,
+  initialConstraints = constraints,
+}: PlanProviderProps) {
   const [state, dispatch] = useReducer(
     planReducer,
     createInitialPlanState(
-      structuredClone(initialPlan.cards),
-      initialPlan.timeline,
-      constraints,
+      structuredClone(initialBundle.cards),
+      initialBundle.timeline,
+      initialConstraints,
     ),
   );
   const value = useMemo(() => ({ state, dispatch }), [state]);
