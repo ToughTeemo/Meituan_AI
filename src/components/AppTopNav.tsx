@@ -10,23 +10,24 @@ interface AppTopNavProps {
   statusLabel?: string;
   onScenesClick?: () => void;
   onPlansClick?: () => void;
+  recentPlanLabels?: string[];
   onDemoClick?: () => void;
 }
 
 const SCENES = [
   "亲子半日游",
-  "宠物友好路线",
-  "轻松约会",
-  "雨天也能玩",
+  "朋友逛展吃饭",
+  "情侣轻松约会",
+  "雨天室内路线",
   "少排队慢节奏",
   "500 元以内",
 ] as const;
 
 const RECENT_PLANS = [
-  "今天下午亲子半日游",
-  "周末宠物友好路线",
+  "上海周末半日游",
   "雨天室内轻松玩",
-  "朋友小聚少排队路线",
+  "朋友逛展吃饭",
+  "亲子少走路路线",
 ] as const;
 
 const DEMO_ITEMS = [
@@ -37,21 +38,28 @@ const DEMO_ITEMS = [
   "恢复初始状态",
 ] as const;
 
+const showDemoMode =
+  import.meta.env.DEV || import.meta.env.VITE_SHOW_DEMO_CONTROLS === "true";
+
 function Popover({
   type,
   onClose,
+  recentPlanLabels,
 }: {
   type: NavItem;
   onClose: () => void;
+  recentPlanLabels?: string[];
 }) {
   const title =
-    type === "scenes"
-      ? "可以这样开口"
-      : type === "plans"
-        ? "最近方案"
-        : "演示入口";
-  const items =
-    type === "scenes" ? SCENES : type === "plans" ? RECENT_PLANS : DEMO_ITEMS;
+    type === "scenes" ? "可以这样开始" : type === "plans" ? "最近方案" : "演示入口";
+  const items: readonly string[] =
+    type === "plans" && recentPlanLabels?.length
+      ? recentPlanLabels
+      : type === "scenes"
+        ? SCENES
+        : type === "plans"
+          ? RECENT_PLANS
+          : DEMO_ITEMS;
 
   return (
     <div className="absolute right-0 top-[calc(100%+12px)] w-[280px] rounded-[1.35rem] border border-[rgba(120,90,60,0.10)] bg-[#FFFDF9]/96 p-3 text-left shadow-[0_16px_40px_rgba(80,50,20,0.10)] backdrop-blur">
@@ -64,7 +72,7 @@ function Popover({
             onClick={onClose}
             className="flex w-full items-center justify-between rounded-2xl px-3 py-2.5 text-sm font-medium text-[#5F5148] transition hover:bg-[#F8F2E8]"
           >
-            <span>{item}</span>
+            <span className="min-w-0 truncate">{item}</span>
             <span className="text-[#C49A65]">›</span>
           </button>
         ))}
@@ -81,6 +89,7 @@ export function AppTopNav({
   statusLabel,
   onScenesClick,
   onPlansClick,
+  recentPlanLabels,
   onDemoClick,
 }: AppTopNavProps) {
   const [openPanel, setOpenPanel] = useState<NavItem | null>(null);
@@ -111,7 +120,7 @@ export function AppTopNav({
               onClick={onBack}
               className="hidden rounded-full border border-[rgba(120,90,60,0.12)] bg-white/58 px-3.5 py-2 text-sm font-semibold text-[#6E6259] transition hover:bg-white md:inline-flex"
             >
-              ← 返回首页
+              返回首页
             </button>
           ) : null}
 
@@ -121,14 +130,14 @@ export function AppTopNav({
             className="flex min-w-0 items-center gap-3 rounded-[1.35rem] px-1 py-1 text-left transition hover:bg-white/38"
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#F6C65B] text-lg shadow-[0_12px_30px_rgba(120,80,40,0.14)]">
-              ☀️
+              SH
             </span>
             <span className="min-w-0">
               <span className="block truncate text-[15px] font-bold leading-tight text-[#3C342F]">
-                周末小助手
+                上海周末小助手
               </span>
               <span className="hidden truncate text-[11px] text-[#8A7666] sm:block">
-                Meituan Weekend AI
+                Weekend MVP
               </span>
             </span>
           </button>
@@ -159,18 +168,24 @@ export function AppTopNav({
           >
             我的方案
           </button>
-          <button
-            className={`rounded-full border border-[rgba(160,120,80,0.18)] bg-[#FFF9F2]/65 px-4 py-2 font-semibold text-[#7A6657] transition hover:bg-[#FFF4DE] sm:px-5 ${
-              activeItem === "demo" ? "bg-[#FFF4DE] text-[#8A5A2F]" : ""
-            }`}
-            type="button"
-            onClick={() => handleItemClick("demo")}
-          >
-            演示模式
-          </button>
+          {showDemoMode ? (
+            <button
+              className={`rounded-full border border-[rgba(160,120,80,0.18)] bg-[#FFF9F2]/65 px-4 py-2 font-semibold text-[#7A6657] transition hover:bg-[#FFF4DE] sm:px-5 ${
+                activeItem === "demo" ? "bg-[#FFF4DE] text-[#8A5A2F]" : ""
+              }`}
+              type="button"
+              onClick={() => handleItemClick("demo")}
+            >
+              演示模式
+            </button>
+          ) : null}
 
           {openPanel ? (
-            <Popover type={openPanel} onClose={() => setOpenPanel(null)} />
+            <Popover
+              type={openPanel}
+              onClose={() => setOpenPanel(null)}
+              recentPlanLabels={recentPlanLabels}
+            />
           ) : null}
         </nav>
       </div>

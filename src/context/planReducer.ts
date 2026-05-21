@@ -4,8 +4,12 @@ export function createInitialPlanState(
   cards: Card[],
   timeline: PlanState["timeline"],
   constraints: PlanState["constraints"],
+  planId: string | null = null,
+  version = 1,
 ): PlanState {
   return {
+    planId,
+    version,
     cards,
     timeline,
     constraints,
@@ -17,6 +21,8 @@ export function planReducer(state: PlanState, action: PlanAction): PlanState {
   switch (action.type) {
     case "SET_CARDS":
       return { ...state, cards: action.cards };
+    case "SET_VERSION":
+      return { ...state, version: action.version };
     case "PUSH_HISTORY":
       return {
         ...state,
@@ -33,7 +39,13 @@ export function planReducer(state: PlanState, action: PlanAction): PlanState {
       return { ...state, cards };
     }
     case "RESET_PLAN_DEMO":
-      return { ...state, cards: action.cards, planHistory: [] };
+      return {
+        ...state,
+        planId: null,
+        version: 1,
+        cards: action.cards,
+        planHistory: [],
+      };
     default: {
       const _exhaustive: never = action;
       return _exhaustive;

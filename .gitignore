@@ -5,3 +5,15 @@ dist
 .vscode/*
 !.vscode/extensions.json
 .idea
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+backend/.venv/
+backend/.uv-cache/
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/*.log
+backend/dev-*.log
+dev-*.log
+dev-pids.json

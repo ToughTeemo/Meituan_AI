@@ -131,7 +131,7 @@ export function PlanningPage({
   const canViewPlan = isGenerated && planReady;
 
   return (
-    <main className="relative min-h-screen overflow-y-auto bg-[linear-gradient(135deg,#FFF9F2_0%,#F8F2E8_58%,#FFFDF9_100%)] text-[#3C342F]">
+    <main className="relative h-dvh overflow-y-auto overflow-x-hidden bg-[linear-gradient(135deg,#FFF9F2_0%,#F8F2E8_58%,#FFFDF9_100%)] text-[#3C342F]">
       <div className="pointer-events-none absolute left-[12%] top-[10%] h-72 w-72 rounded-full bg-[#F6C65B]/16 blur-3xl" />
       <div className="pointer-events-none absolute right-[10%] top-[14%] h-72 w-72 rounded-full bg-[#EE8F6A]/12 blur-3xl" />
 
@@ -139,7 +139,7 @@ export function PlanningPage({
         <AppTopNav showBack onBack={onBack} onHomeClick={onBack} />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1220px] flex-col px-5 py-4">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-76px)] w-full max-w-[1220px] flex-col px-5 py-4">
         <motion.section
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}

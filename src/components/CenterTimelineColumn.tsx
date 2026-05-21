@@ -13,23 +13,23 @@ function assistantStatusText(
   risk: RiskSignal | null,
 ): string {
   if (machine === "REPLANNING" && replanPhase !== "idle") {
-    return "正在帮你重新调整安排，尽量保留晚餐和返程时间。";
+    return "正在根据新的风险和偏好重新调整路线，尽量保留时间、预算和返程约束。";
   }
 
   if (machine === "RISK_DETECTED" && risk) {
     if (risk.type === "queue") {
-      return "我发现儿童乐园排队变长了，预计等待 55 分钟，可能影响后续晚餐和返程。";
+      return "发现当前地点可能较热门，建议替换成等待更低、距离更稳的上海备选点。";
     }
     if (risk.type === "weather") {
-      return "我发现天气有变化，户外活动可能不太舒服，可以切到室内备选。";
+      return "发现天气可能影响户外体验，可以切换到室内或地铁更方便的备选。";
     }
     if (risk.type === "fatigue") {
-      return "我发现孩子可能有点累了，可以插入休息点，让后半程更轻松。";
+      return "行程节奏可能偏满，可以插入休息点，让后半程更轻松。";
     }
     return risk.description;
   }
 
-  return "已根据排队变化调整方案，保留晚餐和 20:00 前返程。";
+  return "这条路线已综合上海地点、路线时间、预算和天气偏好，可继续查看每一站详情。";
 }
 
 interface CenterTimelineColumnProps {
@@ -53,10 +53,10 @@ export function CenterTimelineColumn({ onConfirm }: CenterTimelineColumnProps) {
       <header className="flex h-[82px] shrink-0 items-center justify-between gap-4 border-b border-[rgba(120,90,60,0.08)] px-6">
         <div className="min-w-0">
           <h1 className="text-2xl font-bold tracking-normal text-[#3C342F]">
-            今日安排提案
+            上海周末路线
           </h1>
           <p className="mt-1 truncate text-sm text-[#6E6259]">
-            我已经帮你把时间、预算、排队和返程都考虑好了
+            真实地点、通勤估算、天气偏好和预算约束已纳入规划
           </p>
         </div>
         <div className="shrink-0 text-right">
@@ -70,10 +70,10 @@ export function CenterTimelineColumn({ onConfirm }: CenterTimelineColumnProps) {
                 : "rounded-full bg-[#F2A65A] px-4 py-2 text-sm font-bold text-[#3C342F] shadow-[0_8px_20px_rgba(242,166,90,0.22)] hover:bg-[#F6C65B]"
             }
           >
-            {isReplanning ? "调整中" : "确认安排"}
+            {isReplanning ? "调整中" : "确认路线"}
           </button>
           {isRisk ? (
-            <p className="mt-1 text-[10px] text-[#9A8575]">还有 1 个变化待确认</p>
+            <p className="mt-1 text-[10px] text-[#9A8575]">有 1 个变化待确认</p>
           ) : null}
         </div>
       </header>
@@ -93,7 +93,7 @@ export function CenterTimelineColumn({ onConfirm }: CenterTimelineColumnProps) {
             <p>{statusText}</p>
             {!isRisk && !isReplanning ? (
               <p className="mt-0.5 text-[11px] leading-5 text-[#8A7666]">
-                已参考你的偏好：少排队、别走太远、预算内。
+                生产模式会关闭静默 mock fallback，无法获取实时数据时会显示明确提示。
               </p>
             ) : null}
           </div>

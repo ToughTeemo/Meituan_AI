@@ -14,6 +14,10 @@ interface MockMapViewProps {
   replanPhase: ReplanPhase;
 }
 
+function shortName(name: string): string {
+  return name.length > 6 ? `${name.slice(0, 6)}…` : name;
+}
+
 export function MockMapView({
   pois,
   focusedPoiId,
@@ -34,6 +38,7 @@ export function MockMapView({
 
   const isGenerating = replanPhase === "generating";
   const hasRoute = d.length > 0;
+  const focusedPoi = pois[focusedIndex] ?? pois[0];
 
   return (
     <motion.div
@@ -42,13 +47,15 @@ export function MockMapView({
       transition={{ duration: REPLAN_OVERLAY_FADE_S }}
     >
       <div className="border-b border-[rgba(120,90,60,0.08)] px-4 py-2.5">
-        <p className="text-[11px] font-semibold text-[#8A7666]">路线示意图</p>
+        <p className="text-[11px] font-semibold text-[#8A7666]">
+          上海路线示意 · 第 {focusedStopIndex + 1} 站
+        </p>
       </div>
       <svg
         viewBox="0 0 100 100"
         className="block h-[min(26vh,235px)] min-h-[176px] w-full text-[#3C342F]"
         role="img"
-        aria-label="路线与地点标记"
+        aria-label="上海路线与地点标记"
       >
         <defs>
           <linearGradient id="warmRoute" x1="0" x2="1" y1="0" y2="1">
@@ -62,14 +69,14 @@ export function MockMapView({
         <path d="M18 0 C 20 24, 24 42, 28 100" fill="none" stroke="#F8F2E8" strokeWidth="5" />
         <path d="M70 0 C 66 26, 68 58, 82 100" fill="none" stroke="#F7EEDF" strokeWidth="6" />
 
-        <text x="12" y="17" fill="#8A5A2F" fontSize="5.3" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
-          第 {focusedStopIndex + 1} 站
+        <text x="9" y="16" fill="#8A5A2F" fontSize="5.3" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
+          Shanghai
         </text>
-        <text x="68" y="24" fill="#526849" fontSize="5.1" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
-          下一站
+        <text x="67" y="24" fill="#526849" fontSize="5.1" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
+          Weekend
         </text>
-        <text x="43" y="78" fill="#A99482" fontSize="4.8" fontFamily="ui-sans-serif, system-ui">
-          步行6分钟
+        <text x="43" y="80" fill="#A99482" fontSize="4.8" fontFamily="ui-sans-serif, system-ui">
+          route estimate
         </text>
 
         <motion.g
@@ -111,15 +118,26 @@ export function MockMapView({
                 <text x="0" y="1.8" textAnchor="middle" fill={focused ? "#3C342F" : "#6E6259"} fontSize="5.5" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
                   {index + 1}
                 </text>
+                {focused ? (
+                  <text x="0" y="-12" textAnchor="middle" fill="#8A5A2F" fontSize="4.4" fontWeight="700" fontFamily="ui-sans-serif, system-ui">
+                    {shortName(poi.name)}
+                  </text>
+                ) : null}
               </g>
             );
           })}
         </motion.g>
       </svg>
       <div className="flex flex-wrap gap-2 border-t border-[rgba(120,90,60,0.08)] px-4 py-2.5 text-[11px] text-[#8A7666]">
-        <span className="rounded-full bg-[#F7EEDF]/70 px-3 py-1">约20分钟到下一站</span>
-        <span className="rounded-full bg-[#F7EEDF]/70 px-3 py-1">步行6分钟</span>
-        <span className="rounded-full bg-[#EFF5E9] px-3 py-1 text-[#526849]">路线已避开高拥堵段</span>
+        <span className="rounded-full bg-[#F7EEDF]/70 px-3 py-1">
+          {focusedPoi?.district ?? "上海"}
+        </span>
+        <span className="rounded-full bg-[#F7EEDF]/70 px-3 py-1">
+          {focusedPoi?.category ?? "地点"}
+        </span>
+        <span className="rounded-full bg-[#EFF5E9] px-3 py-1 text-[#526849]">
+          经纬度路线估算
+        </span>
       </div>
     </motion.div>
   );

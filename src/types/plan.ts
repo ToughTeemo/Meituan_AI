@@ -19,6 +19,12 @@ export interface POI {
   is_child_friendly: boolean;
   /** 营业时间等补充展示 */
   hours_label?: string;
+  address?: string;
+  district?: string;
+  latitude?: number;
+  longitude?: number;
+  recommendation_reason?: string;
+  risk_labels?: string[];
 }
 
 export interface Card {
@@ -89,9 +95,12 @@ export type MachineState =
   | "EXECUTING"
   | "RISK_DETECTED"
   | "REPLANNING"
-  | "COMPLETED";
+  | "COMPLETED"
+  | "CONFIRMED";
 
 export interface PlanState {
+  planId: string | null;
+  version: number;
   cards: Card[];
   timeline: TimelineConfig;
   constraints: Constraints;
@@ -100,6 +109,7 @@ export interface PlanState {
 
 export type PlanAction =
   | { type: "SET_CARDS"; cards: Card[] }
+  | { type: "SET_VERSION"; version: number }
   | { type: "PUSH_HISTORY" }
   | {
       type: "APPLY_CARD_PATCHES";

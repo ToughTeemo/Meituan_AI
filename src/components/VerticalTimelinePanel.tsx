@@ -35,9 +35,9 @@ export function VerticalTimelinePanel() {
     <section className="flex h-full min-h-0 flex-col bg-[#FFFDF9]/30">
       <div className="flex h-14 shrink-0 items-center justify-between border-b border-[rgba(120,90,60,0.06)] px-6">
         <div>
-          <h2 className="text-base font-bold text-[#3C342F]">今天的路线安排</h2>
+          <h2 className="text-base font-bold text-[#3C342F]">路线时间轴</h2>
           <p className="mt-0.5 text-xs text-[#8A7666]">
-            共 {visibleStops} 站 · 预计 20:00 前到家
+            共 {visibleStops} 站 · 按上海市内通勤时间估算
           </p>
         </div>
       </div>

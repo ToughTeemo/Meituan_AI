@@ -55,14 +55,14 @@ const FLOATING_CARDS = [
   {
     title: "18:00 亲子晚餐",
     text: "可预约 · 人均 ¥80",
-    className: "left-16 bottom-[25%] w-44 z-0 opacity-50",
+    className: "hidden",
     delay: 0.34,
     ambient: true,
   },
   {
     title: "20:00 前到家",
     text: "路线更轻松 · 少换乘",
-    className: "right-16 bottom-[24%] w-48 z-0 opacity-45",
+    className: "hidden",
     delay: 0.46,
     ambient: true,
   },
@@ -99,7 +99,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#FFF9F2] text-[#3C342F]">
+    <main className="relative h-dvh max-w-full overflow-hidden bg-[#FFF9F2] text-[#3C342F]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(246,198,91,0.26),transparent_34%),radial-gradient(circle_at_86%_18%,rgba(238,143,106,0.18),transparent_35%),radial-gradient(circle_at_50%_38%,rgba(255,253,249,0.9),transparent_38%),linear-gradient(135deg,#FFF9F2_0%,#F8F2E8_54%,#FFFDF9_100%)]" />
       <div className="absolute left-1/2 top-24 h-80 w-80 -translate-x-1/2 rounded-full bg-white/60 blur-3xl" />
       <div className="absolute inset-0 opacity-[0.035] [background-image:radial-gradient(rgba(120,90,60,0.55)_0.7px,transparent_0.7px)] [background-size:18px_18px]" />
@@ -108,8 +108,8 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
         <AppTopNav activeItem="scenes" onScenesClick={scrollToScenarios} />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] w-full max-w-6xl flex-col px-5 sm:px-8">
-        <section className="relative flex flex-1 items-start justify-center pt-12 sm:pt-14 lg:pt-16">
+      <div className="relative z-10 mx-auto flex h-[calc(100dvh-76px)] w-full max-w-6xl flex-col overflow-hidden px-5 sm:px-8">
+        <section className="relative flex min-h-0 min-w-0 flex-1 items-center justify-center pb-5 pt-7 sm:pb-6 sm:pt-8 lg:pt-9">
           <svg
             aria-hidden="true"
             className="pointer-events-none absolute left-10 top-[35%] hidden h-56 w-[calc(100%-5rem)] opacity-24 lg:block"
@@ -140,7 +140,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
                   ease: "easeInOut",
                 },
               }}
-              className={`pointer-events-none absolute hidden rounded-[1.35rem] border border-[rgba(120,90,60,0.10)] bg-[#FFFDF9]/80 p-4 text-left shadow-[0_14px_34px_rgba(120,80,40,0.08)] backdrop-blur lg:block ${card.className}`}
+              className={`pointer-events-none absolute rounded-[1.35rem] border border-[rgba(120,90,60,0.10)] bg-[#FFFDF9]/80 p-4 text-left shadow-[0_14px_34px_rgba(120,80,40,0.08)] backdrop-blur lg:block ${card.className}`}
             >
               <p className="text-sm font-bold text-[#3C342F]">{card.title}</p>
               {!card.ambient ? (
@@ -149,7 +149,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
             </motion.div>
           ))}
 
-          <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
+          <div className="relative z-10 mx-auto w-full min-w-0 max-w-4xl text-center">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -163,7 +163,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08, duration: 0.52, ease: "easeOut" }}
-              className="text-[44px] font-semibold leading-tight tracking-normal text-[#3C342F] sm:text-[64px]"
+              className="text-[40px] font-semibold leading-tight tracking-normal text-[#3C342F] sm:text-[58px] xl:text-[64px]"
             >
               一句话，安排你的周末
             </motion.h1>
@@ -172,7 +172,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.46, ease: "easeOut" }}
-              className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#6E6259] sm:text-lg"
+              className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#6E6259] sm:text-lg"
             >
               <span className="block">告诉我和谁出门、预算多少、想轻松还是热闹。</span>
               <span className="block">
@@ -184,7 +184,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.26, duration: 0.5, ease: "easeOut" }}
-              className="relative z-30 mx-auto mt-6 max-w-3xl rounded-[2rem] border border-[rgba(120,90,60,0.12)] bg-[#FFFDF9]/94 p-2.5 text-left shadow-[0_20px_58px_rgba(120,80,40,0.11)] backdrop-blur transition hover:shadow-[0_24px_64px_rgba(120,80,40,0.13)] focus-within:border-[#F2A65A]/45 focus-within:bg-[#FFFDF9] focus-within:shadow-[0_24px_64px_rgba(242,166,90,0.13)]"
+              className="relative z-30 mx-auto mt-5 max-w-3xl rounded-[2rem] border border-[rgba(120,90,60,0.12)] bg-[#FFFDF9]/94 p-2.5 text-left shadow-[0_20px_58px_rgba(120,80,40,0.11)] backdrop-blur transition hover:shadow-[0_24px_64px_rgba(120,80,40,0.13)] focus-within:border-[#F2A65A]/45 focus-within:bg-[#FFFDF9] focus-within:shadow-[0_24px_64px_rgba(242,166,90,0.13)]"
             >
               <div className="rounded-[1.55rem] px-5 pt-3">
                 <p className="text-[12px] font-semibold text-[#8A7666]">
@@ -196,7 +196,7 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
                   value={text}
                   onChange={(event) => setText(event.target.value)}
                   rows={3}
-                  className="relative z-10 min-h-[84px] w-full resize-none rounded-[1.55rem] border-0 bg-transparent px-5 pb-3 pt-1.5 text-base leading-7 text-[#3C342F] outline-none"
+                  className="relative z-10 min-h-[76px] w-full resize-none rounded-[1.55rem] border-0 bg-transparent px-5 pb-2 pt-1.5 text-base leading-7 text-[#3C342F] outline-none"
                 />
                 <AnimatePresence mode="wait">
                   {!text ? (
@@ -233,12 +233,12 @@ export function WarmHomePage({ onStart }: WarmHomePageProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.34, duration: 0.46, ease: "easeOut" }}
               id="scenario-entry"
-              className="mt-5 scroll-mt-28"
+              className="relative z-40 mt-4 scroll-mt-28"
             >
               <p className="mb-3 text-xs font-medium text-[#9A8575]">
                 不知道怎么说？从这些场景开始
               </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              <div className="mx-auto grid w-full max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {SCENES.map((scene, index) => (
                   <motion.button
                     key={scene}

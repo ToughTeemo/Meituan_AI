@@ -62,7 +62,7 @@ function MicIcon() {
 export function AIRequestBox() {
   const [text, setText] = useState("");
   const { dispatch: uiDispatch } = useUI();
-  const { triggerDemoRisk } = useDashboardRiskActions();
+  const { submitUserRequirement } = useDashboardRiskActions();
 
   const appendLog = (message: string) => {
     uiDispatch({ type: "APPEND_LOG", message });
@@ -70,11 +70,6 @@ export function AIRequestBox() {
 
   const applyQuickInput = (item: (typeof QUICK_INPUTS)[number]) => {
     setText(item.label);
-    if ("risk" in item && item.risk) {
-      triggerDemoRisk(item.risk);
-      return;
-    }
-    appendLog(item.message);
   };
 
   const handleSend = () => {
@@ -84,19 +79,7 @@ export function AIRequestBox() {
       return;
     }
 
-    if (next.includes("累")) {
-      triggerDemoRisk("fatigue");
-    } else if (next.includes("下雨") || next.includes("室内")) {
-      triggerDemoRisk("rain");
-    } else if (next.includes("排队") || next.includes("人多")) {
-      triggerDemoRisk("queue");
-    } else if (next.includes("没位") || next.includes("餐厅")) {
-      appendLog("收到：餐厅相关变化。我会优先帮你找附近可预约、适合亲子的餐厅。");
-    } else if (next.includes("堵") || next.includes("拥堵")) {
-      appendLog("收到：路上拥堵。我会优先选择更少换乘、耗时更稳定的路线。");
-    } else {
-      appendLog(`收到：${next}。我会按这个偏好帮你微调安排。`);
-    }
+    submitUserRequirement(next);
     setText("");
   };
 
