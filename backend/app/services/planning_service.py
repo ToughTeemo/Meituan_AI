@@ -36,18 +36,20 @@ class PlanningService:
             if settings.weather_provider == "open_meteo"
             else SeedWeatherService()
         )
+        print("Weather Service:", type(weather_service).__name__)
         seed_poi_service = ShanghaiSeedPoiService()
         poi_service = (
-            AmapPoiService(settings.amap_api_key, fallback=seed_poi_service)
-            if settings.planning_provider == "amap" and settings.amap_api_key
+            AmapPoiService(settings.amap_api_key or "", fallback=seed_poi_service)
+            if settings.poi_provider == "amap"
             else seed_poi_service
         )
         estimated_route_service = EstimatedShanghaiRouteService()
         route_service = (
-            AmapRouteService(settings.amap_api_key, fallback=estimated_route_service)
-            if settings.route_provider == "amap" and settings.amap_api_key
+            AmapRouteService(settings.amap_api_key or "", fallback=estimated_route_service)
+            if settings.route_provider == "amap"
             else estimated_route_service
         )
+        print("Route Service:", type(route_service).__name__)
         planner = ShanghaiMvpPlannerService(
             poi_service=poi_service,
             weather_service=weather_service,

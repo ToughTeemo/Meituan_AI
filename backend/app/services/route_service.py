@@ -90,6 +90,7 @@ class AmapRouteService:
             }
         )
         url = f"{endpoint}?{query}"
+        print("AMAP ROUTE URL:", url)
         try:
             payload = self.fetch_json(url, self.timeout_seconds)
         except (OSError, TimeoutError, json.JSONDecodeError):

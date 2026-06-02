@@ -10,9 +10,19 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./life_agent.db"
     database_auto_create: bool = True
     cors_origins: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
+
+    # Provider Switch
     planning_provider: str = "shanghai_seed"
+    poi_provider: str = "seed"
     route_provider: str = "estimated"
     weather_provider: str = "seed"
+    hours_provider: str = "hybrid"
+    price_provider: str = "estimated"
+    queue_provider: str = "estimated"
+    booking_provider: str = "stub"
+    action_provider: str = "amap_uri"
+
+    # AMap
     amap_api_key: str | None = None
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
