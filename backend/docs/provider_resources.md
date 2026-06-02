@@ -15,7 +15,7 @@
 | `PriceProvider` | `hybrid`（`amap_cost` + `estimated`） | `PRICE_PROVIDER`，默认 `estimated` | 部分已嵌入：`AmapPoiService._place_from_amap_item()` 读取 `biz_ext.cost`；计划抽出独立 Provider | 优先高德 `biz_ext.cost`，没有则 seed / 类目估算。 |
 | `QueueProvider` | `estimated` | `QUEUE_PROVIDER`，默认 `estimated` | 当前嵌入 POI：seed `queue_minutes`，高德结果固定估算；计划实现独立 `queue_service.py` | 暂无稳定公开真实 API，必须按估算和用户反馈处理。 |
 | `BookingProvider` | `stub` | `BOOKING_PROVIDER`，默认 `stub` | 计划实现：`booking_service.py` | 当前没有美团合作 API 权限，只能输出“需用户手动预订”的执行建议。 |
-| `ActionProvider` | `stub`（推荐 `amap_uri`） | `ACTION_PROVIDER`，默认 `amap_uri` | 计划实现：`action_service.py`，前端执行入口可消费 payload | 生成导航、分享、提醒 payload，不代表外部动作已完成。 |
+| `ActionProvider` | `hybrid`（`amap_uri` + payload） | `ACTION_PROVIDER`，默认 `amap_uri` | 计划实现：`action_service.py`，前端执行入口可消费 payload | 可真实生成高德导航 URI；分享、提醒先输出 payload，由前端或执行 Agent 触发用户确认。 |
 
 ## 通用输入输出约定
 
@@ -78,41 +78,73 @@
 | 项目 | 内容 |
 | --- | --- |
 | 当前状态 | `hybrid`，设计态；尚未独立接入业务流程。当前只有 `ShanghaiPlace.hours_label` 被带到前端，seed 有人工 hours，高德 POI 当前仅给固定兜底文案。 |
-| 当前实现或计划实现位置 | 计划优先在 `poi_service.py` 解析高德字段并填充 `hours_label`；稳定后抽为 `backend/app/services/hours_service.py`。配置项已存在：`HOURS_PROVIDER=hybrid`。 |
-| 真实数据源 | 高德 POI 原始字段中的 `open_time`、`biz_ext.open_time`，必要时保留原始字符串。 |
-| fallback/mock 数据源 | 类目估算：博物馆/展馆约 `09:00-17:00` 或 `10:00-18:00`；商场/街区约 `10:00-22:00`；餐饮约午晚餐时段；公园约 `05:00-21:00`；seed 的 `hours_label` 优先于纯类目估算。 |
-| 输入字段 | `poi_id`、`name`、`category`、`address`、`latitude`、`longitude`、计划到达时间、计划停留时长，以及高德原始 `open_time` / `biz_ext.open_time`。 |
-| 输出字段 | 建议输出 `hours_label`、`is_open_at_arrival`、`open_intervals`、`next_open_time`、`next_close_time`、`source`、`confidence`、`risk_note`。当前前端只消费 `hours_label` 和 `risk_labels`。 |
-| confidence 规则 | `0.80`: 高德返回可解析的营业时间且覆盖计划到达时间。`0.65`: 高德返回营业文案但不可完全结构化，只能展示 label。`0.55`: seed `hours_label`。`0.45`: 类目估算。`0.30`: 未知或仅写“以商户实时信息为准”。 |
+| 是否有真实 API | 有可用真实字段，但不是独立 Hours API。优先使用高德 POI `open_time` / `biz_ext.open_time`；字段缺失时不能认为真实营业时间已知。 |
+| 当前推荐数据来源 | 高德 POI 原始字段 `open_time`、`biz_ext.open_time`，必要时保留原始字符串；短期可先在 `poi_service.py` enrichment，稳定后抽为 `backend/app/services/hours_service.py`。 |
+| mock / fallback 数据来源 | seed `hours_label`；类目估算：博物馆/展馆约 `09:00-17:00` 或 `10:00-18:00`，商场/街区约 `10:00-22:00`，餐饮按午晚餐时段，公园约 `05:00-21:00`。 |
+| 推荐输入字段 | `poi_id`、`name`、`category`、`address`、`latitude`、`longitude`、`planned_arrival_at`、`planned_duration_minutes`、`timezone`、`open_time`、`biz_ext.open_time`、`source_poi_provider`。 |
+| 推荐输出字段 | `hours_label`、`is_open_at_arrival`、`open_intervals`、`next_open_time`、`next_close_time`、`source`、`confidence`、`fallback_reason`、`risk_note`。当前前端只消费 `hours_label` 和 `risk_labels`。 |
+| confidence 规则 | `0.80`: 高德返回可解析营业时间且覆盖计划到达时间。`0.65`: 高德返回营业文案但不可完全结构化，只展示 label。`0.55`: seed `hours_label`。`0.45`: 类目估算。`0.30`: 未知或仅写“以商户实时信息为准”。 |
 | 限制和风险 | 营业时间经常受节假日、临时闭馆、展期、商户装修影响；高德字段可能为空、格式不统一或只表示商场整体；餐饮分时段营业较难用单一 label 表达。 |
 | 给方案设计 Agent 的使用建议 | 只有 confidence 高于 `0.65` 时才把营业时间作为硬约束；低 confidence 时应把“可能闭店/闭馆”写入风险，并给同区域备选。收尾卡片不要压在预计关门前 30 分钟内。 |
 | 给执行 Agent 的使用建议 | 到达前重新校验营业状态；如果 `is_open_at_arrival=false` 或 confidence 低于 `0.45`，优先提示用户确认并准备替代 POI。 |
+
+推荐输出 JSON 示例：
+
+```json
+{
+  "provider": "hours",
+  "poi_id": "B00155FXB3",
+  "hours_label": "09:00-21:00",
+  "is_open_at_arrival": true,
+  "open_intervals": [
+    {
+      "start": "09:00",
+      "end": "21:00"
+    }
+  ],
+  "source": "amap",
+  "confidence": "high"
+}
+```
 
 ## PriceProvider
 
 | 项目 | 内容 |
 | --- | --- |
 | 当前状态 | `hybrid`（`amap_cost` + `estimated`）。当前高德 `biz_ext.cost` 已在 `AmapPoiService` 中映射到 `price_per_person`；没有 cost 时再 fallback 到 seed / 类目估算；目前还没有独立 PriceProvider。 |
-| 当前实现或计划实现位置 | 部分已实现：`backend/app/services/poi_service.py` 的 `AmapPoiService._place_from_amap_item()`。计划抽为 `backend/app/services/price_service.py`，统一处理票价、餐饮客单价、儿童价格和预算汇总。配置项已存在：`PRICE_PROVIDER=estimated`。 |
-| 真实数据源 | 高德 `biz_ext.cost`，可作为人均消费或类目相关成本参考。未来如有合作权限，可接入票务、餐饮、团购或商户价格 API。 |
-| fallback/mock 数据源 | seed `price_per_person`；类目估算；高德缺失时当前默认值约为 80。 |
-| 输入字段 | `poi_id`、`name`、`category`、`biz_ext.cost`、`adults`、`children`、`children_age`、`budget`、计划活动类型和停留时长。 |
-| 输出字段 | 当前输出 `price_per_person`。建议扩展为 `price_per_person`、`estimated_total`、`price_label`、`included_items`、`source`、`confidence`、`budget_risk`。 |
+| 是否有真实 API | 有部分真实字段。高德 `biz_ext.cost` 可作为人均消费或类目相关成本参考，但不是完整票价/菜单/订单 API。 |
+| 当前推荐数据来源 | 优先高德 `biz_ext.cost`；当前已在 `backend/app/services/poi_service.py` 的 `AmapPoiService._place_from_amap_item()` 映射到 `price_per_person`。后续建议抽为 `backend/app/services/price_service.py`。 |
+| mock / fallback 数据来源 | seed `price_per_person`；类目估算；高德缺失时当前默认值约为 80；未来可接入票务、餐饮、团购或商户价格 API。 |
+| 推荐输入字段 | `poi_id`、`name`、`category`、`biz_ext.cost`、`adults`、`children`、`children_age`、`budget`、`planned_activity_type`、`planned_duration_minutes`。 |
+| 推荐输出字段 | 当前输出 `price_per_person`。建议扩展为 `price_per_person`、`estimated_total`、`currency`、`price_label`、`included_items`、`source`、`confidence`、`budget_risk`。 |
 | confidence 规则 | `0.70`: 高德 `biz_ext.cost` 可解析。`0.60`: seed `price_per_person`。`0.45`: 类目估算。`0.30`: 默认兜底价格。若涉及儿童票、展览特展、套餐、服务费，应下调 `0.10-0.20`。 |
 | 限制和风险 | 高德 cost 可能是历史人均、餐饮客单价或粗粒度商户价格；博物馆常有常设展/特展差异；儿童、老人、学生优惠未建模；实际消费会受用户点单影响。 |
 | 给方案设计 Agent 的使用建议 | 把价格作为预算排序和风险提示，不要当作最终付款金额。预算紧张时优先选择 confidence 较高且低价的 POI，并保留交通、餐饮和临时消费余量。 |
 | 给执行 Agent 的使用建议 | 展示“预计/约”而不是确定价格；用户确认消费或实际付款后应更新剩余预算，并在超预算前触发 replanning。 |
+
+推荐输出 JSON 示例：
+
+```json
+{
+  "provider": "price",
+  "poi_id": "B00155FXB3",
+  "avg_price": 68,
+  "currency": "CNY",
+  "source": "amap",
+  "confidence": "medium"
+}
+```
 
 ## QueueProvider
 
 | 项目 | 内容 |
 | --- | --- |
 | 当前状态 | `estimated`。当前没有稳定公开真实 API；seed 有 `queue_minutes`，高德 POI 当前固定估算排队时间。 |
-| 当前实现或计划实现位置 | 当前嵌入 `ShanghaiPlace.queue_minutes`；计划实现 `backend/app/services/queue_service.py`，从类目、时间、天气、节假日和用户反馈估算。配置项已存在：`QUEUE_PROVIDER=estimated`。 |
-| 真实数据源 | 暂无稳定公开真实 API。未来可能来自合作商户、场馆客流、排队系统、用户实时反馈或自有历史数据。 |
-| fallback/mock 数据源 | seed `queue_minutes`；类目 + 时间段估算；高德 POI 当前可暂按 18 分钟兜底。 |
-| 输入字段 | `poi_id`、`category`、计划到达时间、星期/节假日、天气、成人/儿童人数、是否热门 POI、历史/用户反馈。 |
-| 输出字段 | 当前输出 `queue_minutes`，并在 `queue_minutes >= 25` 时生成热门风险标签。建议扩展为 `queue_minutes`、`queue_level`、`source`、`confidence`、`reason`、`valid_until`。 |
+| 是否有真实 API | 当前没有稳定公开真实 API。未来可能来自合作商户、场馆客流、排队系统、用户实时反馈或自有历史数据。 |
+| 当前推荐数据来源 | 使用时间段、类目、天气、商圈热度、节假日、热门 POI、亲子/餐饮场景和用户现场反馈估算。 |
+| mock / fallback 数据来源 | seed `queue_minutes`；类目 + 时间段估算；高德 POI 当前可暂按 18 分钟兜底。 |
+| 推荐输入字段 | `poi_id`、`name`、`category`、`planned_arrival_at`、`weekday`、`is_holiday`、`weather_condition`、`business_area`、`popularity_level`、`adults`、`children`、`user_reported_wait_minutes`。 |
+| 推荐输出字段 | 当前输出 `queue_minutes`，并在 `queue_minutes >= 25` 时生成热门风险标签。建议扩展为 `queue_minutes`、`queue_level`、`source`、`confidence`、`reason`、`valid_until`。 |
 | confidence 规则 | `0.55`: seed 明确排队估算。`0.45`: 类目 + 时间段 + 天气估算。`0.35`: 高德结果无排队字段时的固定兜底。`0.25`: 节假日、大型活动、热门展览且没有实时信号。 |
 | 限制和风险 | 排队波动最大，且节假日、天气、社交平台热度、临时限流都会让估算失真；当前不具备实时验票/叫号/排队系统数据。 |
 | 给方案设计 Agent 的使用建议 | 低 confidence queue 必须转化为时间缓冲和备选点，不要只给一个紧凑路线。亲子、餐饮、热门展馆应默认提高排队风险。 |
@@ -122,11 +154,12 @@
 
 ```json
 {
-  "queue_minutes": 25,
-  "queue_level": "high",
+  "provider": "queue",
+  "poi_id": "B00155FXB3",
+  "queue_level": "medium",
+  "estimated_wait_minutes": 15,
   "source": "estimated",
-  "confidence": 0.45,
-  "reason": "weekend_afternoon_restaurant"
+  "confidence": "low"
 }
 ```
 
@@ -135,41 +168,194 @@
 | 项目 | 内容 |
 | --- | --- |
 | 当前状态 | `stub`。当前没有美团合作 API 权限，也没有真实下单/订座/票务确认能力。 |
-| 当前实现或计划实现位置 | 计划实现 `backend/app/services/booking_service.py`。配置项已存在：`BOOKING_PROVIDER=stub`。 |
-| 真实数据源 | 暂无。未来需要美团、商户、票务、餐厅订座或第三方合作 API，并处理授权、订单、支付、取消、隐私合规。 |
-| fallback/mock 数据源 | stub 响应：不可自动预订、需用户手动确认；可生成“去预订/去确认”的 action payload。 |
-| 输入字段 | `poi_id`、`name`、`category`、计划日期时间、人数、儿童人数、用户授权状态、联系方式或登录态。当前不应要求或保存敏感支付信息。 |
-| 输出字段 | 建议输出 `booking_status`、`is_bookable`、`required_user_action`、`manual_url_or_hint`、`deadline`、`source`、`confidence`、`risk_note`。当前阶段可只返回 stub 状态和文案。 |
-| confidence 规则 | `0.20`: stub，仅表示系统知道“需要预订/可能需要预订”，不表示已完成。未来真实 API 返回确认号后可提升到 `0.95`。 |
+| 是否有真实 API | 当前没有美团合作 API 权限。不能自动下单、订座、购票或生成真实订单确认。 |
+| 当前推荐数据来源 | stub 策略：识别“可能需要预约/购票/订座”的场景，输出 `pending_user_action`，引导用户到官方或可信渠道手动确认。 |
+| mock / fallback 数据来源 | stub 响应；POI 类目规则；人工维护的“建议预约”标签；ActionProvider 生成“去预订/去确认”的导航、分享或提醒 payload。 |
+| 推荐输入字段 | `poi_id`、`name`、`category`、`planned_arrival_at`、`party_size`、`children`、`user_authorization_state`、`manual_url_or_hint`、`booking_policy_hint`。当前不应要求或保存敏感支付信息。 |
+| 推荐输出字段 | `booking_status`、`is_bookable`、`required_user_action`、`manual_url_or_hint`、`deadline`、`source`、`confidence`、`risk_note`。当前阶段必须返回 `pending_user_action` 或 `not_supported`，不允许返回“已预订/已下单”。 |
+| confidence 规则 | `0.20`: stub，仅表示系统知道“需要预订/可能需要预订”，不表示已完成。`0.10`: 只有类目推断且无明确渠道。未来真实 API 返回确认号后才可提升到 `0.95`。 |
 | 限制和风险 | 没有合作权限不能代表用户订票、订座或付款；不能伪造确认状态；涉及手机号、登录、支付和退款时必须走明确授权与合规流程。 |
 | 给方案设计 Agent 的使用建议 | 不要写“已预订”。对热门展馆、餐厅、亲子场馆应标注“建议提前预约/购票”，并在计划中留出用户手动确认动作。 |
 | 给执行 Agent 的使用建议 | 只引导用户去官方/可信渠道手动完成；用户没有确认前，booking 状态保持 `stub` 或 `pending_user_action`。如用户反馈不可订，应立即换备选。 |
+
+推荐输出 JSON 示例：
+
+```json
+{
+  "provider": "booking",
+  "poi_id": "B00155FXB3",
+  "status": "pending_user_action",
+  "supported": false,
+  "message": "需要跳转第三方平台完成预订",
+  "confidence": "high"
+}
+```
 
 ## ActionProvider
 
 | 项目 | 内容 |
 | --- | --- |
-| 当前状态 | `stub`，推荐实现形态为 `amap_uri`。配置默认值已是 `ACTION_PROVIDER=amap_uri`，但当前没有独立服务。 |
-| 当前实现或计划实现位置 | 计划实现 `backend/app/services/action_service.py`，并在前端卡片按钮消费 action payload。 |
-| 真实数据源 | 高德 URI / deeplink 规范，用于导航到 POI；系统日历/通知能力用于提醒；分享可用前端 Web Share API 或复制 payload。 |
-| fallback/mock 数据源 | 纯前端 payload：导航 URI、Web 地图 URL、提醒时间、分享文本。没有外部 App 时展示复制地址/坐标。 |
-| 输入字段 | `action_type`、`plan_id`、`card_id`、`poi_id`、`name`、`address`、`latitude`、`longitude`、`transport_mode`、出发地、计划开始时间、提醒提前量。 |
-| 输出字段 | 建议输出 `action_type`、`label`、`uri`、`web_url`、`payload`、`requires_user_confirmation`、`expires_at`、`source`、`confidence`。动作类型包括导航、分享、提醒。 |
+| 当前状态 | `hybrid`（`amap_uri` + share/reminder payload），设计态；配置默认值已是 `ACTION_PROVIDER=amap_uri`，但当前没有独立服务接入业务流程。 |
+| 是否有真实 API | 导航动作可以真实生成高德 URI / deeplink；分享和提醒当前先输出 payload，由前端 Web Share API、剪贴板、系统日历/通知或执行 Agent 在用户确认后触发。 |
+| 当前推荐数据来源 | 高德 URI 规范；POI 名称、地址、经纬度；卡片计划时间；执行 Agent 的用户确认上下文。 |
+| mock / fallback 数据来源 | 纯 payload：高德导航 URI、Web 地图 URL、分享文本、提醒时间。没有外部 App 时展示复制地址/坐标；提醒无法落系统通知时输出手动提醒文案。 |
+| 推荐输入字段 | `action_type`、`plan_id`、`card_id`、`poi_id`、`name`、`address`、`latitude`、`longitude`、`transport_mode`、`origin_name`、`planned_start_at`、`remind_before_minutes`、`share_context`。 |
+| 推荐输出字段 | `action_type`、`label`、`provider`、`uri`、`web_url`、`payload`、`requires_user_confirmation`、`expires_at`、`source`、`confidence`。动作类型必须覆盖 `navigation`、`share`、`reminder`。 |
 | confidence 规则 | `0.75`: 有有效坐标和 POI 名称，可生成高德导航 URI。`0.60`: 只有地址/名称，生成搜索或 Web URL。`0.50`: 分享 payload。`0.40`: 提醒 payload 但未接入系统通知确认。 |
 | 限制和风险 | 生成 URI 不等于导航已开始；不同平台和高德版本 URI 支持差异较大；提醒和分享通常需要用户确认；payload 不应包含隐私或未授权联系人信息。 |
 | 给方案设计 Agent 的使用建议 | 把 Action 当成执行入口，不要当成外部状态证明。每个关键卡片可以预生成导航、分享、提醒动作，但计划语义仍以 Provider 数据和用户确认状态为准。 |
 | 给执行 Agent 的使用建议 | 触发动作前展示目标名称、地址、时间，并要求用户确认。导航失败时降级到 Web URL 或复制地址；提醒失败时提示用户手动设置。 |
 
-`amap_uri` 导航 action JSON 示例：
+推荐输出 JSON 示例：
+
+ActionProvider - navigation：
 
 ```json
 {
+  "provider": "action",
   "action_type": "navigation",
-  "label": "导航到外滩",
-  "provider": "amap_uri",
-  "uri": "https://uri.amap.com/navigation?to=121.492127,31.233516,外滩&mode=walk",
-  "requires_user_confirmation": true,
-  "confidence": 0.75
+  "uri": "amapuri://route/plan/?...",
+  "source": "amap"
+}
+```
+
+ActionProvider - share：
+
+```json
+{
+  "provider": "action",
+  "action_type": "share",
+  "payload": {
+    "title": "周末外滩散步",
+    "content": "推荐路线..."
+  }
+}
+```
+
+ActionProvider - reminder：
+
+```json
+{
+  "provider": "action",
+  "action_type": "reminder",
+  "payload": {
+    "title": "周末出发提醒",
+    "remind_at": "2025-08-24T09:00:00+08:00"
+  }
+}
+```
+
+## Snapshot 通用字段规范
+
+Provider Snapshot 建议统一带上 `provider`、`source`、`confidence` 三类基础字段，方便方案设计 Agent、执行 Agent 和前端做一致判断。
+
+### provider
+
+Provider 类型允许值：
+
+- `poi`
+- `route`
+- `weather`
+- `hours`
+- `price`
+- `queue`
+- `booking`
+- `action`
+
+### source
+
+数据来源允许值：
+
+- `amap`
+- `open_meteo`
+- `seed`
+- `estimated`
+- `stub`
+
+### confidence
+
+可信度允许值：
+
+- `high`
+- `medium`
+- `low`
+
+含义约定：
+
+- `high` = 真实数据源直接返回。
+- `medium` = 部分真实字段 + 推断。
+- `low` = 完全估算或规则生成。
+
+## Agent 可消费的 Provider Snapshot 示例
+
+以下示例用于方案设计 Agent 和执行 Agent 在同一个 POI 上消费资源层快照。字段名不是当前业务 schema 的强约束，后续建议通过统一 Provider envelope 固化。
+
+```json
+{
+  "hours_snapshot": {
+    "provider": "hours",
+    "poi_id": "B00155FXB3",
+    "hours_label": "09:00-21:00",
+    "is_open_at_arrival": true,
+    "open_intervals": [
+      {
+        "start": "09:00",
+        "end": "21:00"
+      }
+    ],
+    "source": "amap",
+    "confidence": "high"
+  },
+  "price_snapshot": {
+    "provider": "price",
+    "poi_id": "B00155FXB3",
+    "avg_price": 68,
+    "currency": "CNY",
+    "source": "amap",
+    "confidence": "medium"
+  },
+  "queue_snapshot": {
+    "provider": "queue",
+    "poi_id": "B00155FXB3",
+    "queue_level": "medium",
+    "estimated_wait_minutes": 15,
+    "source": "estimated",
+    "confidence": "low"
+  },
+  "booking_snapshot": {
+    "provider": "booking",
+    "poi_id": "B00155FXB3",
+    "status": "pending_user_action",
+    "supported": false,
+    "message": "需要跳转第三方平台完成预订",
+    "confidence": "high"
+  },
+  "action_snapshot": {
+    "actions": [
+      {
+        "provider": "action",
+        "action_type": "navigation",
+        "uri": "amapuri://route/plan/?...",
+        "source": "amap"
+      },
+      {
+        "provider": "action",
+        "action_type": "share",
+        "payload": {
+          "title": "周末外滩散步",
+          "content": "推荐路线..."
+        }
+      },
+      {
+        "provider": "action",
+        "action_type": "reminder",
+        "payload": {
+          "title": "周末出发提醒",
+          "remind_at": "2025-08-24T09:00:00+08:00"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -216,3 +402,28 @@ AMAP_API_KEY=<your-amap-web-service-key>
 | P2 | 接入真实地铁/公交路线 | 评估高德公交/地铁接口或其它城市交通数据源，替换当前地铁估算。 |
 | P2 | Booking 合作接口预研 | 明确美团或商户 API 权限、授权流程、订单状态、支付和隐私合规边界。 |
 | P2 | 城市与时间泛化 | 从固定上海当前天气/POI，演进到按城市、区县、日期、时段动态查询。 |
+
+## 下一步 Mock 数据文件建议
+
+为便于方案设计 Agent、执行 Agent 和前端在 Provider 抽象完成前稳定联调，以下 mock 数据文件已创建。文件只承载资源层样例，不应伪造真实预订、下单或实时排队状态。
+
+| 文件 | 状态 | 用途 |
+| --- | --- | --- |
+| `backend/docs/mock/hours_mock.json` | 已创建 | 提供外滩、上海自然博物馆、新天地的营业时间、结构化开闭店区间、`source` 和 `confidence`，用于 HoursProvider 原型和营业风险展示。 |
+| `backend/docs/mock/price_mock.json` | 已创建 | 提供 3 个上海 POI 的人均价格、家庭总价估算、币种、来源和可信度，用于 PriceProvider 原型和预算推演。 |
+| `backend/docs/mock/queue_mock.json` | 已创建 | 提供排队等级、预计等待分钟数和估算原因，用于 QueueProvider 原型和执行中重排测试。 |
+| `backend/docs/mock/booking_mock.json` | 已创建 | 提供 `pending_user_action` stub 数据，强调不能表达“已预订/已下单”，用于 BookingProvider 联调。 |
+| `backend/docs/mock/action_mock.json` | 已创建 | 提供 `navigation` 高德 URI、`share` 文本 payload、`reminder` 时间 payload，用于 ActionProvider `amap_uri` + share/reminder payload 联调。 |
+
+## Provider 状态总表
+
+| Provider | 当前状态 | 真实 API |
+| --- | --- | --- |
+| POI | 已接入 | 是 |
+| Route | 已接入 | 是 |
+| Weather | 已接入 | 是 |
+| Hours | Hybrid 设计 | 部分 |
+| Price | Hybrid 设计 | 部分 |
+| Queue | Estimated | 否 |
+| Booking | Stub | 否 |
+| Action | Hybrid(amap_uri + payload) | 部分 |

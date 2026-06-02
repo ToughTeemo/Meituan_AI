@@ -1,0 +1,35 @@
+[
+  {
+    "provider": "booking",
+    "poi_id": "B00155FXB3",
+    "name": "外滩",
+    "status": "pending_user_action",
+    "supported": false,
+    "required_user_action": "用户自行确认是否需要预约观景或活动票",
+    "message": "当前没有美团合作 API 权限，不能自动预订或下单。",
+    "source": "stub",
+    "confidence": "high"
+  },
+  {
+    "provider": "booking",
+    "poi_id": "sh_natural_history",
+    "name": "上海自然博物馆",
+    "status": "pending_user_action",
+    "supported": false,
+    "required_user_action": "用户前往官方渠道确认预约和购票状态",
+    "message": "需要跳转第三方或官方平台完成预约，系统不得写已预订。",
+    "source": "stub",
+    "confidence": "high"
+  },
+  {
+    "provider": "booking",
+    "poi_id": "sh_xintiandi",
+    "name": "新天地",
+    "status": "pending_user_action",
+    "supported": false,
+    "required_user_action": "用户自行联系餐厅或使用第三方平台订座",
+    "message": "当前只能生成待用户确认动作，不能代表用户完成订座。",
+    "source": "stub",
+    "confidence": "high"
+  }
+]

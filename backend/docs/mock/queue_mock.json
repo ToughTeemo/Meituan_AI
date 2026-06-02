@@ -1,0 +1,32 @@
+[
+  {
+    "provider": "queue",
+    "poi_id": "B00155FXB3",
+    "name": "外滩",
+    "queue_level": "medium",
+    "estimated_wait_minutes": 15,
+    "reason": "weekend_afternoon_scenic_area",
+    "source": "estimated",
+    "confidence": "low"
+  },
+  {
+    "provider": "queue",
+    "poi_id": "sh_natural_history",
+    "name": "上海自然博物馆",
+    "queue_level": "high",
+    "estimated_wait_minutes": 30,
+    "reason": "weekend_parent_child_museum",
+    "source": "estimated",
+    "confidence": "low"
+  },
+  {
+    "provider": "queue",
+    "poi_id": "sh_xintiandi",
+    "name": "新天地",
+    "queue_level": "medium",
+    "estimated_wait_minutes": 20,
+    "reason": "evening_restaurant_business_area",
+    "source": "estimated",
+    "confidence": "low"
+  }
+]

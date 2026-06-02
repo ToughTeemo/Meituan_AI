@@ -1,0 +1,32 @@
+[
+  {
+    "provider": "price",
+    "poi_id": "B00155FXB3",
+    "name": "外滩",
+    "avg_price": 0,
+    "currency": "CNY",
+    "estimated_total_for_family": 0,
+    "source": "estimated",
+    "confidence": "low"
+  },
+  {
+    "provider": "price",
+    "poi_id": "sh_natural_history",
+    "name": "上海自然博物馆",
+    "avg_price": 30,
+    "currency": "CNY",
+    "estimated_total_for_family": 90,
+    "source": "seed",
+    "confidence": "medium"
+  },
+  {
+    "provider": "price",
+    "poi_id": "sh_xintiandi",
+    "name": "新天地",
+    "avg_price": 120,
+    "currency": "CNY",
+    "estimated_total_for_family": 360,
+    "source": "amap",
+    "confidence": "medium"
+  }
+]

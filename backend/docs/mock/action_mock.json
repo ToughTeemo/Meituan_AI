@@ -1,0 +1,101 @@
+[
+  {
+    "provider": "action",
+    "poi_id": "B00155FXB3",
+    "name": "外滩",
+    "source": "amap",
+    "confidence": "medium",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到外滩",
+        "uri": "amapuri://route/plan/?dlat=31.233516&dlon=121.492127&dname=%E5%A4%96%E6%BB%A9&dev=0&t=2",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享外滩行程",
+        "payload": {
+          "title": "周末外滩散步",
+          "content": "建议傍晚到外滩散步，出发前刷新天气和路线。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "外滩出发提醒",
+        "payload": {
+          "title": "准备出发去外滩",
+          "remind_at": "2025-08-24T16:30:00+08:00"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "provider": "action",
+    "poi_id": "sh_natural_history",
+    "name": "上海自然博物馆",
+    "source": "amap",
+    "confidence": "medium",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海自然博物馆",
+        "uri": "amapuri://route/plan/?dlat=31.2354&dlon=121.4622&dname=%E4%B8%8A%E6%B5%B7%E8%87%AA%E7%84%B6%E5%8D%9A%E7%89%A9%E9%A6%86&dev=0&t=2",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享自然博物馆行程",
+        "payload": {
+          "title": "上海自然博物馆亲子参观",
+          "content": "建议提前确认预约状态，按 09:00-17:00 营业窗口安排行程。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "自然博物馆预约提醒",
+        "payload": {
+          "title": "确认上海自然博物馆预约",
+          "remind_at": "2025-08-24T09:00:00+08:00"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "provider": "action",
+    "poi_id": "sh_xintiandi",
+    "name": "新天地",
+    "source": "amap",
+    "confidence": "medium",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到新天地",
+        "uri": "amapuri://route/plan/?dlat=31.2197&dlon=121.4758&dname=%E6%96%B0%E5%A4%A9%E5%9C%B0&dev=0&t=2",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享新天地晚餐安排",
+        "payload": {
+          "title": "新天地晚餐和街区散步",
+          "content": "建议晚餐前确认餐厅排队情况，必要时切换同商圈备选点。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "新天地订座提醒",
+        "payload": {
+          "title": "确认新天地餐厅订座",
+          "remind_at": "2025-08-24T17:00:00+08:00"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  }
+]

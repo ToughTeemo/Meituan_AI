@@ -1,0 +1,47 @@
+[
+  {
+    "provider": "hours",
+    "poi_id": "B00155FXB3",
+    "name": "外滩",
+    "hours_label": "全天开放",
+    "is_open_at_arrival": true,
+    "open_intervals": [
+      {
+        "start": "00:00",
+        "end": "23:59"
+      }
+    ],
+    "source": "amap",
+    "confidence": "high"
+  },
+  {
+    "provider": "hours",
+    "poi_id": "sh_natural_history",
+    "name": "上海自然博物馆",
+    "hours_label": "09:00-17:00",
+    "is_open_at_arrival": true,
+    "open_intervals": [
+      {
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "source": "seed",
+    "confidence": "medium"
+  },
+  {
+    "provider": "hours",
+    "poi_id": "sh_xintiandi",
+    "name": "新天地",
+    "hours_label": "10:00-22:00",
+    "is_open_at_arrival": true,
+    "open_intervals": [
+      {
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "source": "estimated",
+    "confidence": "low"
+  }
+]
