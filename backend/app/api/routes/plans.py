@@ -1,3 +1,4 @@
+import json
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
@@ -74,6 +75,31 @@ async def get_latest_plan_execution(
     if snapshot is None:
         raise PlanNotFoundError("Execution snapshot does not exist.")
     return ExecutionPipeline().snapshot_view(snapshot)
+
+
+@router.get(
+    "/plans/{plan_id}/replan/latest",
+    summary="Get the latest replan proposal",
+)
+async def get_latest_plan_replan(
+    plan_id: str,
+    service: PlanningServiceDep,
+) -> dict:
+    service.get_plan(plan_id)
+    proposal = service.plan_repository.get_latest_replan_proposal(plan_id)
+    if proposal is None:
+        raise PlanNotFoundError("Replan proposal does not exist.")
+    return {
+        "proposal_id": proposal["id"],
+        "plan_id": proposal["plan_id"],
+        "execution_snapshot_id": proposal["execution_snapshot_id"],
+        "strategy": proposal["strategy"],
+        "risk_type": proposal["risk_type"],
+        "accepted": proposal["accepted"],
+        "accepted_at": proposal["accepted_at"],
+        "created_at": proposal["created_at"],
+        "proposal": json.loads(proposal["proposal_json"]),
+    }
 
 
 @router.get(
