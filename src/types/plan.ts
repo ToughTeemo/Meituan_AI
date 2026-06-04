@@ -1,4 +1,4 @@
-export type Currency = "CNY";
+﻿export type Currency = "CNY";
 export type TransportMode = "subway" | "walk" | "taxi" | "drive" | "mixed";
 export type CrowdLevel = "low" | "medium" | "high" | "unknown";
 
@@ -178,7 +178,6 @@ export interface POI {
   map_position: { x: number; y: number };
   is_child_friendly: boolean;
   hours_label?: string;
-  address?: string;
   district?: string;
   latitude?: number;
   longitude?: number;
