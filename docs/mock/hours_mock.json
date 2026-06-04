@@ -1,0 +1,1126 @@
+[
+  {
+    "poi_id": "poi_sh_natural_history_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "16:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_shanghai_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "16:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "hours_label": "10:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "10:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "17:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "hours_label": "09:00-16:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "16:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "hours_label": "05:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "05:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "hours_label": "08:00-17:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "17:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "hours_label": "09:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "hours_label": "11:00-21:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "21:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "hours_label": "11:00-14:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "hours_label": "11:00-14:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "hours_label": "10:30-07:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:30",
+        "end": "07:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "hours_label": "11:00-14:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "hours_label": "10:00-22:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "hours_label": "11:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "hours_label": "07:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "hours_label": "07:30-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:30",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "hours_label": "08:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "hours_label": "09:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "hours_label": "10:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "hours_label": "10:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": "20:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "hours_label": "10:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": "20:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "hours_label": "09:00-19:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "19:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "hours_label": "20:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "20:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "hours_label": "10:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": "20:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "hours_label": "10:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "hours_label": "09:30-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:30",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "hours_label": "14:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "14:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_city_planning_exhibition_hall",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "16:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_childrens_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "16:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_astronomy_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "16:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_shanghai_zoo",
+    "hours_label": "08:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_chenshan_botanical_garden",
+    "hours_label": "05:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "05:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": "20:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_m50_art_district",
+    "hours_label": "08:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_xintiandi",
+    "hours_label": "00:00-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "00:00",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_oriental_pearl_tower",
+    "hours_label": "09:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_post_museum",
+    "hours_label": "09:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Sat-Sun",
+        "start": "09:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": "16:00",
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_nanxiang_mantou_yuyuan",
+    "hours_label": "07:30-20:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:30",
+        "end": "20:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_xiaoyang_shengjian_huanghe",
+    "hours_label": "06:30-22:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "06:30",
+        "end": "22:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_dahuchun_sichuan_middle",
+    "hours_label": "07:00-19:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:00",
+        "end": "19:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_xiaoshaoxing_yunnan",
+    "hours_label": "09:00-20:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "20:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_jesse_nanjing_west",
+    "hours_label": "10:30-24:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:30",
+        "end": "24:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_guimanlong_shanghai",
+    "hours_label": "10:00-21:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "21:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_lvyangcun_yuyuan",
+    "hours_label": "11:00-14:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_wangbaohe_fuzhou",
+    "hours_label": "11:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_fengshouday_shanghai",
+    "hours_label": "11:00-14:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_longtangli_shanghai",
+    "hours_label": "11:00-21:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "21:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_zuotingyouyuan_shanghai",
+    "hours_label": "10:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_laofandian_yuyuan",
+    "hours_label": "11:00-14:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "14:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_arabica_wukang",
+    "hours_label": "08:00-17:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "17:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_blue_bottle_zhangyuan",
+    "hours_label": "08:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "08:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_peets_jingan_kerry",
+    "hours_label": "07:30-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:30",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_luckin_people_square",
+    "hours_label": "07:00-19:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "07:00",
+        "end": "19:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_qiantan_taikoo_li",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_bfc",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_super_brand_mall",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_raffles_city_shanghai",
+    "hours_label": "10:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_hopson_one_wujiaochang",
+    "hours_label": "10:00-22:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "22:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_madame_tussauds",
+    "hours_label": "10:00-21:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "21:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_dashijie",
+    "hours_label": "11:00-23:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "11:00",
+        "end": "23:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_circus_world",
+    "hours_label": "19:30-20:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "19:30",
+        "end": "20:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_childrens_art_theatre",
+    "hours_label": "10:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "10:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_poly_grand_theatre",
+    "hours_label": "09:00-20:30",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "20:30"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_culture_square",
+    "hours_label": "09:00-19:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Mon-Sun",
+        "start": "09:00",
+        "end": "19:00"
+      }
+    ],
+    "closed_days": [],
+    "last_entry_time": null,
+    "source": "amap",
+    "confidence": 0.9
+  },
+  {
+    "poi_id": "poi_sh_film_museum",
+    "hours_label": "10:00-18:00",
+    "open_intervals": [
+      {
+        "day_of_week": "Tue-Sun",
+        "start": "10:00",
+        "end": "18:00"
+      }
+    ],
+    "closed_days": [
+      "Monday"
+    ],
+    "last_entry_time": "17:00",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  }
+]

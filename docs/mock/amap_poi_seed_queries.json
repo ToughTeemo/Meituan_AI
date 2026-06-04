@@ -1,0 +1,677 @@
+[
+  {
+    "poi_id": "poi_sh_natural_history_museum",
+    "query": "上海自然博物馆",
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["亲子", "室内", "科普"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_shanghai_museum",
+    "query": "上海博物馆 人民广场",
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["文化", "室内", "历史"],
+    "suitable_for": ["culture", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "query": "中华艺术宫 上海",
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["艺术", "室内", "展览"],
+    "suitable_for": ["culture", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "query": "上海当代艺术博物馆",
+    "type": "attraction",
+    "category": "exhibition",
+    "tags": ["艺术", "展览", "室内"],
+    "suitable_for": ["culture", "date", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "query": "豫园 上海",
+    "type": "attraction",
+    "category": "landmark",
+    "tags": ["地标", "古典园林", "拍照"],
+    "suitable_for": ["family", "tourist"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "query": "上海外滩",
+    "type": "attraction",
+    "category": "landmark",
+    "tags": ["地标", "夜景", "散步"],
+    "suitable_for": ["tourist", "date", "night"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "query": "陆家嘴中心绿地",
+    "type": "attraction",
+    "category": "park",
+    "tags": ["公园", "散步", "城市景观"],
+    "suitable_for": ["family", "date", "outdoor"],
+    "recommended_duration_minutes": 60
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "query": "上海世纪公园",
+    "type": "attraction",
+    "category": "park",
+    "tags": ["公园", "骑行", "亲子"],
+    "suitable_for": ["family", "kids", "outdoor"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "queries": ["共青国家森林公园", "上海共青国家森林公园", "共青森林公园"],
+    "type": "attraction",
+    "category": "park",
+    "tags": ["公园", "露营", "自然"],
+    "suitable_for": ["family", "friends", "outdoor"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "queries": ["上海海洋水族馆", "上海海洋水族馆 陆家嘴", "陆家嘴 上海海洋水族馆"],
+    "type": "attraction",
+    "category": "aquarium",
+    "tags": ["亲子", "室内", "海洋"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "queries": ["杏花楼 福州路", "杏花楼总店", "上海杏花楼"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "聚餐"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "query": "老吉士 天平路 上海",
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "经典", "聚餐"],
+    "suitable_for": ["family", "date"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "query": "人和馆 肇嘉浜路 上海",
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "聚餐"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "queries": ["海底捞 日月光中心", "海底捞 打浦桥", "海底捞火锅 日月光中心"],
+    "type": "restaurant",
+    "category": "hotpot",
+    "tags": ["火锅", "服务好", "多人"],
+    "suitable_for": ["friends", "family", "night"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "queries": ["西贝莜面村 环贸iapm", "西贝莜面村 淮海中路", "西贝莜面村 上海iapm"],
+    "type": "restaurant",
+    "category": "chinese_food",
+    "tags": ["西北菜", "家庭", "商场"],
+    "suitable_for": ["family", "kids"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "queries": ["蓝蛙 静安嘉里中心", "blue frog 静安嘉里", "蓝蛙 上海静安嘉里中心"],
+    "type": "restaurant",
+    "category": "western_food",
+    "tags": ["西餐", "汉堡", "聚会"],
+    "suitable_for": ["friends", "date"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "queries": ["鼎泰丰 新天地", "鼎泰丰 上海新天地", "鼎泰丰 湖滨道"],
+    "type": "restaurant",
+    "category": "chinese_food",
+    "tags": ["小笼包", "聚餐", "商圈"],
+    "suitable_for": ["family", "tourist"],
+    "recommended_duration_minutes": 75
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "query": "Manner Coffee 武康路 上海",
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "街区", "短停"],
+    "suitable_for": ["solo", "date", "walk"],
+    "recommended_duration_minutes": 30
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "query": "Seesaw Coffee 静安寺 上海",
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "工作", "室内"],
+    "suitable_for": ["solo", "work", "rainy_day"],
+    "recommended_duration_minutes": 60
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "query": "星巴克臻选上海烘焙工坊",
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "地标", "体验"],
+    "suitable_for": ["tourist", "date", "rainy_day"],
+    "recommended_duration_minutes": 75
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "queries": ["Metal Hands 上海", "metalhands coffee 上海", "Manner Coffee 豫园", "Manner Coffee 上海豫园"],
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "拍照", "休闲"],
+    "suitable_for": ["solo", "date"],
+    "recommended_duration_minutes": 45
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "queries": ["上海环贸广场", "环贸iapm", "iapm 上海"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "购物", "餐饮"],
+    "suitable_for": ["friends", "date", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "query": "静安嘉里中心 上海",
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "亲子"],
+    "suitable_for": ["family", "friends", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "query": "瑞虹天地太阳宫 上海",
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "亲子", "餐饮"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "query": "上海环球港",
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "大型", "餐饮"],
+    "suitable_for": ["family", "friends", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "queries": ["田子坊", "上海田子坊", "田子坊 泰康路"],
+    "type": "entertainment",
+    "category": "creative_block",
+    "tags": ["街区", "文创", "拍照"],
+    "suitable_for": ["friends", "date", "tourist"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "queries": ["迪士尼小镇", "上海迪士尼小镇", "迪士尼小镇 上海国际旅游度假区"],
+    "type": "entertainment",
+    "category": "family_activity",
+    "tags": ["亲子", "休闲", "主题"],
+    "suitable_for": ["family", "kids", "date"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "queries": ["乐高探索中心", "上海乐高探索中心", "长风大悦城 乐高探索中心"],
+    "type": "entertainment",
+    "category": "indoor_playground",
+    "tags": ["亲子", "室内", "动手"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_teamlab_borderless",
+    "queries": ["teamLab无界美术馆", "teamLab Borderless 上海", "上海teamLab无界美术馆", "teamLab 上海"],
+    "type": "entertainment",
+    "category": "exhibition",
+    "tags": ["展览", "沉浸式", "室内"],
+    "suitable_for": ["date", "friends", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "query": "麦乐迪KTV 徐家汇 上海",
+    "type": "entertainment",
+    "category": "ktv",
+    "tags": ["唱歌", "室内", "夜间"],
+    "suitable_for": ["friends", "night", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "query": "上海大剧院",
+    "type": "entertainment",
+    "category": "theater",
+    "tags": ["剧院", "演出", "室内"],
+    "suitable_for": ["date", "culture", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "queries": ["MAO Livehouse 上海", "MAO Livehouse 五角场", "上海MAO Livehouse"],
+    "type": "entertainment",
+    "category": "livehouse",
+    "tags": ["音乐", "演出", "夜间"],
+    "suitable_for": ["friends", "night", "music"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "queries": ["JOYPOLIS 上海", "上海JOYPOLIS", "世嘉都市乐园 上海", "环球港 JOYPOLIS"],
+    "type": "entertainment",
+    "category": "indoor_playground",
+    "tags": ["室内", "电玩", "亲子"],
+    "suitable_for": ["friends", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "queries": ["世茂精灵之城主题乐园", "上海世茂精灵之城", "上海世茂精灵之城主题乐园"],
+    "type": "entertainment",
+    "category": "family_activity",
+    "tags": ["亲子", "主题乐园", "室内"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "query": "上海长风海洋世界",
+    "type": "entertainment",
+    "category": "aquarium",
+    "tags": ["亲子", "海洋", "室内"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "query": "上海百乐门",
+    "type": "entertainment",
+    "category": "nightlife",
+    "tags": ["夜间", "复古", "演出"],
+    "suitable_for": ["date", "friends", "night"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "query": "上海复兴公园",
+    "type": "attraction",
+    "category": "park",
+    "tags": ["公园", "散步", "街区"],
+    "suitable_for": ["family", "date", "outdoor"],
+    "recommended_duration_minutes": 75
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "queries": ["武康大楼", "上海武康大楼", "武康路 武康大楼"],
+    "type": "attraction",
+    "category": "landmark",
+    "tags": ["地标", "街区", "拍照"],
+    "suitable_for": ["tourist", "date", "walk"],
+    "recommended_duration_minutes": 45
+  },
+  {
+    "poi_id": "poi_sh_city_planning_exhibition_hall",
+    "queries": ["上海城市规划展示馆", "城市规划展示馆 上海", "人民广场 上海城市规划展示馆"],
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["城市", "室内", "展览"],
+    "suitable_for": ["culture", "rainy_day", "tourist"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_childrens_museum",
+    "queries": ["上海儿童博物馆", "儿童博物馆 上海", "宋园路 上海儿童博物馆"],
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["亲子", "室内", "科普"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_astronomy_museum",
+    "queries": ["上海天文馆", "上海天文馆 临港", "临港 上海天文馆"],
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["亲子", "室内", "科普"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_shanghai_zoo",
+    "queries": ["上海动物园", "上海动物园 长宁", "虹桥路 上海动物园"],
+    "type": "attraction",
+    "category": "park",
+    "tags": ["亲子", "动物", "户外"],
+    "suitable_for": ["family", "kids", "outdoor"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_chenshan_botanical_garden",
+    "queries": ["上海辰山植物园", "辰山植物园 上海", "松江 辰山植物园"],
+    "type": "attraction",
+    "category": "park",
+    "tags": ["自然", "亲子", "户外"],
+    "suitable_for": ["family", "date", "outdoor"],
+    "recommended_duration_minutes": 180
+  },
+  {
+    "poi_id": "poi_sh_m50_art_district",
+    "queries": ["M50创意园", "上海M50创意园", "莫干山路 M50"],
+    "type": "attraction",
+    "category": "creative_block",
+    "tags": ["艺术", "街区", "展览"],
+    "suitable_for": ["culture", "date", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_xintiandi",
+    "queries": ["上海新天地", "新天地 上海", "黄浦 新天地"],
+    "type": "attraction",
+    "category": "landmark",
+    "tags": ["街区", "餐饮", "拍照"],
+    "suitable_for": ["tourist", "date", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_oriental_pearl_tower",
+    "queries": ["东方明珠广播电视塔", "上海东方明珠", "陆家嘴 东方明珠"],
+    "type": "attraction",
+    "category": "landmark",
+    "tags": ["地标", "观景", "亲子"],
+    "suitable_for": ["tourist", "family", "night"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_post_museum",
+    "queries": ["上海邮政博物馆", "邮政博物馆 上海", "四川北路 上海邮政博物馆"],
+    "type": "attraction",
+    "category": "museum",
+    "tags": ["文化", "室内", "历史"],
+    "suitable_for": ["culture", "rainy_day", "tourist"],
+    "recommended_duration_minutes": 75
+  },
+  {
+    "poi_id": "poi_sh_nanxiang_mantou_yuyuan",
+    "queries": ["南翔馒头店 豫园", "上海南翔馒头店", "南翔馒头店 城隍庙"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["上海小吃", "老字号", "商圈餐饮"],
+    "suitable_for": ["family", "tourist"],
+    "recommended_duration_minutes": 60
+  },
+  {
+    "poi_id": "poi_sh_xiaoyang_shengjian_huanghe",
+    "queries": ["小杨生煎 黄河路", "小杨生煎 人民广场", "上海小杨生煎黄河路"],
+    "type": "restaurant",
+    "category": "shanghai_snack",
+    "tags": ["上海小吃", "低预算", "快餐"],
+    "suitable_for": ["family", "solo", "tourist"],
+    "recommended_duration_minutes": 45
+  },
+  {
+    "poi_id": "poi_sh_dahuchun_sichuan_middle",
+    "queries": ["大壶春 四川中路", "大壶春 上海", "大壶春 生煎"],
+    "type": "restaurant",
+    "category": "shanghai_snack",
+    "tags": ["上海小吃", "老字号", "低预算"],
+    "suitable_for": ["solo", "family", "tourist"],
+    "recommended_duration_minutes": 45
+  },
+  {
+    "poi_id": "poi_sh_xiaoshaoxing_yunnan",
+    "queries": ["小绍兴 云南南路", "上海小绍兴", "小绍兴白斩鸡 上海"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "家庭聚餐"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 75
+  },
+  {
+    "poi_id": "poi_sh_jesse_nanjing_west",
+    "queries": ["耶里夏丽 南京西路", "耶里夏丽 上海", "耶里夏丽 静安"],
+    "type": "restaurant",
+    "category": "chinese_food",
+    "tags": ["家庭聚餐", "商圈餐饮", "新疆菜"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_guimanlong_shanghai",
+    "queries": ["桂满陇 上海", "桂满陇 人民广场", "桂满陇 淮海路"],
+    "type": "restaurant",
+    "category": "chinese_food",
+    "tags": ["江浙菜", "家庭聚餐", "商圈餐饮"],
+    "suitable_for": ["family", "friends", "date"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_lvyangcun_yuyuan",
+    "queries": ["绿波廊 豫园", "上海绿波廊", "绿波廊 城隍庙"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "家庭聚餐"],
+    "suitable_for": ["family", "tourist"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_wangbaohe_fuzhou",
+    "queries": ["王宝和 福州路", "上海王宝和", "王宝和大酒店 上海"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "家庭聚餐"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_fengshouday_shanghai",
+    "queries": ["丰收日 上海", "丰收日 人民广场", "丰收日 静安"],
+    "type": "restaurant",
+    "category": "chinese_food",
+    "tags": ["家庭聚餐", "商圈餐饮", "海鲜"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_longtangli_shanghai",
+    "queries": ["弄堂里 上海", "弄堂里 人民广场", "弄堂里 徐汇"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "家庭聚餐", "商圈餐饮"],
+    "suitable_for": ["family", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_zuotingyouyuan_shanghai",
+    "queries": ["左庭右院 上海", "左庭右院 徐家汇", "左庭右院 鲜牛肉火锅"],
+    "type": "restaurant",
+    "category": "hotpot",
+    "tags": ["火锅", "家庭聚餐", "多人"],
+    "suitable_for": ["family", "friends", "night"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_laofandian_yuyuan",
+    "queries": ["上海老饭店 豫园", "上海老饭店", "城隍庙 上海老饭店"],
+    "type": "restaurant",
+    "category": "shanghai_food",
+    "tags": ["本帮菜", "老字号", "家庭聚餐"],
+    "suitable_for": ["family", "tourist"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_arabica_wukang",
+    "queries": ["% Arabica 武康路", "Arabica 上海武康路", "百分号咖啡 武康路"],
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "街区", "拍照"],
+    "suitable_for": ["solo", "date", "walk"],
+    "recommended_duration_minutes": 45
+  },
+  {
+    "poi_id": "poi_sh_blue_bottle_zhangyuan",
+    "queries": ["蓝瓶咖啡 张园", "Blue Bottle Coffee 张园", "上海张园 蓝瓶咖啡", "南京西路 蓝瓶咖啡"],
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "休闲", "拍照", "商圈"],
+    "suitable_for": ["friends", "rainy_day", "light_trip"],
+    "recommended_duration_minutes": 60
+  },
+  {
+    "poi_id": "poi_sh_peets_jingan_kerry",
+    "queries": ["Peet's Coffee 静安嘉里中心", "皮爷咖啡 静安嘉里中心", "Peet's Coffee 上海静安"],
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "工作", "室内"],
+    "suitable_for": ["solo", "work", "rainy_day"],
+    "recommended_duration_minutes": 60
+  },
+  {
+    "poi_id": "poi_sh_luckin_people_square",
+    "queries": ["瑞幸咖啡 人民广场", "luckin coffee 人民广场", "瑞幸咖啡 上海人民广场"],
+    "type": "cafe",
+    "category": "cafe",
+    "tags": ["咖啡", "低预算", "短停"],
+    "suitable_for": ["solo", "work", "rainy_day"],
+    "recommended_duration_minutes": 30
+  },
+  {
+    "poi_id": "poi_sh_qiantan_taikoo_li",
+    "queries": ["前滩太古里", "上海前滩太古里", "浦东 前滩太古里"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "亲子"],
+    "suitable_for": ["family", "friends", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_bfc",
+    "queries": ["BFC外滩金融中心", "上海BFC外滩金融中心", "外滩金融中心 上海"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "外滩"],
+    "suitable_for": ["friends", "date", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_super_brand_mall",
+    "queries": ["正大广场", "上海正大广场", "陆家嘴 正大广场"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "亲子"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_raffles_city_shanghai",
+    "queries": ["上海来福士广场", "人民广场 来福士", "来福士广场 上海"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "市中心"],
+    "suitable_for": ["friends", "family", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_hopson_one_wujiaochang",
+    "queries": ["五角场合生汇", "上海五角场合生汇", "合生汇 五角场"],
+    "type": "mall",
+    "category": "shopping_mall",
+    "tags": ["商场", "餐饮", "亲子"],
+    "suitable_for": ["family", "friends", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_madame_tussauds",
+    "queries": ["上海杜莎夫人蜡像馆", "杜莎夫人蜡像馆 上海", "上海杜莎夫人蜡像馆 人民广场"],
+    "type": "entertainment",
+    "category": "indoor_entertainment",
+    "tags": ["室内", "拍照", "亲子"],
+    "suitable_for": ["family", "rainy_day", "friends"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_dashijie",
+    "queries": ["上海大世界", "大世界 上海", "西藏南路 上海大世界"],
+    "type": "entertainment",
+    "category": "indoor_entertainment",
+    "tags": ["室内", "文化", "演出"],
+    "suitable_for": ["family", "culture", "rainy_day"],
+    "recommended_duration_minutes": 90
+  },
+  {
+    "poi_id": "poi_sh_circus_world",
+    "queries": ["上海马戏城", "上海马戏城 共和新路", "马戏城 上海"],
+    "type": "entertainment",
+    "category": "theater",
+    "tags": ["演出", "亲子", "室内"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_childrens_art_theatre",
+    "queries": ["上海儿童艺术剧场", "儿童艺术剧场 上海", "苗江路 上海儿童艺术剧场"],
+    "type": "entertainment",
+    "category": "theater",
+    "tags": ["亲子", "演出", "室内"],
+    "suitable_for": ["family", "kids", "rainy_day"],
+    "recommended_duration_minutes": 120
+  },
+  {
+    "poi_id": "poi_sh_poly_grand_theatre",
+    "queries": ["上海保利大剧院", "保利大剧院 上海", "嘉定 上海保利大剧院"],
+    "type": "entertainment",
+    "category": "theater",
+    "tags": ["剧院", "演出", "室内"],
+    "suitable_for": ["date", "culture", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_culture_square",
+    "queries": ["上海文化广场", "文化广场 上海", "复兴中路 上海文化广场"],
+    "type": "entertainment",
+    "category": "theater",
+    "tags": ["剧院", "演出", "室内"],
+    "suitable_for": ["date", "culture", "rainy_day"],
+    "recommended_duration_minutes": 150
+  },
+  {
+    "poi_id": "poi_sh_film_museum",
+    "queries": ["上海电影博物馆", "电影博物馆 上海", "徐汇 上海电影博物馆"],
+    "type": "entertainment",
+    "category": "exhibition",
+    "tags": ["电影", "室内", "展览"],
+    "suitable_for": ["family", "culture", "rainy_day"],
+    "recommended_duration_minutes": 120
+  }
+]

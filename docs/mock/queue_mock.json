@@ -1,0 +1,1852 @@
+[
+  {
+    "poi_id": "poi_sh_natural_history_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_shanghai_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      },
+      {
+        "scenario": "holiday_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 55
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "亲子室内场馆，周末和节假日下午等待风险较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_city_planning_exhibition_hall",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_childrens_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_astronomy_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_shanghai_zoo",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_chenshan_botanical_garden",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_m50_art_district",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_xintiandi",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_oriental_pearl_tower",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_post_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_nanxiang_mantou_yuyuan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_xiaoyang_shengjian_huanghe",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_dahuchun_sichuan_middle",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_xiaoshaoxing_yunnan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_jesse_nanjing_west",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_guimanlong_shanghai",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_lvyangcun_yuyuan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_wangbaohe_fuzhou",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_fengshouday_shanghai",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_longtangli_shanghai",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_zuotingyouyuan_shanghai",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 45
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_laofandian_yuyuan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_lunch",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekday_dinner",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_dinner",
+        "queue_level": "high",
+        "estimated_wait_minutes": 40
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "热门餐厅，午餐、晚餐和周末高峰通常存在等位风险，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  },
+  {
+    "poi_id": "poi_sh_arabica_wukang",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_blue_bottle_zhangyuan",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_peets_jingan_kerry",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_luckin_people_square",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "咖啡店周末下午可能出现短时排队，以场所类型和常见客流规律估算",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_qiantan_taikoo_li",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_bfc",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_super_brand_mall",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_raffles_city_shanghai",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_hopson_one_wujiaochang",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "开放空间或商圈型 POI，无固定排队入口，主要风险是人流拥挤，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_madame_tussauds",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "休闲娱乐类场所周末下午可能出现人流集中，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_dashijie",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "low",
+    "default_wait_minutes": 5,
+    "reason": "休闲娱乐类场所周末下午可能出现人流集中，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_circus_world",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_childrens_art_theatre",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_poly_grand_theatre",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_culture_square",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 20,
+    "reason": "娱乐演出类场馆以场次入场、安检和周末晚间人流为主，等待时间为估算值",
+    "source": "estimated_mock",
+    "confidence": 0.55
+  },
+  {
+    "poi_id": "poi_sh_film_museum",
+    "queue_profiles": [
+      {
+        "scenario": "weekday_afternoon",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      {
+        "scenario": "weekend_afternoon",
+        "queue_level": "high",
+        "estimated_wait_minutes": 35
+      },
+      {
+        "scenario": "weekend_evening",
+        "queue_level": "medium",
+        "estimated_wait_minutes": 20
+      }
+    ],
+    "default_queue_level": "medium",
+    "default_wait_minutes": 15,
+    "reason": "热门文化展馆，周末下午亲子和观展客流较高，等待时间为类型估算值",
+    "source": "estimated_mock",
+    "confidence": 0.56
+  }
+]
