@@ -4,7 +4,12 @@ from uuid import uuid4
 
 from sqlmodel import Session, select
 
-from app.models.plan import ExecutionSnapshotRecord, PlanRecord, PlanVersionRecord
+from app.models.plan import (
+    ExecutionSnapshotRecord,
+    PlanRecord,
+    PlanVersionRecord,
+    ReplanProposalSnapshot,
+)
 from app.schemas.plan import (
     AgentLogEntry,
     Card,
@@ -103,6 +108,54 @@ class PlanRepository:
         )
         records = self.session.exec(statement).all()
         return [self._execution_snapshot_to_dict(record) for record in records]
+
+    def save_replan_proposal(
+        self,
+        plan_id: str,
+        execution_snapshot_id: str,
+        proposal: dict,
+    ) -> dict:
+        risk_type = self._replan_risk_type(proposal)
+        record = ReplanProposalSnapshot(
+            id=f"rp_{uuid4().hex[:12]}",
+            plan_id=plan_id,
+            execution_snapshot_id=execution_snapshot_id,
+            strategy=self._text(proposal.get("strategy"), "CONTINUE"),
+            risk_type=risk_type,
+            proposal_json=self._dump(proposal),
+            accepted=False,
+            accepted_at=None,
+        )
+        self.session.add(record)
+        self.session.commit()
+        self.session.refresh(record)
+        return self._replan_proposal_to_dict(record)
+
+    def get_replan_proposal(self, proposal_id: str) -> dict | None:
+        record = self.session.get(ReplanProposalSnapshot, proposal_id)
+        if record is None:
+            return None
+        return self._replan_proposal_to_dict(record)
+
+    def get_latest_replan_proposal(self, plan_id: str) -> dict | None:
+        statement = (
+            select(ReplanProposalSnapshot)
+            .where(ReplanProposalSnapshot.plan_id == plan_id)
+            .order_by(ReplanProposalSnapshot.created_at.desc())
+        )
+        record = self.session.exec(statement).first()
+        if record is None:
+            return None
+        return self._replan_proposal_to_dict(record)
+
+    def list_replan_proposals(self, plan_id: str) -> list[dict]:
+        statement = (
+            select(ReplanProposalSnapshot)
+            .where(ReplanProposalSnapshot.plan_id == plan_id)
+            .order_by(ReplanProposalSnapshot.created_at.asc())
+        )
+        records = self.session.exec(statement).all()
+        return [self._replan_proposal_to_dict(record) for record in records]
 
     def save(self, plan: PlanResponse, event_type: str = "updated") -> PlanResponse:
         record = self.session.get(PlanRecord, plan.plan_id)
@@ -234,6 +287,37 @@ class PlanRepository:
             "created_at": record.created_at.isoformat(),
         }
 
+    def _replan_proposal_to_dict(self, record: ReplanProposalSnapshot) -> dict:
+        accepted_at = record.accepted_at.isoformat() if record.accepted_at else None
+        return {
+            "id": record.id,
+            "plan_id": record.plan_id,
+            "execution_snapshot_id": record.execution_snapshot_id,
+            "strategy": record.strategy,
+            "risk_type": record.risk_type,
+            "proposal_json": record.proposal_json,
+            "proposal": json.loads(record.proposal_json),
+            "accepted": record.accepted,
+            "accepted_at": accepted_at,
+            "created_at": record.created_at.isoformat(),
+        }
+
+    def _replan_risk_type(self, proposal: dict) -> str:
+        if not self._bool(proposal.get("replanned")):
+            return "NONE"
+
+        strategy = self._text(proposal.get("strategy"), "CONTINUE")
+        if strategy == "INDOOR_FALLBACK":
+            return "WEATHER_RISK"
+        if strategy == "ALTERNATIVE_POI":
+            reason = self._text(proposal.get("reason"), "")
+            if any(word in reason for word in ["预订", "预约", "购票", "booking"]):
+                return "BOOKING_RISK"
+            return "CLOSED_RISK"
+        if strategy == "CONTINUE":
+            return "DATA_UNKNOWN"
+        return "NONE"
+
     def _dump(self, value: object) -> str:
         if hasattr(value, "model_dump_json"):
             return value.model_dump_json()
@@ -248,6 +332,14 @@ class PlanRepository:
             serialized,
             ensure_ascii=False,
         )
+
+    def _text(self, value: object, default: str) -> str:
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+        return default
+
+    def _bool(self, value: object) -> bool:
+        return bool(value)
 
     def _summary_from_json(self, value: str | None) -> PlanSummary:
         if value:

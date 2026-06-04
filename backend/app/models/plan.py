@@ -54,3 +54,15 @@ class ExecutionSnapshotRecord(SQLModel, table=True):
     risk_flags_json: str
     actions_json: str
     created_at: datetime = Field(default_factory=now_utc, index=True)
+
+
+class ReplanProposalSnapshot(SQLModel, table=True):
+    id: str = Field(primary_key=True, index=True)
+    plan_id: str = Field(index=True)
+    execution_snapshot_id: str = Field(index=True)
+    strategy: str = Field(index=True)
+    risk_type: str = Field(index=True)
+    proposal_json: str
+    accepted: bool = Field(default=False, index=True)
+    accepted_at: datetime | None = Field(default=None, index=True)
+    created_at: datetime = Field(default_factory=now_utc, index=True)
