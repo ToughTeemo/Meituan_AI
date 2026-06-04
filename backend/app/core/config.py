@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     # Provider Switch
     planning_provider: str = "rule_based"
     replanner_provider: str = "rule"
+    llm_replanner_mock: bool = True
     poi_provider: str = "seed"
     route_provider: str = "estimated"
     weather_provider: str = "seed"
@@ -25,6 +26,11 @@ class Settings(BaseSettings):
 
     # AMap
     amap_api_key: str | None = None
+
+    # DeepSeek
+    deepseek_api_key: str | None = None
+    deepseek_base_url: str = "https://api.deepseek.com"
+    deepseek_model: str = "deepseek-chat"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

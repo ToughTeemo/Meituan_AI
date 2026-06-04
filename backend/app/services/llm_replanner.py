@@ -1,15 +1,15 @@
 from __future__ import annotations
 
 import json
-import os
 from copy import deepcopy
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from typing import Any
-from urllib.error import URLError
-from urllib.request import Request, urlopen
 
+from app.core.config import settings
+from app.services.llm_client import DeepSeekClient, DeepSeekClientConfig, DeepSeekClientError
 from app.services.provider_catalog import ProviderCatalog
 from app.services.replanner import Proposal, ReplanContext
+from app.services.rule_based_replanner import RuleBasedReplanner
 
 
 @dataclass(frozen=True)
@@ -20,13 +20,21 @@ class LlmProposalDraft:
     target_poi_id: str
 
 
+class LlmDraftError(RuntimeError):
+    def __init__(self, reason: str) -> None:
+        super().__init__(reason)
+        self.reason = reason
+
+
 class LlmReplanner:
     PROMPT_TEMPLATE = """You are a replan proposal generator.
-Return JSON only with keys:
-  strategy
-  reason
-  proposal_summary
-  target_poi_id
+Return JSON only and use exactly these keys:
+{
+  "strategy": "...",
+  "reason": "...",
+  "proposal_summary": "...",
+  "target_poi_id": "..."
+}
 
 Input sections:
 - current plan
@@ -44,50 +52,71 @@ Rules:
 
     def __init__(self, catalog: ProviderCatalog | None = None) -> None:
         self.catalog = catalog or ProviderCatalog()
+        self.last_fallback_reason: str | None = None
 
     def propose(self, context: ReplanContext) -> Proposal:
-        strategy = self._text(context.get("strategy"), "CONTINUE")
+        self.last_fallback_reason = None
         risk_type = self._text(context.get("risk_type"), "NONE")
         if not bool(context.get("need_replan")):
-            return self._empty_proposal(context, risk_type, "当前决策不需要重规划")
-
-        prompt = self._build_prompt(context)
-        raw_output = self._invoke_llm(prompt, context)
-        draft = self._parse_draft(raw_output)
-        if draft is None:
-            return self._empty_proposal(context, risk_type, "LLM output invalid")
-
-        current_card = self._current_card(context)
-        old_card_id = self._text(
-            current_card.get("card_id"),
-            self._text(context.get("current_card_id"), ""),
-        )
-        old_poi = self._dict(current_card.get("poi"))
-        old_poi_id = self._text(old_poi.get("poi_id"), "")
-        new_poi = self._build_new_poi(draft.target_poi_id)
-        if not new_poi:
             return self._empty_proposal(
                 context,
                 risk_type,
-                "LLM target_poi_id not found",
-                old_card_id=old_card_id or None,
-                old_poi_id=old_poi_id or None,
-                old_poi=old_poi,
-                strategy=draft.strategy,
+                "当前决策不需要重规划",
             )
 
-        return {
-            "replanned": True,
-            "strategy": draft.strategy,
-            "risk_type": risk_type,
-            "reason": draft.reason,
-            "proposal_summary": draft.proposal_summary,
-            "old_poi": deepcopy(old_poi),
-            "new_poi": new_poi,
-            "requires_user_confirmation": True,
-            "old_card_id": old_card_id or None,
-            "old_poi_id": old_poi_id or None,
-        }
+        if self._mock_mode():
+            raw_output = self._mock_llm_output(context)
+            draft = self._parse_draft(raw_output)
+            if draft is None:
+                self.last_fallback_reason = "mock_output_invalid"
+                return self._rule_based_fallback(context, risk_type)
+            proposal = self._proposal_from_draft(context, risk_type, draft)
+            if proposal is None:
+                self.last_fallback_reason = "mock_invalid_target_poi_id"
+                return self._rule_based_fallback(context, risk_type)
+            return proposal
+
+        prompt = self._build_prompt(context)
+        try:
+            raw_output = self._invoke_deepseek(prompt)
+            draft = self._parse_draft(raw_output)
+            if draft is None:
+                raise LlmDraftError("deepseek_invalid_json")
+            proposal = self._proposal_from_draft(context, risk_type, draft)
+            if proposal is None:
+                raise LlmDraftError("deepseek_invalid_target_poi_id")
+            return proposal
+        except LlmDraftError as exc:
+            self.last_fallback_reason = exc.reason
+            return self._rule_based_fallback(context, risk_type)
+
+    def _invoke_deepseek(self, prompt: str) -> str:
+        client = DeepSeekClient(
+            DeepSeekClientConfig(
+                api_key=settings.deepseek_api_key,
+                base_url=settings.deepseek_base_url,
+                model=settings.deepseek_model,
+            )
+        )
+        try:
+            return client.complete_json(self.PROMPT_TEMPLATE, prompt)
+        except DeepSeekClientError as exc:
+            reason = self._fallback_reason_from_client_error(str(exc))
+            raise LlmDraftError(reason) from exc
+
+    def _fallback_reason_from_client_error(self, message: str) -> str:
+        if message == "missing_api_key":
+            return "deepseek_missing_api_key"
+        if message.startswith("http_error:"):
+            return "deepseek_http_error"
+        if message.startswith("request_error:"):
+            return "deepseek_request_error"
+        if message.startswith("invalid_response:"):
+            return "deepseek_invalid_response"
+        return "deepseek_unknown_error"
+
+    def _rule_based_fallback(self, context: ReplanContext, risk_type: str) -> Proposal:
+        return RuleBasedReplanner(self.catalog).propose(context)
 
     def _build_prompt(self, context: ReplanContext) -> str:
         payload = {
@@ -100,50 +129,21 @@ Rules:
         }
         return f"{self.PROMPT_TEMPLATE}\n{json.dumps(payload, ensure_ascii=False, indent=2)}"
 
-    def _invoke_llm(self, prompt: str, context: ReplanContext) -> str:
-        if self._env_flag("LLM_REPLANNER_MOCK"):
-            return self._mock_llm_output(context)
-
-        endpoint = os.getenv("REPLANNER_LLM_ENDPOINT", "").strip()
-        if not endpoint:
-            return self._mock_llm_output(context)
-
-        payload = {
-            "model": os.getenv("REPLANNER_LLM_MODEL", "gpt-4.1-mini"),
-            "messages": [
-                {"role": "system", "content": "Return JSON only."},
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": 0.2,
-        }
-        request = Request(
-            endpoint.rstrip("/") + "/v1/chat/completions",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {os.getenv('REPLANNER_LLM_API_KEY', '').strip()}",
-            },
-            method="POST",
-        )
-        try:
-            with urlopen(request, timeout=10) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-        except (OSError, URLError, TimeoutError, json.JSONDecodeError):
-            return self._mock_llm_output(context)
-
-        choices = payload.get("choices")
-        if not isinstance(choices, list) or not choices:
-            return self._mock_llm_output(context)
-        message = choices[0].get("message") if isinstance(choices[0], dict) else {}
-        content = message.get("content") if isinstance(message, dict) else ""
-        return content if isinstance(content, str) else self._mock_llm_output(context)
-
     def _parse_draft(self, raw_output: str) -> LlmProposalDraft | None:
         try:
             payload = json.loads(raw_output)
         except json.JSONDecodeError:
             return None
         if not isinstance(payload, dict):
+            return None
+
+        expected_keys = {
+            "strategy",
+            "reason",
+            "proposal_summary",
+            "target_poi_id",
+        }
+        if set(payload.keys()) != expected_keys:
             return None
 
         strategy = self._text(payload.get("strategy"), "")
@@ -158,6 +158,40 @@ Rules:
             proposal_summary=proposal_summary,
             target_poi_id=target_poi_id,
         )
+
+    def _proposal_from_draft(
+        self,
+        context: ReplanContext,
+        risk_type: str,
+        draft: LlmProposalDraft,
+    ) -> Proposal | None:
+        candidate_ids = {candidate.get("poi_id") for candidate in self._provider_candidates(context)}
+        if draft.target_poi_id not in candidate_ids:
+            return None
+
+        current_card = self._current_card(context)
+        old_card_id = self._text(
+            current_card.get("card_id"),
+            self._text(context.get("current_card_id"), ""),
+        )
+        old_poi = self._dict(current_card.get("poi"))
+        old_poi_id = self._text(old_poi.get("poi_id"), "")
+        new_poi = self._build_new_poi(draft.target_poi_id)
+        if not new_poi:
+            return None
+
+        return {
+            "replanned": True,
+            "strategy": draft.strategy,
+            "risk_type": risk_type,
+            "reason": draft.reason,
+            "proposal_summary": draft.proposal_summary,
+            "old_poi": deepcopy(old_poi),
+            "new_poi": new_poi,
+            "requires_user_confirmation": True,
+            "old_card_id": old_card_id or None,
+            "old_poi_id": old_poi_id or None,
+        }
 
     def _build_new_poi(self, target_poi_id: str) -> dict[str, Any]:
         poi = self.catalog.get_poi(target_poi_id)
@@ -197,6 +231,7 @@ Rules:
                 continue
             candidates.append(
                 {
+                    "poi_id": poi_id,
                     "poi": poi,
                     "hours": self.catalog.get_hours(poi_id),
                     "price": self.catalog.get_price(poi_id),
@@ -380,7 +415,7 @@ Rules:
             queue.get("status"),
             self._text(queue.get("queue_level"), ""),
         ).lower()
-        if level in {"low", "medium", "high"}:
+        if level in {"low", "medium", "high", "unknown"}:
             return level
         wait_minutes = self._number_or_none(
             queue.get("waiting_minutes"),
@@ -418,6 +453,5 @@ Rules:
                 continue
         return None
 
-    def _env_flag(self, name: str) -> bool:
-        value = os.getenv(name, "")
-        return value.strip().lower() in {"1", "true", "yes", "on"}
+    def _mock_mode(self) -> bool:
+        return bool(settings.llm_replanner_mock)

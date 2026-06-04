@@ -30,7 +30,9 @@ from app.services.rule_based_replanner import RuleBasedReplanner
 def main() -> None:
     create_db_and_tables()
     original_provider = settings.replanner_provider
+    original_mock = settings.llm_replanner_mock
     try:
+        settings.llm_replanner_mock = True
         settings.replanner_provider = "rule"
         rule_replanner = get_replanner()
         settings.replanner_provider = "llm"
@@ -115,6 +117,7 @@ def main() -> None:
             raise RuntimeError("LLM replanner validation failed.")
     finally:
         settings.replanner_provider = original_provider
+        settings.llm_replanner_mock = original_mock
 
 
 def create_plan(client: TestClient) -> dict[str, object]:
