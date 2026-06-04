@@ -95,6 +95,27 @@ async def get_latest_plan_replan(
     return _replan_response(proposal, status="PENDING", updated_plan=None)
 
 
+@router.get(
+    "/plans/{plan_id}/replans",
+    summary="List replan proposals for a plan",
+)
+async def list_plan_replans(
+    plan_id: str,
+    service: PlanningServiceDep,
+) -> dict:
+    service.get_plan(plan_id)
+    proposals = service.plan_repository.list_replan_proposals(plan_id)
+    proposals_desc = sorted(
+        proposals,
+        key=lambda proposal: proposal["created_at"],
+        reverse=True,
+    )
+    return {
+        "plan_id": plan_id,
+        "proposals": [_replan_list_item(proposal) for proposal in proposals_desc],
+    }
+
+
 @router.post(
     "/plans/{plan_id}/replan/{proposal_id}/apply",
     summary="Apply the latest replan proposal",
@@ -250,4 +271,17 @@ def _replan_response(
         "created_at": proposal["created_at"],
         "proposal": json.loads(proposal["proposal_json"]),
         "updated_plan": updated_plan,
+    }
+
+
+def _replan_list_item(proposal: dict) -> dict:
+    return {
+        "proposal_id": proposal["id"],
+        "status": "APPLIED" if proposal["accepted"] else "PENDING",
+        "strategy": proposal["strategy"],
+        "risk_type": proposal["risk_type"],
+        "accepted": proposal["accepted"],
+        "accepted_at": proposal["accepted_at"],
+        "created_at": proposal["created_at"],
+        "proposal": proposal["proposal"],
     }
