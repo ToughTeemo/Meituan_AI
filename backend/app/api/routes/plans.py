@@ -1,16 +1,19 @@
 import json
+from datetime import UTC, datetime
+from copy import deepcopy
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
 
 from app.api.deps import get_planning_service
-from app.core.errors import PlanNotFoundError
+from app.core.errors import PlanNotFoundError, ReplanNotAvailableError
 from app.schemas.plan import (
     CreatePlanRequest,
     PlanResponse,
     PlanVersionCompareResponse,
     PlanVersionResponse,
 )
+from app.services.apply_replan_service import ApplyReplanInput, ApplyReplanService
 from app.services.execution_pipeline import ExecutionPipeline
 from app.services.planning_service import PlanningService
 
@@ -102,6 +105,49 @@ async def get_latest_plan_replan(
     }
 
 
+@router.post(
+    "/plans/{plan_id}/replan/{proposal_id}/apply",
+    summary="Apply the latest replan proposal",
+)
+async def apply_plan_replan(
+    plan_id: str,
+    proposal_id: str,
+    service: PlanningServiceDep,
+) -> dict:
+    plan = service.get_plan(plan_id)
+    proposal = service.plan_repository.get_replan_proposal(proposal_id)
+    if proposal is None or proposal["plan_id"] != plan_id:
+        raise PlanNotFoundError("Replan proposal does not exist.")
+    if proposal["accepted"] is True:
+        raise ReplanNotAvailableError("Replan proposal has already been applied.")
+
+    proposal_payload = json.loads(proposal["proposal_json"])
+    plan_payload = plan.model_dump(mode="json")
+    _seed_provider_snapshot(plan_payload, proposal_payload)
+    apply_result = ApplyReplanService().apply(
+        ApplyReplanInput(plan=plan_payload, proposal=proposal_payload)
+    )
+    if not apply_result.get("applied") or apply_result.get("updated_plan") is None:
+        raise ReplanNotAvailableError("Replan proposal cannot be applied.")
+
+    updated_plan = PlanResponse.model_validate(apply_result["updated_plan"]).model_copy(
+        update={"updated_at": datetime.now(UTC)}
+    )
+    saved_plan = service.plan_repository.save(updated_plan)
+    accepted_proposal = service.plan_repository.accept_replan_proposal(proposal_id)
+    if accepted_proposal is None:
+        raise PlanNotFoundError("Replan proposal does not exist.")
+
+    response_plan = saved_plan.model_dump(mode="json")
+    _merge_provider_snapshot(response_plan, apply_result["updated_plan"], proposal_payload)
+
+    return {
+        "applied": True,
+        "proposal_id": proposal_id,
+        "updated_plan": response_plan,
+    }
+
+
 @router.get(
     "/plans/{plan_id}/versions/compare",
     response_model=PlanVersionCompareResponse,
@@ -151,3 +197,47 @@ async def get_plan(
     service: PlanningServiceDep,
 ) -> PlanResponse:
     return service.get_plan(plan_id)
+
+
+def _seed_provider_snapshot(plan_payload: dict, proposal_payload: dict) -> None:
+    new_poi = proposal_payload.get("new_poi")
+    if not isinstance(new_poi, dict) or not new_poi:
+        return
+    target_card = _find_target_card(plan_payload, proposal_payload)
+    if target_card is None:
+        return
+    target_card["provider_snapshot"] = deepcopy(new_poi)
+
+
+def _merge_provider_snapshot(
+    response_plan: dict,
+    applied_plan: dict,
+    proposal_payload: dict,
+) -> None:
+    target_response = _find_target_card(response_plan, proposal_payload)
+    target_applied = _find_target_card(applied_plan, proposal_payload)
+    if target_response is None or target_applied is None:
+        return
+    provider_snapshot = target_applied.get("provider_snapshot")
+    if isinstance(provider_snapshot, dict):
+        target_response["provider_snapshot"] = deepcopy(provider_snapshot)
+
+
+def _find_target_card(plan_payload: dict, proposal_payload: dict) -> dict | None:
+    old_card_id = _text(proposal_payload.get("old_card_id"))
+    old_poi_id = _text(proposal_payload.get("old_poi_id"))
+    for card in plan_payload.get("cards", []):
+        if not isinstance(card, dict):
+            continue
+        if old_card_id and _text(card.get("card_id")) == old_card_id:
+            return card
+        poi = card.get("poi")
+        if isinstance(poi, dict) and old_poi_id and _text(poi.get("poi_id")) == old_poi_id:
+            return card
+    return None
+
+
+def _text(value: object) -> str:
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return ""

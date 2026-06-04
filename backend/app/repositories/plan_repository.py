@@ -157,6 +157,17 @@ class PlanRepository:
         records = self.session.exec(statement).all()
         return [self._replan_proposal_to_dict(record) for record in records]
 
+    def accept_replan_proposal(self, proposal_id: str) -> dict | None:
+        record = self.session.get(ReplanProposalSnapshot, proposal_id)
+        if record is None:
+            return None
+        record.accepted = True
+        record.accepted_at = datetime.now(UTC)
+        self.session.add(record)
+        self.session.commit()
+        self.session.refresh(record)
+        return self._replan_proposal_to_dict(record)
+
     def save(self, plan: PlanResponse, event_type: str = "updated") -> PlanResponse:
         record = self.session.get(PlanRecord, plan.plan_id)
         if record is None:
