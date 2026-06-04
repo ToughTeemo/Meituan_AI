@@ -5,6 +5,8 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 ExecutionRecord = dict[str, Any]
+QUEUE_WAIT_THRESHOLD_MINUTES = 60
+PRICE_BUDGET_MULTIPLIER = 1.0
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,7 @@ class ExecutionRiskScanner:
         self._scan_weather(snapshot.get("weather"), flags, seen)
         self._scan_hours(snapshot.get("hours"), flags, seen)
         self._scan_queue(snapshot.get("queue"), flags, seen)
+        self._scan_price(snapshot.get("price"), scanned.get("constraints"), flags, seen)
         self._scan_booking(snapshot.get("booking"), flags, seen)
         self._scan_data_unknown(snapshot, flags, seen)
 
@@ -91,25 +94,70 @@ class ExecutionRiskScanner:
         seen: set[tuple[str, str]],
     ) -> None:
         for poi_id, snapshot in self._provider_entries(queue, "queue"):
+            queue_status = self._text(
+                snapshot.get("status"),
+                self._text(snapshot.get("queue_level"), ""),
+            ).lower()
             wait_minutes = self._number_or_none(
+                snapshot.get("waiting_minutes"),
                 snapshot.get("wait_minutes"),
                 snapshot.get("estimated_wait_minutes"),
             )
-            if wait_minutes is None or wait_minutes <= 60:
+            high_status = queue_status == "high"
+            high_wait = (
+                wait_minutes is not None
+                and wait_minutes > QUEUE_WAIT_THRESHOLD_MINUTES
+            )
+            if not high_status and not high_wait:
                 continue
+            message = "Queue status is HIGH"
+            if wait_minutes is not None:
+                message = (
+                    f"Queue waiting time is {round(wait_minutes)} minutes, "
+                    f"above {QUEUE_WAIT_THRESHOLD_MINUTES} minutes"
+                )
             self._add_flag(
                 flags,
                 seen,
                 RiskFlag(
                     type="QUEUE_RISK",
-                    severity="medium",
+                    severity="high",
                     source="queue",
                     poi_id=poi_id,
+                    message=message,
+                    can_replan=True,
+                ),
+            )
+
+    def _scan_price(
+        self,
+        price: Any,
+        constraints: Any,
+        flags: list[RiskFlag],
+        seen: set[tuple[str, str]],
+    ) -> None:
+        budget = self._number_or_none(self._dict(constraints).get("budget"))
+        if budget is None or budget <= 0:
+            return
+
+        threshold = budget * PRICE_BUDGET_MULTIPLIER
+        for poi_id, snapshot in self._provider_entries(price, "price"):
+            current_price = self._price_value(snapshot)
+            if current_price is None or current_price <= threshold:
+                continue
+            self._add_flag(
+                flags,
+                seen,
+                RiskFlag(
+                    type="PRICE_RISK",
+                    severity="high",
+                    source="price",
+                    poi_id=poi_id,
                     message=(
-                        f"\u9884\u8ba1\u6392\u961f\u65f6\u95f4 {round(wait_minutes)} "
-                        "\u5206\u949f\uff0c\u8d85\u8fc7 60 \u5206\u949f"
+                        f"Current price is {round(current_price)} CNY, "
+                        f"above budget threshold {round(threshold)} CNY"
                     ),
-                    can_replan=False,
+                    can_replan=True,
                 ),
             )
 
@@ -215,6 +263,17 @@ class ExecutionRiskScanner:
         if number > 1:
             return number / 100
         return number
+
+    def _price_value(self, snapshot: ExecutionRecord) -> float | None:
+        return self._number_or_none(
+            snapshot.get("current_price"),
+            snapshot.get("estimated_total_for_family"),
+            snapshot.get("family_total"),
+            snapshot.get("estimated_total"),
+            snapshot.get("total_price"),
+            snapshot.get("avg_price"),
+            snapshot.get("price_per_person"),
+        )
 
     def _dict(self, value: Any) -> ExecutionRecord:
         return value if isinstance(value, dict) else {}

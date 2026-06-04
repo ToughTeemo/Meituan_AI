@@ -42,8 +42,12 @@ class ApplyReplanService:
         plan_copy = deepcopy(plan)
         cards = self._list(plan_copy.get("cards"))
 
+        old_poi = self._dict(proposal.get("old_poi"))
         old_card_id = self._text(proposal.get("old_card_id"), "")
-        old_poi_id = self._text(proposal.get("old_poi_id"), "")
+        old_poi_id = self._text(
+            proposal.get("old_poi_id"),
+            self._text(old_poi.get("poi_id"), ""),
+        )
         target_index = self._find_target_card(cards, old_card_id, old_poi_id)
         if target_index is None:
             return asdict(

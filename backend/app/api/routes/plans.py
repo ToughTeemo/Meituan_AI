@@ -235,8 +235,12 @@ def _merge_provider_snapshot(
 
 
 def _find_target_card(plan_payload: dict, proposal_payload: dict) -> dict | None:
+    old_poi = proposal_payload.get("old_poi")
+    old_poi_payload = old_poi if isinstance(old_poi, dict) else {}
     old_card_id = _text(proposal_payload.get("old_card_id"))
-    old_poi_id = _text(proposal_payload.get("old_poi_id"))
+    old_poi_id = _text(proposal_payload.get("old_poi_id")) or _text(
+        old_poi_payload.get("poi_id")
+    )
     for card in plan_payload.get("cards", []):
         if not isinstance(card, dict):
             continue

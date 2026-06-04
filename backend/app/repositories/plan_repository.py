@@ -317,6 +317,10 @@ class PlanRepository:
         if not self._bool(proposal.get("replanned")):
             return "NONE"
 
+        proposal_risk_type = self._text(proposal.get("risk_type"), "")
+        if proposal_risk_type and proposal_risk_type != "NONE":
+            return proposal_risk_type
+
         strategy = self._text(proposal.get("strategy"), "CONTINUE")
         if strategy == "INDOOR_FALLBACK":
             return "WEATHER_RISK"

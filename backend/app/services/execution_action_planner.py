@@ -72,6 +72,12 @@ class ExecutionActionPlanner:
                 poi_id,
                 "预计到达时未营业，建议更换地点",
             )
+        if risk_type == "QUEUE_RISK" and severity == "high":
+            return self._suggest_replan(
+                risk,
+                poi_id,
+                "Queue risk is high, suggest switching to a shorter-wait alternative.",
+            )
         if risk_type == "QUEUE_RISK" and severity == "medium":
             return ExecutionAction(
                 type="wait_or_continue",
@@ -82,6 +88,12 @@ class ExecutionActionPlanner:
                 message="预计排队较久，可继续等待或稍后调整",
                 requires_user_confirmation=True,
                 payload=self._risk_payload(risk),
+            )
+        if risk_type == "PRICE_RISK" and severity == "high":
+            return self._suggest_replan(
+                risk,
+                poi_id,
+                "Price risk is high, suggest switching to a budget-friendly alternative.",
             )
         if risk_type == "BOOKING_RISK" and severity == "high":
             return self._suggest_replan(

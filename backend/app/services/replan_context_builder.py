@@ -53,7 +53,9 @@ class ReplanContextBuilder:
         strategy_types = {
             "INDOOR_FALLBACK": {"WEATHER_RISK"},
             "ALTERNATIVE_POI": {"CLOSED_RISK", "BOOKING_RISK"},
-            "CONTINUE": {"QUEUE_RISK", "DATA_UNKNOWN"},
+            "SHORTER_WAIT": {"QUEUE_RISK"},
+            "BUDGET_FRIENDLY": {"PRICE_RISK"},
+            "CONTINUE": {"DATA_UNKNOWN"},
         }.get(strategy, set())
         for risk in sorted(risks, key=self._risk_priority):
             if risk.get("type") in strategy_types:

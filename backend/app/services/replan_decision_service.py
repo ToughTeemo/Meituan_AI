@@ -59,6 +59,20 @@ class ReplanDecisionService:
                 strategy="ALTERNATIVE_POI",
                 severity="high",
             )
+        if risk_type == "QUEUE_RISK" and severity == "high":
+            return ReplanDecision(
+                need_replan=True,
+                reason=message,
+                strategy="SHORTER_WAIT",
+                severity="high",
+            )
+        if risk_type == "PRICE_RISK" and severity == "high":
+            return ReplanDecision(
+                need_replan=True,
+                reason=message,
+                strategy="BUDGET_FRIENDLY",
+                severity="high",
+            )
 
         return ReplanDecision(
             need_replan=False,
