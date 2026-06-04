@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     planning_provider: str = "rule_based"
     replanner_provider: str = "rule"
     llm_replanner_mock: bool = True
+    replan_prompt_version: str = "v1"
     poi_provider: str = "seed"
     route_provider: str = "estimated"
     weather_provider: str = "seed"

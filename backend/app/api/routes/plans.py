@@ -282,7 +282,8 @@ def _auto_generate_replan_proposal(
         return None
 
     replan_context = ReplanContextBuilder().build(plan, pipeline_result, decision)
-    proposal = get_replanner().propose(replan_context)
+    replanner = get_replanner()
+    proposal = replanner.propose(replan_context)
     if not proposal.get("replanned"):
         return None
 
@@ -290,6 +291,8 @@ def _auto_generate_replan_proposal(
         plan.plan_id,
         execution_snapshot_id,
         proposal,
+        prompt_version=getattr(replanner, "last_prompt_version", None),
+        llm_model=getattr(replanner, "last_llm_model", None),
     )
 
 

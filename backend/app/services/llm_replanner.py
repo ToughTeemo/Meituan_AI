@@ -7,6 +7,8 @@ from typing import Any
 
 from app.core.config import settings
 from app.services.llm_client import DeepSeekClient, DeepSeekClientConfig, DeepSeekClientError
+from app.services.prompt_builder import PromptBuilder
+from app.services.prompt_registry import PromptRegistry
 from app.services.provider_catalog import ProviderCatalog
 from app.services.replanner import Proposal, ReplanContext
 from app.services.rule_based_replanner import RuleBasedReplanner
@@ -27,41 +29,41 @@ class LlmDraftError(RuntimeError):
 
 
 class LlmReplanner:
-    PROMPT_TEMPLATE = """You are a replan proposal generator.
-Return JSON only and use exactly these keys:
-{
-  "strategy": "...",
-  "reason": "...",
-  "proposal_summary": "...",
-  "target_poi_id": "..."
-}
+    SYSTEM_PROMPT = "Return JSON only."
 
-Input sections:
-- current plan
-- risk flags
-- execution snapshot
-- provider candidates
-- budget
-- user prompt
-
-Rules:
-- Choose exactly one target_poi_id from provider candidates.
-- Do not output any extra keys.
-- Keep strategy concise and stable.
-"""
-
-    def __init__(self, catalog: ProviderCatalog | None = None) -> None:
+    def __init__(
+        self,
+        catalog: ProviderCatalog | None = None,
+        prompt_registry: PromptRegistry | None = None,
+        prompt_builder: PromptBuilder | None = None,
+    ) -> None:
         self.catalog = catalog or ProviderCatalog()
+        self.prompt_registry = prompt_registry or PromptRegistry()
+        self.prompt_builder = prompt_builder or PromptBuilder()
+        self.prompt_spec = self.prompt_registry.get_replan_prompt()
         self.last_fallback_reason: str | None = None
+        self.last_prompt_version: str | None = None
+        self.last_llm_model: str | None = None
+
+    @property
+    def prompt_version(self) -> str:
+        return self.prompt_spec.version
+
+    @property
+    def prompt_text(self) -> str:
+        return self.prompt_spec.text
 
     def propose(self, context: ReplanContext) -> Proposal:
         self.last_fallback_reason = None
+        self.last_prompt_version = self.prompt_version
+        self.last_llm_model = self._llm_model()
+
         risk_type = self._text(context.get("risk_type"), "NONE")
         if not bool(context.get("need_replan")):
             return self._empty_proposal(
                 context,
                 risk_type,
-                "当前决策不需要重规划",
+                "褰撳墠鍐崇瓥涓嶉渶瑕侀噸瑙勫垝",
             )
 
         if self._mock_mode():
@@ -95,11 +97,11 @@ Rules:
             DeepSeekClientConfig(
                 api_key=settings.deepseek_api_key,
                 base_url=settings.deepseek_base_url,
-                model=settings.deepseek_model,
+                model=self._llm_model(),
             )
         )
         try:
-            return client.complete_json(self.PROMPT_TEMPLATE, prompt)
+            return client.complete_json(self.SYSTEM_PROMPT, prompt)
         except DeepSeekClientError as exc:
             reason = self._fallback_reason_from_client_error(str(exc))
             raise LlmDraftError(reason) from exc
@@ -127,7 +129,7 @@ Rules:
             "budget": self._number(context.get("budget"), 0),
             "user_prompt": self._text(context.get("user_prompt"), ""),
         }
-        return f"{self.PROMPT_TEMPLATE}\n{json.dumps(payload, ensure_ascii=False, indent=2)}"
+        return self.prompt_builder.render(self.prompt_text, payload)
 
     def _parse_draft(self, raw_output: str) -> LlmProposalDraft | None:
         try:
@@ -429,6 +431,11 @@ Rules:
         if wait_minutes <= 25:
             return "medium"
         return "high"
+
+    def _llm_model(self) -> str:
+        if self._mock_mode():
+            return "mock"
+        return self._text(settings.deepseek_model, "deepseek-chat")
 
     def _dict(self, value: Any) -> dict[str, Any]:
         return value if isinstance(value, dict) else {}

@@ -114,6 +114,8 @@ class PlanRepository:
         plan_id: str,
         execution_snapshot_id: str,
         proposal: dict,
+        prompt_version: str | None = None,
+        llm_model: str | None = None,
     ) -> dict:
         risk_type = self._replan_risk_type(proposal)
         record = ReplanProposalSnapshot(
@@ -123,6 +125,8 @@ class PlanRepository:
             strategy=self._text(proposal.get("strategy"), "CONTINUE"),
             risk_type=risk_type,
             proposal_json=self._dump(proposal),
+            prompt_version=self._text(prompt_version, "") or None,
+            llm_model=self._text(llm_model, "") or None,
             accepted=False,
             accepted_at=None,
         )
@@ -322,6 +326,8 @@ class PlanRepository:
             "risk_type": record.risk_type,
             "proposal_json": record.proposal_json,
             "proposal": json.loads(record.proposal_json),
+            "prompt_version": record.prompt_version,
+            "llm_model": record.llm_model,
             "accepted": record.accepted,
             "accepted_at": accepted_at,
             "created_at": record.created_at.isoformat(),

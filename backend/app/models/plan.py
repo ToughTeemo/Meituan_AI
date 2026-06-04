@@ -63,6 +63,8 @@ class ReplanProposalSnapshot(SQLModel, table=True):
     strategy: str = Field(index=True)
     risk_type: str = Field(index=True)
     proposal_json: str
+    prompt_version: str | None = Field(default=None, index=True)
+    llm_model: str | None = Field(default=None, index=True)
     accepted: bool = Field(default=False, index=True)
     accepted_at: datetime | None = Field(default=None, index=True)
     created_at: datetime = Field(default_factory=now_utc, index=True)
