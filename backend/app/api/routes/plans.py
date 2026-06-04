@@ -92,17 +92,7 @@ async def get_latest_plan_replan(
     proposal = service.plan_repository.get_latest_replan_proposal(plan_id)
     if proposal is None:
         raise PlanNotFoundError("Replan proposal does not exist.")
-    return {
-        "proposal_id": proposal["id"],
-        "plan_id": proposal["plan_id"],
-        "execution_snapshot_id": proposal["execution_snapshot_id"],
-        "strategy": proposal["strategy"],
-        "risk_type": proposal["risk_type"],
-        "accepted": proposal["accepted"],
-        "accepted_at": proposal["accepted_at"],
-        "created_at": proposal["created_at"],
-        "proposal": json.loads(proposal["proposal_json"]),
-    }
+    return _replan_response(proposal, status="PENDING", updated_plan=None)
 
 
 @router.post(
@@ -141,11 +131,11 @@ async def apply_plan_replan(
     response_plan = saved_plan.model_dump(mode="json")
     _merge_provider_snapshot(response_plan, apply_result["updated_plan"], proposal_payload)
 
-    return {
-        "applied": True,
-        "proposal_id": proposal_id,
-        "updated_plan": response_plan,
-    }
+    return _replan_response(
+        proposal=accepted_proposal,
+        status="APPLIED",
+        updated_plan=response_plan,
+    )
 
 
 @router.get(
@@ -241,3 +231,23 @@ def _text(value: object) -> str:
     if isinstance(value, str) and value.strip():
         return value.strip()
     return ""
+
+
+def _replan_response(
+    proposal: dict,
+    status: str,
+    updated_plan: dict | None,
+) -> dict:
+    return {
+        "proposal_id": proposal["id"],
+        "plan_id": proposal["plan_id"],
+        "execution_snapshot_id": proposal["execution_snapshot_id"],
+        "status": status,
+        "strategy": proposal["strategy"],
+        "risk_type": proposal["risk_type"],
+        "accepted": proposal["accepted"],
+        "accepted_at": proposal["accepted_at"],
+        "created_at": proposal["created_at"],
+        "proposal": json.loads(proposal["proposal_json"]),
+        "updated_plan": updated_plan,
+    }
