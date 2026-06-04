@@ -13,6 +13,7 @@ class Settings(BaseSettings):
 
     # Provider Switch
     planning_provider: str = "rule_based"
+    replanner_provider: str = "rule"
     poi_provider: str = "seed"
     route_provider: str = "estimated"
     weather_provider: str = "seed"

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from copy import deepcopy
 from typing import Any
 
@@ -10,6 +11,9 @@ ExecutionRecord = dict[str, Any]
 
 class ExecutionProviderRefreshService:
     async def refresh(self, execution_context: ExecutionRecord) -> ExecutionRecord:
+        if self._demo_mode():
+            return self._refresh_demo(execution_context)
+
         refreshed = deepcopy(execution_context)
         snapshot = refreshed.setdefault("provider_snapshot", {})
         snapshot["weather"] = await self._refresh_weather(snapshot.get("weather"))
@@ -22,6 +26,34 @@ class ExecutionProviderRefreshService:
             cards,
             constraints,
         )
+        return refreshed
+
+    def _refresh_demo(self, execution_context: ExecutionRecord) -> ExecutionRecord:
+        refreshed = deepcopy(execution_context)
+        snapshot = refreshed.setdefault("provider_snapshot", {})
+        scenario = self._demo_scenario(refreshed)
+        constraints = self._dict(refreshed.get("constraints"))
+        cards = self._cards(refreshed)
+
+        snapshot["weather"] = self._demo_weather_snapshot(scenario)
+        snapshot["hours"] = {}
+        snapshot["queue"] = {}
+        snapshot["price"] = {}
+        snapshot["booking"] = {}
+
+        for card in cards:
+            poi = self._dict(card.get("poi"))
+            poi_id = self._text(poi.get("poi_id"), "")
+            if not poi_id:
+                continue
+            snapshot["hours"][poi_id] = self._demo_hours_snapshot(poi, scenario)
+            snapshot["queue"][poi_id] = self._demo_queue_snapshot(poi, scenario)
+            snapshot["price"][poi_id] = self._demo_price_snapshot(
+                poi,
+                constraints,
+                scenario,
+            )
+            snapshot["booking"][poi_id] = self._demo_booking_snapshot(poi, scenario)
         return refreshed
 
     async def _refresh_weather(self, current: Any) -> ExecutionRecord:
@@ -142,6 +174,114 @@ class ExecutionProviderRefreshService:
             refreshed[poi_id] = normalized
         return refreshed
 
+    def _demo_weather_snapshot(self, scenario: str) -> ExecutionRecord:
+        rain_probability = 1.0 if scenario == "weather_risk" else 0.2
+        return {
+            "provider": "weather",
+            "condition": "rain" if scenario == "weather_risk" else "cloudy",
+            "temperature_c": 21 if scenario == "weather_risk" else 24,
+            "rain_probability": rain_probability,
+            "prefers_indoor": scenario == "weather_risk",
+            "summary": (
+                "DEMO: rainfall is forced for a weather risk scenario."
+                if scenario == "weather_risk"
+                else "DEMO: stable seeded weather snapshot."
+            ),
+            "source": "demo",
+            "confidence": 1.0,
+            "fallback_reason": None,
+        }
+
+    def _demo_hours_snapshot(
+        self,
+        poi: ExecutionRecord,
+        scenario: str,
+    ) -> ExecutionRecord:
+        poi_id = self._text(poi.get("poi_id"), "")
+        is_target = self._scenario_targets_poi(scenario, poi_id)
+        is_open = False if scenario == "closed_risk" and is_target else True
+        return {
+            "provider": "hours",
+            "poi_id": poi_id,
+            "name": self._text(poi.get("name"), ""),
+            "hours_label": self._text(poi.get("hours_label"), "10:00-22:00"),
+            "is_open_at_arrival": is_open,
+            "open_intervals": [],
+            "source": "demo",
+            "confidence": 1.0,
+            "fallback_reason": None,
+        }
+
+    def _demo_queue_snapshot(
+        self,
+        poi: ExecutionRecord,
+        scenario: str,
+    ) -> ExecutionRecord:
+        poi_id = self._text(poi.get("poi_id"), "")
+        is_target = self._scenario_targets_poi(scenario, poi_id)
+        wait_minutes = 90 if scenario == "queue_risk" and is_target else max(
+            5,
+            round(self._number(poi.get("queue_minutes"), 10)),
+        )
+        return {
+            "provider": "queue",
+            "poi_id": poi_id,
+            "name": self._text(poi.get("name"), ""),
+            "queue_level": "high" if wait_minutes > 60 else "low",
+            "estimated_wait_minutes": wait_minutes,
+            "source": "demo",
+            "confidence": 1.0,
+            "fallback_reason": None,
+        }
+
+    def _demo_price_snapshot(
+        self,
+        poi: ExecutionRecord,
+        constraints: ExecutionRecord,
+        scenario: str,
+    ) -> ExecutionRecord:
+        poi_id = self._text(poi.get("poi_id"), "")
+        budget = self._number(constraints.get("budget"), 500)
+        base_price = round(self._number(poi.get("price_per_person"), 0))
+        current_price = budget + 100 if scenario == "price_risk" and self._scenario_targets_poi(
+            scenario,
+            poi_id,
+        ) else base_price
+        return {
+            "provider": "price",
+            "poi_id": poi_id,
+            "name": self._text(poi.get("name"), ""),
+            "avg_price": base_price,
+            "price_per_person": base_price,
+            "currency": "CNY",
+            "current_price": current_price,
+            "estimated_total_for_family": current_price,
+            "source": "demo",
+            "confidence": 1.0,
+            "fallback_reason": None,
+        }
+
+    def _demo_booking_snapshot(
+        self,
+        poi: ExecutionRecord,
+        scenario: str,
+    ) -> ExecutionRecord:
+        poi_id = self._text(poi.get("poi_id"), "")
+        is_target = self._scenario_targets_poi(scenario, poi_id)
+        unavailable = scenario == "booking_risk" and is_target
+        return {
+            "provider": "booking",
+            "poi_id": poi_id,
+            "name": self._text(poi.get("name"), ""),
+            "status": "unavailable" if unavailable else "pending_user_action",
+            "availability": "unavailable" if unavailable else "available",
+            "supported": not unavailable,
+            "required_user_action": "DEMO: manual confirmation required" if unavailable else "",
+            "source": "demo",
+            "confidence": 1.0,
+            "fallback_reason": None,
+        }
+
     def _normalize_snapshot(
         self,
         value: Any,
@@ -207,3 +347,20 @@ class ExecutionProviderRefreshService:
             return round(max(0.0, min(1.0, float(value))), 2)
         text = self._text(value, "unknown")
         return text
+
+    def _demo_mode(self) -> bool:
+        return self._env_flag("DEMO_MODE")
+
+    def _demo_scenario(self, execution_context: ExecutionRecord) -> str:
+        session_id = self._text(execution_context.get("session_id"), "").lower()
+        for scenario in ("weather_risk", "closed_risk", "queue_risk", "price_risk", "booking_risk"):
+            if scenario in session_id:
+                return scenario
+        return "stable"
+
+    def _scenario_targets_poi(self, scenario: str, poi_id: str) -> bool:
+        return scenario in {"closed_risk", "queue_risk", "price_risk", "booking_risk"} and bool(poi_id)
+
+    def _env_flag(self, name: str) -> bool:
+        value = os.getenv(name, "")
+        return value.strip().lower() in {"1", "true", "yes", "on"}

@@ -15,6 +15,9 @@ from app.schemas.plan import (
 )
 from app.services.apply_replan_service import ApplyReplanInput, ApplyReplanService
 from app.services.execution_pipeline import ExecutionPipeline
+from app.services.replan_context_builder import ReplanContextBuilder
+from app.services.replan_decision_service import ReplanDecisionService
+from app.services.replanner_factory import get_replanner
 from app.services.planning_service import PlanningService
 
 router = APIRouter(tags=["plans"])
@@ -57,10 +60,16 @@ async def check_plan_execution(
     plan = service.get_plan(plan_id)
     pipeline = ExecutionPipeline()
     pipeline_result = await pipeline.run(plan)
-    service.plan_repository.save_execution_snapshot(
+    execution_snapshot = service.plan_repository.save_execution_snapshot(
         plan.plan_id,
         plan.version,
         pipeline_result,
+    )
+    _auto_generate_replan_proposal(
+        plan=plan,
+        pipeline_result=pipeline_result,
+        execution_snapshot_id=execution_snapshot["id"],
+        repository=service.plan_repository,
     )
     return pipeline.result_view(pipeline_result)
 
@@ -256,6 +265,32 @@ def _text(value: object) -> str:
     if isinstance(value, str) and value.strip():
         return value.strip()
     return ""
+
+
+def _auto_generate_replan_proposal(
+    plan,
+    pipeline_result: dict,
+    execution_snapshot_id: str,
+    repository,
+) -> dict | None:
+    existing = repository.get_replan_proposal_by_execution_snapshot_id(execution_snapshot_id)
+    if existing is not None:
+        return existing
+
+    decision = ReplanDecisionService().decide(pipeline_result)
+    if not decision.get("need_replan"):
+        return None
+
+    replan_context = ReplanContextBuilder().build(plan, pipeline_result, decision)
+    proposal = get_replanner().propose(replan_context)
+    if not proposal.get("replanned"):
+        return None
+
+    return repository.save_replan_proposal(
+        plan.plan_id,
+        execution_snapshot_id,
+        proposal,
+    )
 
 
 def _replan_response(

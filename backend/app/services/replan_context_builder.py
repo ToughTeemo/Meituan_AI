@@ -25,6 +25,9 @@ class ReplanContextBuilder:
         return {
             "plan_id": plan.plan_id,
             "session_id": plan.session_id,
+            "current_plan": plan.model_dump(mode="json"),
+            "user_prompt": plan.constraints.goal,
+            "budget": plan.constraints.budget,
             "current_step": current_step,
             "risk_type": self._text(primary_risk.get("type"), "NONE"),
             "severity": self._text(

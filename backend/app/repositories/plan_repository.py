@@ -148,6 +148,20 @@ class PlanRepository:
             return None
         return self._replan_proposal_to_dict(record)
 
+    def get_replan_proposal_by_execution_snapshot_id(
+        self,
+        execution_snapshot_id: str,
+    ) -> dict | None:
+        statement = (
+            select(ReplanProposalSnapshot)
+            .where(ReplanProposalSnapshot.execution_snapshot_id == execution_snapshot_id)
+            .order_by(ReplanProposalSnapshot.created_at.desc())
+        )
+        record = self.session.exec(statement).first()
+        if record is None:
+            return None
+        return self._replan_proposal_to_dict(record)
+
     def list_replan_proposals(self, plan_id: str) -> list[dict]:
         statement = (
             select(ReplanProposalSnapshot)
