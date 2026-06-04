@@ -1,98 +1,1595 @@
 [
   {
-    "provider": "action",
-    "poi_id": "B00155FXB3",
-    "name": "外滩",
-    "source": "amap",
-    "confidence": "medium",
-    "actions": [
-      {
-        "action_type": "navigation",
-        "label": "导航到外滩",
-        "uri": "amapuri://route/plan/?dlat=31.233516&dlon=121.492127&dname=%E5%A4%96%E6%BB%A9&dev=0&t=2",
-        "requires_user_confirmation": true
-      },
-      {
-        "action_type": "share",
-        "label": "分享外滩行程",
-        "payload": {
-          "title": "周末外滩散步",
-          "content": "建议傍晚到外滩散步，出发前刷新天气和路线。"
-        },
-        "requires_user_confirmation": true
-      },
-      {
-        "action_type": "reminder",
-        "label": "外滩出发提醒",
-        "payload": {
-          "title": "准备出发去外滩",
-          "remind_at": "2025-08-24T16:30:00+08:00"
-        },
-        "requires_user_confirmation": true
-      }
-    ]
-  },
-  {
-    "provider": "action",
-    "poi_id": "sh_natural_history",
-    "name": "上海自然博物馆",
-    "source": "amap",
-    "confidence": "medium",
+    "poi_id": "poi_sh_natural_history_museum",
     "actions": [
       {
         "action_type": "navigation",
         "label": "导航到上海自然博物馆",
-        "uri": "amapuri://route/plan/?dlat=31.2354&dlon=121.4622&dname=%E4%B8%8A%E6%B5%B7%E8%87%AA%E7%84%B6%E5%8D%9A%E7%89%A9%E9%A6%86&dev=0&t=2",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.235021&dlon=121.462672&dname=%E4%B8%8A%E6%B5%B7%E8%87%AA%E7%84%B6%E5%8D%9A%E7%89%A9%E9%A6%86&dev=0&t=0",
         "requires_user_confirmation": true
       },
       {
         "action_type": "share",
-        "label": "分享自然博物馆行程",
+        "label": "分享地点",
         "payload": {
-          "title": "上海自然博物馆亲子参观",
-          "content": "建议提前确认预约状态，按 09:00-17:00 营业窗口安排行程。"
+          "title": "上海自然博物馆",
+          "content": "推荐地点：上海自然博物馆；地址：北京西路510号；标签：亲子、室内、科普"
         },
         "requires_user_confirmation": true
       },
       {
         "action_type": "reminder",
-        "label": "自然博物馆预约提醒",
+        "label": "设置出发提醒",
         "payload": {
-          "title": "确认上海自然博物馆预约",
-          "remind_at": "2025-08-24T09:00:00+08:00"
+          "title": "准备出发：上海自然博物馆",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "北京西路510号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道预约",
+          "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。"
         },
         "requires_user_confirmation": true
       }
     ]
   },
   {
-    "provider": "action",
-    "poi_id": "sh_xintiandi",
-    "name": "新天地",
-    "source": "amap",
-    "confidence": "medium",
+    "poi_id": "poi_sh_shanghai_museum",
     "actions": [
       {
         "action_type": "navigation",
-        "label": "导航到新天地",
-        "uri": "amapuri://route/plan/?dlat=31.2197&dlon=121.4758&dname=%E6%96%B0%E5%A4%A9%E5%9C%B0&dev=0&t=2",
+        "label": "导航到上海博物馆(人民广场馆)(暂停开放)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.228231&dlon=121.47548&dname=%E4%B8%8A%E6%B5%B7%E5%8D%9A%E7%89%A9%E9%A6%86(%E4%BA%BA%E6%B0%91%E5%B9%BF%E5%9C%BA%E9%A6%86)(%E6%9A%82%E5%81%9C%E5%BC%80%E6%94%BE)&dev=0&t=0",
         "requires_user_confirmation": true
       },
       {
         "action_type": "share",
-        "label": "分享新天地晚餐安排",
+        "label": "分享地点",
         "payload": {
-          "title": "新天地晚餐和街区散步",
-          "content": "建议晚餐前确认餐厅排队情况，必要时切换同商圈备选点。"
+          "title": "上海博物馆(人民广场馆)(暂停开放)",
+          "content": "推荐地点：上海博物馆(人民广场馆)(暂停开放)；地址：人民大道201号；标签：文化、室内、历史"
         },
         "requires_user_confirmation": true
       },
       {
         "action_type": "reminder",
-        "label": "新天地订座提醒",
+        "label": "设置出发提醒",
         "payload": {
-          "title": "确认新天地餐厅订座",
-          "remind_at": "2025-08-24T17:00:00+08:00"
+          "title": "准备出发：上海博物馆(人民广场馆)(暂停开放)",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "人民大道201号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道预约",
+          "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海美术馆(中华艺术宫)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.184338&dlon=121.49474&dname=%E4%B8%8A%E6%B5%B7%E7%BE%8E%E6%9C%AF%E9%A6%86(%E4%B8%AD%E5%8D%8E%E8%89%BA%E6%9C%AF%E5%AE%AB)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海美术馆(中华艺术宫)",
+          "content": "推荐地点：上海美术馆(中华艺术宫)；地址：上南路205号；标签：艺术、室内、展览"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海美术馆(中华艺术宫)",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "上南路205号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道预约",
+          "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海当代艺术博物馆",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.201041&dlon=121.498406&dname=%E4%B8%8A%E6%B5%B7%E5%BD%93%E4%BB%A3%E8%89%BA%E6%9C%AF%E5%8D%9A%E7%89%A9%E9%A6%86&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海当代艺术博物馆",
+          "content": "推荐地点：上海当代艺术博物馆；地址：苗江路678号；标签：艺术、展览、室内"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海当代艺术博物馆",
+          "remind_offset_minutes": 30,
+          "message": "建议提前 30 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "苗江路678号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道预约",
+          "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海豫园",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.227714&dlon=121.492497&dname=%E4%B8%8A%E6%B5%B7%E8%B1%AB%E5%9B%AD&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海豫园",
+          "content": "推荐地点：上海豫园；地址：福佑路168号；标签：地标、古典园林、拍照"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海豫园",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "福佑路168号"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到外滩",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.233516&dlon=121.492127&dname=%E5%A4%96%E6%BB%A9&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "外滩",
+          "content": "推荐地点：外滩；地址：中山东二路1号；标签：地标、夜景、散步"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：外滩",
+          "remind_offset_minutes": 30,
+          "message": "建议提前 30 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "中山东二路1号"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到陆家嘴中心绿地",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.237985&dlon=121.506251&dname=%E9%99%86%E5%AE%B6%E5%98%B4%E4%B8%AD%E5%BF%83%E7%BB%BF%E5%9C%B0&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "陆家嘴中心绿地",
+          "content": "推荐地点：陆家嘴中心绿地；地址：陆家嘴环路717号；标签：公园、散步、城市景观"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：陆家嘴中心绿地",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "陆家嘴环路717号"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海世纪公园",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.215725&dlon=121.552563&dname=%E4%B8%8A%E6%B5%B7%E4%B8%96%E7%BA%AA%E5%85%AC%E5%9B%AD&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海世纪公园",
+          "content": "推荐地点：上海世纪公园；地址：锦绣路1001号；标签：公园、骑行、亲子"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海世纪公园",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "锦绣路1001号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到共青国家森林公园售票处",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.320852&dlon=121.545724&dname=%E5%85%B1%E9%9D%92%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD%E5%94%AE%E7%A5%A8%E5%A4%84&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "共青国家森林公园售票处",
+          "content": "推荐地点：共青国家森林公园售票处；地址：军工路2000号共青国家森林公园内；标签：公园、露营、自然"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：共青国家森林公园售票处",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "军工路2000号共青国家森林公园内"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海海洋水族馆",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.240777&dlon=121.501894&dname=%E4%B8%8A%E6%B5%B7%E6%B5%B7%E6%B4%8B%E6%B0%B4%E6%97%8F%E9%A6%86&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海海洋水族馆",
+          "content": "推荐地点：上海海洋水族馆；地址：陆家嘴环路1388号；标签：亲子、室内、海洋"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海海洋水族馆",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "陆家嘴环路1388号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到杏花楼(福州路总店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.234096&dlon=121.483811&dname=%E6%9D%8F%E8%8A%B1%E6%A5%BC(%E7%A6%8F%E5%B7%9E%E8%B7%AF%E6%80%BB%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "杏花楼(福州路总店)",
+          "content": "推荐地点：杏花楼(福州路总店)；地址：福州路343号(南京东路地铁站4号口步行270米)；标签：本帮菜、老字号、聚餐"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：杏花楼(福州路总店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "福州路343号(南京东路地铁站4号口步行270米)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到老吉士饭馆(天平路店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.203146&dlon=121.437969&dname=%E8%80%81%E5%90%89%E5%A3%AB%E9%A5%AD%E9%A6%86(%E5%A4%A9%E5%B9%B3%E8%B7%AF%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "老吉士饭馆(天平路店)",
+          "content": "推荐地点：老吉士饭馆(天平路店)；地址：天平路41号(近淮海中路)；标签：本帮菜、经典、聚餐"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：老吉士饭馆(天平路店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "天平路41号(近淮海中路)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到人和馆(徐汇店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.201706&dlon=121.458032&dname=%E4%BA%BA%E5%92%8C%E9%A6%86(%E5%BE%90%E6%B1%87%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "人和馆(徐汇店)",
+          "content": "推荐地点：人和馆(徐汇店)；地址：肇嘉浜路407(嘉善路地铁站5号口步行230米)；标签：本帮菜、老字号、聚餐"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：人和馆(徐汇店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "肇嘉浜路407(嘉善路地铁站5号口步行230米)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到海底捞大排档火锅(打浦路店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.205235&dlon=121.47104&dname=%E6%B5%B7%E5%BA%95%E6%8D%9E%E5%A4%A7%E6%8E%92%E6%A1%A3%E7%81%AB%E9%94%85(%E6%89%93%E6%B5%A6%E8%B7%AF%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "海底捞大排档火锅(打浦路店)",
+          "content": "推荐地点：海底捞大排档火锅(打浦路店)；地址：打浦路1号金玉兰广场四层；标签：火锅、服务好、多人"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：海底捞大排档火锅(打浦路店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "打浦路1号金玉兰广场四层"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到西贝",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.20708&dlon=121.468987&dname=%E8%A5%BF%E8%B4%9D&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "西贝",
+          "content": "推荐地点：西贝；地址：徐家汇路618号日月光中心4层；标签：西北菜、家庭、商场"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：西贝",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "徐家汇路618号日月光中心4层"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到bluefrog蓝蛙(久光百货店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.22368&dlon=121.446604&dname=bluefrog%E8%93%9D%E8%9B%99(%E4%B9%85%E5%85%89%E7%99%BE%E8%B4%A7%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "bluefrog蓝蛙(久光百货店)",
+          "content": "推荐地点：bluefrog蓝蛙(久光百货店)；地址：南京西路1618号2楼S221(2楼户外区域)；标签：西餐、汉堡、聚会"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：bluefrog蓝蛙(久光百货店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "南京西路1618号2楼S221(2楼户外区域)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到鼎泰丰(新天地时尚一期店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.219119&dlon=121.475606&dname=%E9%BC%8E%E6%B3%B0%E4%B8%B0(%E6%96%B0%E5%A4%A9%E5%9C%B0%E6%97%B6%E5%B0%9A%E4%B8%80%E6%9C%9F%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "鼎泰丰(新天地时尚一期店)",
+          "content": "推荐地点：鼎泰丰(新天地时尚一期店)；地址：兴业路123弄新天地南里广场2楼；标签：小笼包、聚餐、商圈"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：鼎泰丰(新天地时尚一期店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "兴业路123弄新天地南里广场2楼"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到Manner Coffee(武康路店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.205253&dlon=121.438662&dname=Manner%20Coffee(%E6%AD%A6%E5%BA%B7%E8%B7%AF%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "Manner Coffee(武康路店)",
+          "content": "推荐地点：Manner Coffee(武康路店)；地址：湖南路街道武康路407号；标签：咖啡、街区、短停"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：Manner Coffee(武康路店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "湖南路街道武康路407号"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到静安寺",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.223505&dlon=121.44532&dname=%E9%9D%99%E5%AE%89%E5%AF%BA&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "静安寺",
+          "content": "推荐地点：静安寺；地址：南京西路1686号(静安寺地铁站1号口步行60米)；标签：咖啡、工作、室内"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：静安寺",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "南京西路1686号(静安寺地铁站1号口步行60米)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到星巴克臻选(上海烘焙工坊)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.230429&dlon=121.462437&dname=%E6%98%9F%E5%B7%B4%E5%85%8B%E8%87%BB%E9%80%89(%E4%B8%8A%E6%B5%B7%E7%83%98%E7%84%99%E5%B7%A5%E5%9D%8A)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "星巴克臻选(上海烘焙工坊)",
+          "content": "推荐地点：星巴克臻选(上海烘焙工坊)；地址：南京西路789号N110至N201单元；标签：咖啡、地标、体验"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：星巴克臻选(上海烘焙工坊)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "南京西路789号N110至N201单元"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到Metal hands铁手咖啡",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.189157&dlon=121.435754&dname=Metal%20hands%E9%93%81%E6%89%8B%E5%92%96%E5%95%A1&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "Metal hands铁手咖啡",
+          "content": "推荐地点：Metal hands铁手咖啡；地址：南丹路15号1楼二单元(徐家汇地铁站2号口步行220米)；标签：咖啡、拍照、休闲"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：Metal hands铁手咖啡",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "南丹路15号1楼二单元(徐家汇地铁站2号口步行220米)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到纪梵希(上海环贸广场店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.215725&dlon=121.458125&dname=%E7%BA%AA%E6%A2%B5%E5%B8%8C(%E4%B8%8A%E6%B5%B7%E7%8E%AF%E8%B4%B8%E5%B9%BF%E5%9C%BA%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "纪梵希(上海环贸广场店)",
+          "content": "推荐地点：纪梵希(上海环贸广场店)；地址：淮海中路999号上海环贸广场1楼L116-L117店铺；标签：商场、购物、餐饮"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：纪梵希(上海环贸广场店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "淮海中路999号上海环贸广场1楼L116-L117店铺"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到静安嘉里中心",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.223558&dlon=121.449749&dname=%E9%9D%99%E5%AE%89%E5%98%89%E9%87%8C%E4%B8%AD%E5%BF%83&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "静安嘉里中心",
+          "content": "推荐地点：静安嘉里中心；地址：南京西路1515号；标签：商场、餐饮、亲子"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：静安嘉里中心",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "南京西路1515号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到七鲜超市(瑞虹天地太阳宫店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.262858&dlon=121.500488&dname=%E4%B8%83%E9%B2%9C%E8%B6%85%E5%B8%82(%E7%91%9E%E8%99%B9%E5%A4%A9%E5%9C%B0%E5%A4%AA%E9%98%B3%E5%AE%AB%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "七鲜超市(瑞虹天地太阳宫店)",
+          "content": "推荐地点：七鲜超市(瑞虹天地太阳宫店)；地址：瑞虹路181号B1层LG43B室(近地铁1号口)；标签：商场、亲子、餐饮"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：七鲜超市(瑞虹天地太阳宫店)",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "瑞虹路181号B1层LG43B室(近地铁1号口)"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海月星环球港",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.233244&dlon=121.412625&dname=%E4%B8%8A%E6%B5%B7%E6%9C%88%E6%98%9F%E7%8E%AF%E7%90%83%E6%B8%AF&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海月星环球港",
+          "content": "推荐地点：上海月星环球港；地址：中山北路3300号(金沙江路地铁站2号口步行50米)；标签：商场、大型、餐饮"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海月星环球港",
+          "remind_offset_minutes": 20,
+          "message": "建议提前 20 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "中山北路3300号(金沙江路地铁站2号口步行50米)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海田子坊",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.208197&dlon=121.468662&dname=%E4%B8%8A%E6%B5%B7%E7%94%B0%E5%AD%90%E5%9D%8A&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海田子坊",
+          "content": "推荐地点：上海田子坊；地址：泰康路210号(打浦桥地铁站1号口旁)；标签：街区、文创、拍照"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海田子坊",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "泰康路210号(打浦桥地铁站1号口旁)"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到迪士尼小镇",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.140296&dlon=121.661262&dname=%E8%BF%AA%E5%A3%AB%E5%B0%BC%E5%B0%8F%E9%95%87&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "迪士尼小镇",
+          "content": "推荐地点：迪士尼小镇；地址：川沙镇黄赵路310号上海迪士尼度假区；标签：亲子、休闲、主题"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：迪士尼小镇",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "川沙镇黄赵路310号上海迪士尼度假区"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海乐高探索中心",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.223033&dlon=121.395777&dname=%E4%B8%8A%E6%B5%B7%E4%B9%90%E9%AB%98%E6%8E%A2%E7%B4%A2%E4%B8%AD%E5%BF%83&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海乐高探索中心",
+          "content": "推荐地点：上海乐高探索中心；地址：大渡河路196号2层(长风公园地铁站3号口步行210米)；标签：亲子、室内、动手"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海乐高探索中心",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "大渡河路196号2层(长风公园地铁站3号口步行210米)"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到好乐迪量贩KTV(江宁店)-停车场",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.230875&dlon=121.454475&dname=%E5%A5%BD%E4%B9%90%E8%BF%AA%E9%87%8F%E8%B4%A9KTV(%E6%B1%9F%E5%AE%81%E5%BA%97)-%E5%81%9C%E8%BD%A6%E5%9C%BA&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "好乐迪量贩KTV(江宁店)-停车场",
+          "content": "推荐地点：好乐迪量贩KTV(江宁店)-停车场；地址：江宁路与北京西路交叉口西北100米；标签：唱歌、室内、夜间"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：好乐迪量贩KTV(江宁店)-停车场",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "江宁路与北京西路交叉口西北100米"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道确认场次或预约",
+          "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海大剧院",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.2294&dlon=121.471825&dname=%E4%B8%8A%E6%B5%B7%E5%A4%A7%E5%89%A7%E9%99%A2&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海大剧院",
+          "content": "推荐地点：上海大剧院；地址：人民大道300号；标签：剧院、演出、室内"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海大剧院",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "人民大道300号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道确认场次或预约",
+          "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到MAO Livehouse上海",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.209942&dlon=121.472075&dname=MAO%20Livehouse%E4%B8%8A%E6%B5%B7&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "MAO Livehouse上海",
+          "content": "推荐地点：MAO Livehouse上海；地址：重庆南路308号白玉兰剧场3层；标签：音乐、演出、夜间"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：MAO Livehouse上海",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "重庆南路308号白玉兰剧场3层"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道确认场次或预约",
+          "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海世嘉都市乐园JOYPOLIS(上海月星环球港店)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.232075&dlon=121.411753&dname=%E4%B8%8A%E6%B5%B7%E4%B8%96%E5%98%89%E9%83%BD%E5%B8%82%E4%B9%90%E5%9B%ADJOYPOLIS(%E4%B8%8A%E6%B5%B7%E6%9C%88%E6%98%9F%E7%8E%AF%E7%90%83%E6%B8%AF%E5%BA%97)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海世嘉都市乐园JOYPOLIS(上海月星环球港店)",
+          "content": "推荐地点：上海世嘉都市乐园JOYPOLIS(上海月星环球港店)；地址：中山北路3300号环球港3层L3163室；标签：室内、电玩、亲子"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海世嘉都市乐园JOYPOLIS(上海月星环球港店)",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "中山北路3300号环球港3层L3163室"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海世茂精灵之城主题乐园-蓝精灵乐园",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.062256&dlon=121.158933&dname=%E4%B8%8A%E6%B5%B7%E4%B8%96%E8%8C%82%E7%B2%BE%E7%81%B5%E4%B9%8B%E5%9F%8E%E4%B8%BB%E9%A2%98%E4%B9%90%E5%9B%AD-%E8%93%9D%E7%B2%BE%E7%81%B5%E4%B9%90%E5%9B%AD&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海世茂精灵之城主题乐园-蓝精灵乐园",
+          "content": "推荐地点：上海世茂精灵之城主题乐园-蓝精灵乐园；地址：辰花路5088号；标签：亲子、主题乐园、室内"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海世茂精灵之城主题乐园-蓝精灵乐园",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "辰花路5088号"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到上海长风海洋世界",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.225042&dlon=121.396998&dname=%E4%B8%8A%E6%B5%B7%E9%95%BF%E9%A3%8E%E6%B5%B7%E6%B4%8B%E4%B8%96%E7%95%8C&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "上海长风海洋世界",
+          "content": "推荐地点：上海长风海洋世界；地址：大渡河路189号(长风公园地铁站2号口步行150米)；标签：亲子、海洋、室内"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：上海长风海洋世界",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "大渡河路189号(长风公园地铁站2号口步行150米)"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道购票或预约",
+          "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到百乐门(上海静安区)",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.223566&dlon=121.444277&dname=%E7%99%BE%E4%B9%90%E9%97%A8(%E4%B8%8A%E6%B5%B7%E9%9D%99%E5%AE%89%E5%8C%BA)&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "百乐门(上海静安区)",
+          "content": "推荐地点：百乐门(上海静安区)；地址：上海市静安区愚园路218号(静安寺地铁站1号口步行150米)；标签：夜间、复古、演出"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：百乐门(上海静安区)",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "上海市静安区愚园路218号(静安寺地铁站1号口步行150米)"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "booking_hint",
+        "label": "查看预约提示",
+        "payload": {
+          "required_user_action": "前往官方渠道确认场次或预约",
+          "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到复兴公园",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.21698&dlon=121.469115&dname=%E5%A4%8D%E5%85%B4%E5%85%AC%E5%9B%AD&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "复兴公园",
+          "content": "推荐地点：复兴公园；地址：复兴中路516号；标签：公园、散步、街区"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：复兴公园",
+          "remind_offset_minutes": 60,
+          "message": "建议提前 60 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "复兴中路516号"
+        },
+        "requires_user_confirmation": true
+      }
+    ]
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "actions": [
+      {
+        "action_type": "navigation",
+        "label": "导航到武康大楼",
+        "provider": "amap_uri",
+        "uri": "amapuri://route/plan/?dlat=31.20443&dlon=121.438278&dname=%E6%AD%A6%E5%BA%B7%E5%A4%A7%E6%A5%BC&dev=0&t=0",
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "share",
+        "label": "分享地点",
+        "payload": {
+          "title": "武康大楼",
+          "content": "推荐地点：武康大楼；地址：湖南路街道淮海中路1850号；标签：地标、街区、拍照"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "reminder",
+        "label": "设置出发提醒",
+        "payload": {
+          "title": "准备出发：武康大楼",
+          "remind_offset_minutes": 30,
+          "message": "建议提前 30 分钟准备出发，出行前确认路线、营业时间和现场要求。"
+        },
+        "requires_user_confirmation": true
+      },
+      {
+        "action_type": "copy_address",
+        "label": "复制地址",
+        "payload": {
+          "text": "湖南路街道淮海中路1850号"
         },
         "requires_user_confirmation": true
       }

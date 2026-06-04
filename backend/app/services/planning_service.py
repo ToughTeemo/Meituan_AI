@@ -13,8 +13,11 @@ from app.schemas.plan import (
     PlanVersionResponse,
 )
 from app.services.mock_data import create_mock_plan, new_log
+from app.services.plan_context_builder import PlanContextBuilder
+from app.services.plan_response_adapter import PlanResponseAdapter
 from app.services.planner_service import ShanghaiMvpPlannerService
 from app.services.poi_service import AmapPoiService, ShanghaiSeedPoiService
+from app.services.rule_based_planner import RuleBasedPlanner
 from app.services.route_service import AmapRouteService, EstimatedShanghaiRouteService
 from app.services.weather_service import OpenMeteoWeatherService, SeedWeatherService
 
@@ -24,13 +27,40 @@ class PlanningService:
         self.plan_repository = plan_repository
 
     def create_plan(self, request: CreatePlanRequest) -> PlanResponse:
-        if settings.planning_provider == "mock":
+        planning_provider = settings.planning_provider.strip().lower()
+        if planning_provider == "rule_based":
+            plan = self._create_rule_based_plan(request)
+            return self.plan_repository.create(plan)
+
+        if planning_provider == "mock":
             plan = create_mock_plan(request.prompt)
             plan.session_id = self._session_id(request.session_id)
             plan.user_id = self._clean_optional_id(request.user_id)
             plan.city = request.city
             return self.plan_repository.create(plan)
 
+        return self.plan_repository.create(self._create_openai_plan(request))
+
+    def _create_rule_based_plan(self, request: CreatePlanRequest) -> PlanResponse:
+        weather_service = (
+            OpenMeteoWeatherService()
+            if settings.weather_provider == "open_meteo"
+            else SeedWeatherService()
+        )
+        plan_context = PlanContextBuilder(weather_service=weather_service).build(
+            request.prompt,
+            limit=8,
+        )
+        planner_result = RuleBasedPlanner().plan(plan_context)
+        return PlanResponseAdapter().to_plan_response(
+            planner_result,
+            plan_context=plan_context,
+            session_id=self._session_id(request.session_id),
+            user_id=self._clean_optional_id(request.user_id),
+            city=request.city,
+        )
+
+    def _create_openai_plan(self, request: CreatePlanRequest) -> PlanResponse:
         weather_service = (
             OpenMeteoWeatherService()
             if settings.weather_provider == "open_meteo"
@@ -61,7 +91,7 @@ class PlanningService:
             user_id=self._clean_optional_id(request.user_id),
             city=request.city,
         )
-        return self.plan_repository.create(plan)
+        return plan
 
     def get_plan(self, plan_id: str) -> PlanResponse:
         plan = self.plan_repository.get(plan_id)

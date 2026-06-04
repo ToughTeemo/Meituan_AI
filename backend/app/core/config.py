@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     cors_origins: list[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
     # Provider Switch
-    planning_provider: str = "shanghai_seed"
+    planning_provider: str = "rule_based"
     poi_provider: str = "seed"
     route_provider: str = "estimated"
     weather_provider: str = "seed"

@@ -20,6 +20,7 @@ class PlanRecord(SQLModel, table=True):
     cards_json: str
     active_risk_json: str | None = None
     agent_logs_json: str
+    summary_json: str
     created_at: datetime = Field(default_factory=now_utc)
     updated_at: datetime = Field(default_factory=now_utc)
 
@@ -39,4 +40,17 @@ class PlanVersionRecord(SQLModel, table=True):
     cards_json: str
     active_risk_json: str | None = None
     agent_logs_json: str
+    summary_json: str
+    created_at: datetime = Field(default_factory=now_utc, index=True)
+
+
+class ExecutionSnapshotRecord(SQLModel, table=True):
+    id: str = Field(primary_key=True, index=True)
+    plan_id: str = Field(index=True)
+    version: int = Field(index=True)
+    status: str = Field(index=True)
+    summary_json: str
+    execution_context_json: str
+    risk_flags_json: str
+    actions_json: str
     created_at: datetime = Field(default_factory=now_utc, index=True)

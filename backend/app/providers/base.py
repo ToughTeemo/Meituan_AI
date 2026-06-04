@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Literal, Protocol
+from typing import Any, Literal, Protocol
 
 
 Confidence = Literal["high", "medium", "low", "unknown"]
@@ -7,6 +7,11 @@ Confidence = Literal["high", "medium", "low", "unknown"]
 
 class ProviderError(Exception):
     pass
+
+
+class BaseProvider(Protocol):
+    async def get(self, *args: Any, **kwargs: Any) -> dict[str, Any]:
+        ...
 
 
 @dataclass

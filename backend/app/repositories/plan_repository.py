@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from sqlmodel import Session, select
 
-from app.models.plan import PlanRecord, PlanVersionRecord
+from app.models.plan import ExecutionSnapshotRecord, PlanRecord, PlanVersionRecord
 from app.schemas.plan import (
     AgentLogEntry,
     Card,
@@ -63,6 +63,47 @@ class PlanRepository:
             return None
         return self._version_to_response(record)
 
+    def save_execution_snapshot(
+        self,
+        plan_id: str,
+        version: int,
+        pipeline_result: dict,
+    ) -> dict:
+        record = ExecutionSnapshotRecord(
+            id=f"es_{uuid4().hex[:12]}",
+            plan_id=plan_id,
+            version=version,
+            status=str(pipeline_result.get("status") or "UNKNOWN"),
+            summary_json=self._dump(pipeline_result.get("summary", "")),
+            execution_context_json=self._dump(pipeline_result.get("execution_context", {})),
+            risk_flags_json=self._dump(pipeline_result.get("risk_flags", [])),
+            actions_json=self._dump(pipeline_result.get("actions", [])),
+        )
+        self.session.add(record)
+        self.session.commit()
+        self.session.refresh(record)
+        return self._execution_snapshot_to_dict(record)
+
+    def get_latest_execution_snapshot(self, plan_id: str) -> dict | None:
+        statement = (
+            select(ExecutionSnapshotRecord)
+            .where(ExecutionSnapshotRecord.plan_id == plan_id)
+            .order_by(ExecutionSnapshotRecord.created_at.desc())
+        )
+        record = self.session.exec(statement).first()
+        if record is None:
+            return None
+        return self._execution_snapshot_to_dict(record)
+
+    def list_execution_snapshots(self, plan_id: str) -> list[dict]:
+        statement = (
+            select(ExecutionSnapshotRecord)
+            .where(ExecutionSnapshotRecord.plan_id == plan_id)
+            .order_by(ExecutionSnapshotRecord.created_at.asc())
+        )
+        records = self.session.exec(statement).all()
+        return [self._execution_snapshot_to_dict(record) for record in records]
+
     def save(self, plan: PlanResponse, event_type: str = "updated") -> PlanResponse:
         record = self.session.get(PlanRecord, plan.plan_id)
         if record is None:
@@ -82,6 +123,7 @@ class PlanRepository:
             record.cards_json = next_record.cards_json
             record.active_risk_json = next_record.active_risk_json
             record.agent_logs_json = next_record.agent_logs_json
+            record.summary_json = next_record.summary_json
             record.updated_at = datetime.now(UTC)
 
         self.session.add(self._to_version_record(plan, event_type=event_type))
@@ -104,6 +146,7 @@ class PlanRepository:
             cards_json=self._dump_list(plan.cards),
             active_risk_json=self._dump(plan.active_risk) if plan.active_risk else None,
             agent_logs_json=self._dump_list(plan.agent_logs),
+            summary_json=self._dump(plan.summary),
             created_at=plan.created_at,
             updated_at=plan.updated_at,
         )
@@ -124,6 +167,7 @@ class PlanRepository:
             cards_json=self._dump_list(plan.cards),
             active_risk_json=self._dump(plan.active_risk) if plan.active_risk else None,
             agent_logs_json=self._dump_list(plan.agent_logs),
+            summary_json=self._dump(plan.summary),
             created_at=plan.updated_at,
         )
 
@@ -147,10 +191,7 @@ class PlanRepository:
             agent_logs=[
                 AgentLogEntry.model_validate(item) for item in json.loads(record.agent_logs_json)
             ],
-            summary=PlanSummary(
-                title="上海周末城市玩耍路线",
-                subtitle="真实上海地点、路线时间、天气偏好和预算约束已纳入规划",
-            ),
+            summary=self._summary_from_json(record.summary_json),
             created_at=record.created_at,
             updated_at=record.updated_at,
         )
@@ -180,6 +221,19 @@ class PlanRepository:
             created_at=record.created_at,
         )
 
+    def _execution_snapshot_to_dict(self, record: ExecutionSnapshotRecord) -> dict:
+        return {
+            "id": record.id,
+            "plan_id": record.plan_id,
+            "version": record.version,
+            "status": record.status,
+            "summary": json.loads(record.summary_json),
+            "execution_context": json.loads(record.execution_context_json),
+            "risk_flags": json.loads(record.risk_flags_json),
+            "actions": json.loads(record.actions_json),
+            "created_at": record.created_at.isoformat(),
+        }
+
     def _dump(self, value: object) -> str:
         if hasattr(value, "model_dump_json"):
             return value.model_dump_json()
@@ -193,4 +247,12 @@ class PlanRepository:
         return json.dumps(
             serialized,
             ensure_ascii=False,
+        )
+
+    def _summary_from_json(self, value: str | None) -> PlanSummary:
+        if value:
+            return PlanSummary.model_validate_json(value)
+        return PlanSummary(
+            title="上海周末城市玩耍路线",
+            subtitle="真实上海地点、路线时间、天气偏好和预算约束已纳入规划",
         )

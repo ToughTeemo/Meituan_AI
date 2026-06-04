@@ -3,12 +3,14 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, status
 
 from app.api.deps import get_planning_service
+from app.core.errors import PlanNotFoundError
 from app.schemas.plan import (
     CreatePlanRequest,
     PlanResponse,
     PlanVersionCompareResponse,
     PlanVersionResponse,
 )
+from app.services.execution_pipeline import ExecutionPipeline
 from app.services.planning_service import PlanningService
 
 router = APIRouter(tags=["plans"])
@@ -38,6 +40,40 @@ async def list_plans(
     service: PlanningServiceDep,
 ) -> list[PlanResponse]:
     return service.list_plans_for_session(session_id)
+
+
+@router.post(
+    "/plans/{plan_id}/execution/check",
+    summary="Run execution check and persist an execution snapshot",
+)
+async def check_plan_execution(
+    plan_id: str,
+    service: PlanningServiceDep,
+) -> dict:
+    plan = service.get_plan(plan_id)
+    pipeline = ExecutionPipeline()
+    pipeline_result = await pipeline.run(plan)
+    service.plan_repository.save_execution_snapshot(
+        plan.plan_id,
+        plan.version,
+        pipeline_result,
+    )
+    return pipeline.result_view(pipeline_result)
+
+
+@router.get(
+    "/plans/{plan_id}/execution/latest",
+    summary="Get latest execution snapshot summary",
+)
+async def get_latest_plan_execution(
+    plan_id: str,
+    service: PlanningServiceDep,
+) -> dict:
+    service.get_plan(plan_id)
+    snapshot = service.plan_repository.get_latest_execution_snapshot(plan_id)
+    if snapshot is None:
+        raise PlanNotFoundError("Execution snapshot does not exist.")
+    return ExecutionPipeline().snapshot_view(snapshot)
 
 
 @router.get(
