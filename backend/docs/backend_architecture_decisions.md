@@ -455,3 +455,30 @@ Provider → Plan → Replan → Action
 ```
 
 完整跑通。
+
+## 18. `planning-v0.3-execution` 阶段归档
+
+当前阶段已在 `cf0bb38` 标记为 `planning-v0.3-execution`。本阶段完成的是后端
+planning 和 execution 的可验证主链路，以及 service-level replan framework。
+
+已完成：
+
+- `MockDatasetLoader` 和 `ProviderCatalog` 已落地，`pois_mock.json` 已作为当前 mock POI 主表接入。
+- 默认规划路径已切换为 `PLANNING_PROVIDER=rule_based`。
+- `PlanningService -> PlanContextBuilder -> RuleBasedPlanner -> PlanResponseAdapter -> PlanRepository` 已形成默认 planning 主链路。
+- `PlanRecord` 和 `PlanVersionRecord` 已持久化 `summary_json`。
+- `ExecutionContextBuilder -> ExecutionProviderRefreshService -> ExecutionRiskScanner -> ExecutionActionPlanner -> ExecutionPipeline` 已形成 execution 主链路。
+- `ExecutionSnapshotRecord` 已落库，`POST /api/plans/{plan_id}/execution/check` 和 `GET /api/plans/{plan_id}/execution/latest` 已注册。
+- `ReplanDecisionService -> ReplanContextBuilder -> RuleBasedReplanner -> ApplyReplanService` 已作为 service-level replan framework 落地并通过脚本验证。
+- `backend/scripts/check_*.py` 已覆盖 planning、execution、snapshot persistence、API contract、provider catalog 和 replan framework。
+
+当前边界：
+
+- 新 replan framework 尚未接入正式 API。
+- replan proposal 尚未持久化。
+- `ApplyReplanService` 尚未接入正式 API 或应用服务。
+- 旧 `POST /api/plans/{plan_id}/risks/{risk_id}/replan` 仍由 `RiskService.replan` 处理，和新 replan framework 命名相同但实现链路不同。
+- Queue 仍是 estimated/mock，Booking 仍是 stub/user action guidance，不能当作实时排队或真实预订结果。
+- 版本记录已保存 `summary_json`，但 `PlanVersionResponse` 尚未暴露 summary，restore 仍使用 restored summary 文案。
+
+归档细节见：`backend/docs/progress_archive.md`。
