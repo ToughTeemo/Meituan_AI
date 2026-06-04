@@ -62,18 +62,18 @@ pois_mock.json
 ## 3. Current Dataset Summary
 
 ```text
-POI count: 37
+POI count: 74
 ```
 
 POI 类型分布：
 
 ```json
 {
-  "attraction": 12,
-  "restaurant": 7,
-  "cafe": 4,
-  "mall": 4,
-  "entertainment": 10
+  "attraction": 21,
+  "restaurant": 19,
+  "cafe": 8,
+  "mall": 9,
+  "entertainment": 17
 }
 ```
 
@@ -81,11 +81,11 @@ POI 类型分布：
 
 ```json
 {
-  "ticket": 10,
-  "free": 12,
-  "restaurant_avg": 7,
-  "cafe_avg": 4,
-  "activity_fee": 4
+  "ticket": 15,
+  "free": 22,
+  "restaurant_avg": 19,
+  "cafe_avg": 8,
+  "activity_fee": 10
 }
 ```
 
@@ -93,9 +93,9 @@ POI 类型分布：
 
 ```json
 {
-  "low": 18,
-  "medium": 8,
-  "high": 11
+  "low": 35,
+  "medium": 21,
+  "high": 18
 }
 ```
 
@@ -103,8 +103,8 @@ POI 类型分布：
 
 ```json
 {
-  "medium": 21,
-  "low": 16
+  "medium": 42,
+  "low": 32
 }
 ```
 
@@ -112,8 +112,9 @@ POI 类型分布：
 
 ```json
 {
-  "pending_user_action": 17,
-  "not_required": 20
+  "pending_user_action": 34,
+  "not_required": 39,
+  "not_supported": 1
 }
 ```
 
@@ -121,11 +122,11 @@ POI 类型分布：
 
 ```json
 {
-  "navigation": 37,
-  "share": 37,
-  "reminder": 37,
-  "copy_address": 37,
-  "booking_hint": 17
+  "navigation": 74,
+  "share": 74,
+  "reminder": 74,
+  "copy_address": 74,
+  "booking_hint": 34
 }
 ```
 
