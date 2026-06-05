@@ -50,7 +50,7 @@ class PlanResponseAdapter:
         return PlanResponse(
             plan_id=f"plan_{uuid4().hex[:10]}",
             session_id=self._session_id(session_id),
-            user_id=self._text(user_id, ""),
+            user_id=user_id,
             city=self._text(city, "上海"),
             source="rule_based",
             status="EXECUTING",
@@ -65,7 +65,10 @@ class PlanResponseAdapter:
             ],
             summary=PlanSummary(
                 title=title,
-                subtitle=f"{summary} 预计总费用约 {estimated_cost} 元，平均置信度 {confidence:.2f}。",
+                subtitle=(
+                    f"{summary} 预计总费用约 {estimated_cost} 元，"
+                    f"平均置信度 {confidence:.2f}。"
+                ),
             ),
             created_at=now,
             updated_at=now,
