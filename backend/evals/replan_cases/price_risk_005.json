@@ -1,0 +1,124 @@
+{
+  "case_id": "price_risk_005",
+  "risk_flags": [
+    {
+      "type": "PRICE_RISK",
+      "severity": "high",
+      "poi_id": "poi_sh_century_park",
+      "message": "预算压力较高，建议选择更经济的备选地点",
+      "can_replan": true
+    }
+  ],
+  "current_plan": {
+    "plan_id": "case_price_005",
+    "current_card_id": "card_poi_sh_century_park",
+    "cards": [
+      {
+        "card_id": "card_poi_sh_century_park",
+        "type": "activity",
+        "status": "active",
+        "poi": {
+          "poi_id": "poi_sh_century_park",
+          "name": "上海世纪公园",
+          "rating": 4.8,
+          "price_per_person": 0,
+          "queue_minutes": 5,
+          "category": "park",
+          "is_indoor": false,
+          "is_child_friendly": true
+        }
+      }
+    ]
+  },
+  "provider_candidates": [
+    {
+      "poi_id": "poi_sh_jingan_kerry_centre",
+      "poi": {
+        "poi_id": "poi_sh_jingan_kerry_centre",
+        "name": "静安嘉里中心",
+        "is_indoor": true,
+        "rating": 4.9,
+        "price_per_person": 0,
+        "queue_minutes": 5,
+        "category": "shopping_mall"
+      },
+      "hours": {
+        "hours_label": "10:00-22:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 0,
+        "estimated_total_for_family": 0
+      },
+      "queue": {
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    },
+    {
+      "poi_id": "poi_sh_global_harbor",
+      "poi": {
+        "poi_id": "poi_sh_global_harbor",
+        "name": "上海月星环球港",
+        "is_indoor": true,
+        "rating": 4.9,
+        "price_per_person": 0,
+        "queue_minutes": 5,
+        "category": "shopping_mall"
+      },
+      "hours": {
+        "hours_label": "10:00-22:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 0,
+        "estimated_total_for_family": 0
+      },
+      "queue": {
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    },
+    {
+      "poi_id": "poi_sh_century_park",
+      "poi": {
+        "poi_id": "poi_sh_century_park",
+        "name": "上海世纪公园",
+        "is_indoor": false,
+        "rating": 4.8,
+        "price_per_person": 0,
+        "queue_minutes": 5,
+        "category": "park"
+      },
+      "hours": {
+        "hours_label": "00:00-24:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 0,
+        "estimated_total_for_family": 0
+      },
+      "queue": {
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    }
+  ],
+  "budget": 80,
+  "user_prompt": "预算压力离线评测：优先选择更经济的备选地点",
+  "expected": {
+    "target_poi_id": "poi_sh_jingan_kerry_centre",
+    "strategy_contains": [
+      "BUDGET_FRIENDLY"
+    ]
+  }
+}

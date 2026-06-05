@@ -220,6 +220,14 @@ class LlmReplanner:
         return new_poi
 
     def _provider_candidates(self, context: ReplanContext) -> list[dict[str, Any]]:
+        explicit_candidates = self._list(context.get("provider_candidates"))
+        if explicit_candidates:
+            return [
+                deepcopy(candidate)
+                for candidate in explicit_candidates
+                if isinstance(candidate, dict)
+            ]
+
         execution_context = self._dict(context.get("execution_context"))
         cards = self._list(execution_context.get("cards"))
         current_ids = {
