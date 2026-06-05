@@ -173,6 +173,38 @@ POST /api/plans/{plan_id}/risks/scan
 - 命中风险时，后端会把受影响卡片标记为 `risk`。
 - 当前前端手动按钮“排队变长 / 突然下雨 / 孩子累了”都会优先调用此接口。
 
+### Current Frontend Replan Chain
+
+`scanRisks()` and `replanRisk()` are frontend wrapper names. They no longer map
+1:1 to the legacy `/risks/scan` and `/risks/{risk_id}/replan` backend routes.
+
+```http
+POST /api/plans/{plan_id}/execution/check
+GET  /api/plans/{plan_id}/execution/latest
+GET  /api/plans/{plan_id}/replan/latest
+GET  /api/plans/{plan_id}/replans
+POST /api/plans/{plan_id}/replan/{proposal_id}/apply
+```
+
+Frontend wrapper-visible fields:
+
+- `risk_type`
+- `proposal.proposal_summary`
+- `proposal.reason`
+
+If no proposal is available, the wrapper falls back to `execution.summary` for
+the visible description.
+
+The proposal wrapper response includes:
+
+- `proposal_id`
+- `status`
+- `strategy`
+- `risk_type`
+- `accepted`
+- `proposal`
+- `updated_plan`
+
 ### 忽略风险
 
 ```http

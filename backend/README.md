@@ -113,8 +113,24 @@ POST /api/plans/{plan_id}/actions
 
 The current default planning path is rule-based and persists real API responses
 through SQLite/SQLModel. Execution check APIs run the execution pipeline and
-persist execution snapshots. The service-level replan framework is implemented,
-but it is not yet exposed through a new formal replan API.
+persist execution snapshots. The service-level replan framework is exposed
+through the execution/proposal chain below.
+
+Current replan chain:
+
+```text
+POST /api/plans/{plan_id}/execution/check
+GET  /api/plans/{plan_id}/execution/latest
+GET  /api/plans/{plan_id}/replan/latest
+GET  /api/plans/{plan_id}/replans
+POST /api/plans/{plan_id}/replan/{proposal_id}/apply
+```
+
+Legacy compatibility endpoints remain available for older clients:
+
+- `POST /api/plans/{plan_id}/risks/scan`
+- `POST /api/plans/{plan_id}/risks/{risk_id}/replan`
+- `POST /api/plans/{plan_id}/risks/{risk_id}/ignore`
 
 ## Planning Providers
 

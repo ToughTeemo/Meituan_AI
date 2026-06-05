@@ -16,6 +16,9 @@ uv run uvicorn app.main:app --reload
 - `DEMO_MODE=true`: use fixed seed/mock provider snapshots in execution checks.
 - `DATABASE_URL`: keep the default local SQLite database or point to a disposable demo database.
 - `PLANNING_PROVIDER=rule_based`: keep plan creation on the local deterministic planner.
+- `VITE_API_MODE=api`: make the frontend call the real backend API layer.
+- `VITE_USE_MOCK_FALLBACK=false`: disable frontend-side fallback masking during integration.
+- `LLM_REPLANNER_MOCK=true`: keep replan evaluation and demo replanning deterministic.
 
 ## Demo Flow
 
@@ -28,16 +31,19 @@ uv run uvicorn app.main:app --reload
 2. Run execution check.
    - `POST /api/plans/{plan_id}/execution/check`
 
-3. Read the latest proposal.
+3. Read the latest execution snapshot.
+   - `GET /api/plans/{plan_id}/execution/latest`
+
+4. Read the latest proposal.
    - `GET /api/plans/{plan_id}/replan/latest`
 
-4. Read the proposal list.
+5. Read the proposal list.
    - `GET /api/plans/{plan_id}/replans`
 
-5. Apply the proposal.
+6. Apply the proposal.
    - `POST /api/plans/{plan_id}/replan/{proposal_id}/apply`
 
-6. Read the updated plan.
+7. Read the updated plan.
    - `GET /api/plans/{plan_id}`
 
 ## Expected Result
