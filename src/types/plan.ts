@@ -178,7 +178,6 @@ export interface POI {
   map_position: { x: number; y: number };
   is_child_friendly: boolean;
   hours_label?: string;
-  address?: string;
   district?: string;
   latitude?: number;
   longitude?: number;
@@ -389,6 +388,99 @@ export type MachineState =
   | "REPLANNING"
   | "COMPLETED"
   | "CONFIRMED";
+
+export interface PlanApiSnapshot {
+  plan_id: string;
+  session_id?: string;
+  user_id?: string | null;
+  city?: string;
+  status: MachineState;
+  version: number;
+  constraints: Constraints;
+  timeline: TimelineConfig;
+  cards: Card[];
+  active_risk: RiskSignal | null;
+  agent_logs: AgentLogEntry[];
+  summary: {
+    title: string;
+    subtitle: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ExecutionRiskFlag {
+  type: string;
+  severity: string;
+  source: string;
+  poi_id: string | null;
+  message: string;
+  can_replan: boolean;
+}
+
+export interface ExecutionAction {
+  type?: string;
+  label?: string;
+  message?: string;
+  [key: string]: unknown;
+}
+
+export interface ExecutionCheckResponse {
+  status: string;
+  summary: string;
+  risk_flags: ExecutionRiskFlag[];
+  actions: ExecutionAction[];
+}
+
+export interface ExecutionLatestResponse extends ExecutionCheckResponse {
+  snapshot_id: string;
+  created_at: string;
+}
+
+export interface ReplanProposalPayload {
+  replanned: boolean;
+  strategy: string;
+  risk_type: string;
+  reason: string;
+  proposal_summary: string;
+  old_poi: Record<string, unknown>;
+  new_poi: Record<string, unknown>;
+  requires_user_confirmation: boolean;
+  old_card_id: string | null;
+  old_poi_id: string | null;
+}
+
+export interface ReplanProposalResponse {
+  proposal_id: string;
+  plan_id: string;
+  execution_snapshot_id: string;
+  status: string;
+  strategy: string;
+  risk_type: string;
+  accepted: boolean;
+  accepted_at: string | null;
+  created_at: string;
+  proposal: ReplanProposalPayload;
+  updated_plan: PlanApiSnapshot | null;
+}
+
+export interface ReplanProposalListItem {
+  proposal_id: string;
+  status: string;
+  strategy: string;
+  risk_type: string;
+  accepted: boolean;
+  accepted_at: string | null;
+  created_at: string;
+  proposal: ReplanProposalPayload;
+}
+
+export interface ReplanProposalListResponse {
+  plan_id: string;
+  proposals: ReplanProposalListItem[];
+}
+
+export type ApplyReplanProposalResponse = ReplanProposalResponse;
 
 export interface PlanState {
   planId: string | null;

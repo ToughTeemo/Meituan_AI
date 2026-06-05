@@ -8,32 +8,19 @@ import {
 import { demoTriggerFromRiskType, mergeLocalReplanSegment } from "@/mock/localReplan";
 import type {
   AgentLogEntry,
+  ApplyReplanProposalResponse,
   Card,
-  Constraints,
-  MachineState,
+  ExecutionCheckResponse,
+  ExecutionLatestResponse,
+  ExecutionRiskFlag,
+  PlanApiSnapshot,
+  ReplanProposalListResponse,
+  ReplanProposalResponse,
   RiskKind,
   RiskSignal,
-  TimelineConfig,
 } from "@/types/plan";
 
-export interface PlanResponse {
-  plan_id: string;
-  session_id?: string;
-  user_id?: string | null;
-  city?: string;
-  status: MachineState;
-  version: number;
-  constraints: Constraints;
-  timeline: TimelineConfig;
-  cards: Card[];
-  active_risk: RiskSignal | null;
-  agent_logs: AgentLogEntry[];
-  summary: {
-    title: string;
-    subtitle: string;
-  };
-  created_at: string;
-  updated_at: string;
+export interface PlanResponse extends PlanApiSnapshot {
   source?: "api" | "mock";
 }
 
@@ -42,6 +29,8 @@ export interface RiskScanResponse {
   status: "RISK_DETECTED" | "EXECUTING";
   risks: RiskSignal[];
   agent_logs: AgentLogEntry[];
+  summary?: string;
+  latest_proposal?: ReplanProposalResponse | null;
   source?: "api" | "mock";
 }
 
@@ -54,6 +43,7 @@ export interface ReplanResponse {
   removed_card_ids: string[];
   agent_message: string;
   agent_logs: AgentLogEntry[];
+  updated_plan?: PlanResponse;
   source?: "api" | "mock";
 }
 
@@ -144,6 +134,145 @@ function demoTriggerFromRiskKind(riskKind: RiskKind): "queue" | "rain" | "fatigu
   if (riskKind === "weather") return "rain";
   if (riskKind === "fatigue") return "fatigue";
   return null;
+}
+
+function riskKindFromBackendRiskType(riskType: string): RiskKind {
+  const normalized = riskType.trim().toUpperCase();
+  if (normalized === "WEATHER_RISK") return "weather";
+  if (normalized === "QUEUE_RISK") return "queue";
+  if (normalized === "PRICE_RISK") return "budget";
+  if (normalized === "CLOSED_RISK" || normalized === "BOOKING_RISK") {
+    return "closure";
+  }
+  return "time";
+}
+
+function severityForFrontend(severity: string): RiskSignal["severity"] {
+  return severity.trim().toLowerCase() === "medium" ? "medium" : "high";
+}
+
+function levelForFrontend(severity: string): RiskSignal["level"] {
+  const normalized = severity.trim().toLowerCase();
+  if (normalized === "low" || normalized === "medium" || normalized === "high") {
+    return normalized;
+  }
+  if (normalized === "critical") return "high";
+  return "medium";
+}
+
+function affectedCardIdsForRisk(cards: Card[], flag: ExecutionRiskFlag): string[] {
+  const poiId = flag.poi_id?.trim();
+  if (poiId) {
+    const matched = cards
+      .filter((card) => card.poi?.poi_id === poiId)
+      .map((card) => card.card_id);
+    if (matched.length > 0) return matched;
+  }
+
+  const active = cards.find((card) => card.status === "active" || card.status === "current");
+  if (active) return [active.card_id];
+  return cards[0] ? [cards[0].card_id] : [];
+}
+
+function riskSignalFromExecution(
+  flag: ExecutionRiskFlag,
+  index: number,
+  cards: Card[],
+  execution: ExecutionCheckResponse,
+  proposal: ReplanProposalResponse | null,
+): RiskSignal {
+  const proposalPayload = proposal?.proposal;
+  const riskType = proposal?.risk_type ?? flag.type;
+  const summary = proposalPayload?.proposal_summary || execution.summary || flag.message;
+  const reason = proposalPayload?.reason || flag.message || execution.summary;
+  const affectedCardIds = affectedCardIdsForRisk(cards, flag);
+
+  return {
+    risk_id: `${flag.type}_${flag.source}_${flag.poi_id ?? index}`,
+    type: riskKindFromBackendRiskType(riskType),
+    level: levelForFrontend(flag.severity),
+    title: riskType,
+    description: summary,
+    affectedCardIds,
+    detectedAt: new Date().toISOString(),
+    suggestedAction: reason,
+    requiresUserConfirm: flag.can_replan,
+    severity: severityForFrontend(flag.severity),
+    affected_card_ids: affectedCardIds,
+  };
+}
+
+function shouldLoadLatestProposal(execution: ExecutionCheckResponse): boolean {
+  return (
+    execution.status === "NEEDS_REPLAN" ||
+    execution.risk_flags.some((flag) => flag.can_replan)
+  );
+}
+
+function executionToRiskScanResponse(
+  planId: string,
+  cards: Card[],
+  execution: ExecutionCheckResponse,
+  proposal: ReplanProposalResponse | null,
+): RiskScanResponse {
+  const risks = execution.risk_flags.map((flag, index) =>
+    riskSignalFromExecution(flag, index, cards, execution, proposal),
+  );
+  const summaryMessage =
+    proposal?.proposal.proposal_summary ||
+    proposal?.proposal.reason ||
+    execution.summary;
+
+  return {
+    plan_id: planId,
+    status: risks.length > 0 ? "RISK_DETECTED" : "EXECUTING",
+    risks,
+    agent_logs: summaryMessage ? [makeLog(summaryMessage)] : [],
+    summary: execution.summary,
+    latest_proposal: proposal,
+    source: "api",
+  };
+}
+
+function planWithApiSource(plan: PlanApiSnapshot): PlanResponse {
+  return { ...plan, source: "api" };
+}
+
+function replanResponseFromApply(
+  input: {
+    version: number;
+    cards: Card[];
+  },
+  response: ApplyReplanProposalResponse,
+): ReplanResponse {
+  if (!response.updated_plan) {
+    throw new Error("Apply replan response did not include updated_plan.");
+  }
+
+  const updatedPlan = planWithApiSource(response.updated_plan);
+  const oldIds = new Set(input.cards.map((card) => card.card_id));
+  const newIds = new Set(updatedPlan.cards.map((card) => card.card_id));
+  const agentMessage =
+    response.proposal.proposal_summary ||
+    response.proposal.reason ||
+    "Replan proposal applied.";
+
+  return {
+    plan_id: updatedPlan.plan_id,
+    status: "EXECUTING",
+    version: updatedPlan.version,
+    cards: updatedPlan.cards,
+    inserted_card_ids: updatedPlan.cards
+      .filter((card) => !oldIds.has(card.card_id))
+      .map((card) => card.card_id),
+    removed_card_ids: input.cards
+      .filter((card) => !newIds.has(card.card_id))
+      .map((card) => card.card_id),
+    agent_message: agentMessage,
+    agent_logs: [makeLog(response.proposal.reason || agentMessage)],
+    updated_plan: updatedPlan,
+    source: "api",
+  };
 }
 
 function mockRiskScan(
@@ -317,19 +446,54 @@ export function listPlans(sessionId: string): Promise<PlanResponse[]> {
   );
 }
 
+export function checkExecution(planId: string): Promise<ExecutionCheckResponse> {
+  return apiJson<ExecutionCheckResponse>(`/api/plans/${planId}/execution/check`, {
+    method: "POST",
+  });
+}
+
+export function getLatestExecution(planId: string): Promise<ExecutionLatestResponse> {
+  return apiJson<ExecutionLatestResponse>(`/api/plans/${planId}/execution/latest`);
+}
+
+export function getLatestReplanProposal(planId: string): Promise<ReplanProposalResponse> {
+  return apiJson<ReplanProposalResponse>(`/api/plans/${planId}/replan/latest`);
+}
+
+export function listReplanProposals(planId: string): Promise<ReplanProposalListResponse> {
+  return apiJson<ReplanProposalListResponse>(`/api/plans/${planId}/replans`);
+}
+
+export function applyReplanProposal(
+  planId: string,
+  proposalId: string,
+): Promise<ApplyReplanProposalResponse> {
+  return apiJson<ApplyReplanProposalResponse>(
+    `/api/plans/${planId}/replan/${proposalId}/apply`,
+    {
+      method: "POST",
+    },
+  );
+}
+
 export function scanRisks(input: {
   planId: string;
   cards: Card[];
   riskTypes?: RiskKind[];
 }): Promise<RiskScanResponse> {
   return withFallback(
-    () =>
-      apiJson<RiskScanResponse>(`/api/plans/${input.planId}/risks/scan`, {
-        method: "POST",
-        body: JSON.stringify({
-          risk_types: input.riskTypes ?? ["queue"],
-        }),
-      }).then((response) => ({ ...response, source: "api" as const })),
+    async () => {
+      const execution = await checkExecution(input.planId);
+      let proposal: ReplanProposalResponse | null = null;
+      if (shouldLoadLatestProposal(execution)) {
+        try {
+          proposal = await getLatestReplanProposal(input.planId);
+        } catch {
+          proposal = null;
+        }
+      }
+      return executionToRiskScanResponse(input.planId, input.cards, execution, proposal);
+    },
     () => mockRiskScan(input.planId, input.cards, input.riskTypes),
   );
 }
@@ -342,17 +506,11 @@ export function replanRisk(input: {
   cards: Card[];
 }): Promise<ReplanResponse> {
   return withFallback(
-    () =>
-      apiJson<ReplanResponse>(
-        `/api/plans/${input.planId}/risks/${input.riskId}/replan`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            strategy: "balanced",
-            base_version: input.version,
-          }),
-        },
-      ).then((response) => ({ ...response, source: "api" as const })),
+    async () => {
+      const latest = await getLatestReplanProposal(input.planId);
+      const applied = await applyReplanProposal(input.planId, latest.proposal_id);
+      return replanResponseFromApply(input, applied);
+    },
     () => mockReplan(input.planId, input.version, input.cards, input.risk),
   );
 }

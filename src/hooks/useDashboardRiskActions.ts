@@ -157,7 +157,7 @@ export function useDashboardRiskActions(): {
           type: "OPEN_RISK",
           risk: signal,
           snapshot,
-          agentMessage: agentMessageForRisk(signal),
+          agentMessage: signal.suggestedAction ?? agentMessageForRisk(signal),
         });
         if (machineRef.current !== "RISK_DETECTED") {
           send({ type: "RISK_DETECTED" });
@@ -166,9 +166,10 @@ export function useDashboardRiskActions(): {
         uiDispatch({
           type: "APPEND_LOG",
           message:
-            signal.type === "queue"
+            signal.suggestedAction ??
+            (signal.type === "queue"
               ? "发现儿童乐园排队变长，可能影响后续安排。"
-              : `发现新变化：${signal.title}。`,
+              : `发现新变化：${signal.title}。`),
         });
 
         if (options?.markAutoConsumed) {
@@ -193,7 +194,10 @@ export function useDashboardRiskActions(): {
             if (!risk) {
               uiDispatch({
                 type: "APPEND_LOG",
-                message: "后端暂未发现需要调整的风险。",
+                message:
+                  response.agent_logs[0]?.message ||
+                  response.summary ||
+                  "后端暂未发现需要调整的风险。",
               });
               return;
             }
@@ -368,8 +372,8 @@ export function useDashboardRiskActions(): {
         version: p.version,
         cards: p.cards,
       });
-      next = result.cards;
-      nextVersion = result.version;
+      next = result.updated_plan?.cards ?? result.cards;
+      nextVersion = result.updated_plan?.version ?? result.version;
     } catch (error) {
       releaseReplanLock();
       uiDispatch({
