@@ -1,0 +1,66 @@
+<svg width="1169" height="630" viewBox="0 0 1169 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(584 180) rotate(90) scale(520 780)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#FFF8EC"/>
+      <stop offset="1" stop-color="#F7E6C9"/>
+    </radialGradient>
+    <linearGradient id="warmWash" x1="0" y1="0" x2="1169" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8E6BE"/>
+      <stop offset="0.42" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#F5D9CB"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-40%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#B78A52" flood-opacity="0.18"/>
+    </filter>
+    <filter id="chipShadow" x="-30%" y="-60%" width="160%" height="220%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#B78A52" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="1169" height="630" fill="url(#warmWash)"/>
+  <rect width="1169" height="630" fill="url(#bgGlow)" opacity="0.82"/>
+
+  <path d="M164 356C291 242 866 238 1016 356" stroke="#EED9B6" stroke-width="1" stroke-dasharray="6 12" opacity="0.55"/>
+  <path d="M235 385C362 293 812 291 934 384" stroke="#F2DEBD" stroke-width="1" stroke-dasharray="5 13" opacity="0.55"/>
+
+  <rect x="450" y="66" width="243" height="38" rx="19" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+  <text x="572" y="90" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="700" fill="#A6632E">本地吃喝玩乐，按你的节奏安排好</text>
+
+  <rect x="29" y="105" width="190" height="77" rx="18" fill="#FFFDF9" filter="url(#softShadow)"/>
+  <text x="46" y="137" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="800" fill="#433A34">15:00 亲子活动</text>
+  <text x="46" y="161" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="13" font-weight="500" fill="#8D7A6B">适合 5 岁儿童 · 少排队</text>
+
+  <rect x="941" y="105" width="174" height="77" rx="18" fill="#FFFDF9" filter="url(#softShadow)"/>
+  <text x="957" y="137" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="15" font-weight="800" fill="#433A34">16:30 甜品休息</text>
+  <text x="957" y="161" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="13" font-weight="500" fill="#8D7A6B">步行 6 分钟 · 不赶时间</text>
+
+  <text x="584" y="181" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="62" font-weight="900" letter-spacing="0" fill="#3C342F">一句话，安排你的周末</text>
+  <text x="584" y="229" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#786B61">告诉我和谁出门、预算多少、想轻松还是热闹。</text>
+  <text x="584" y="257" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#786B61">AI 会综合距离、排队、预算和返程，帮你安排一条顺路路线。</text>
+
+  <rect x="189" y="285" width="766" height="210" rx="30" fill="#FFFDF9" stroke="#EADFD0" filter="url(#softShadow)"/>
+  <text x="219" y="322" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="13" font-weight="800" fill="#7C6E64">我想这样安排：</text>
+  <text x="219" y="352" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="17" font-weight="600" fill="#B9A99A">例如：今晚想和对象轻松约会，别太远，最好有晚餐和散步</text>
+  <line x1="199" y1="430" x2="945" y2="430" stroke="#E9DDD0"/>
+  <text x="219" y="468" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#9B8B7E">会自动兼顾预算、路程、等待时间和回家时间</text>
+  <rect x="824" y="440" width="113" height="45" rx="22.5" fill="#F6A24B"/>
+  <text x="881" y="468" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="900" fill="#3C342F">帮我安排</text>
+
+  <text x="584" y="524" text-anchor="middle" font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="12" font-weight="700" fill="#A69789">不知道怎么说？从这些场景开始</text>
+
+  <g font-family="Inter, 'Microsoft YaHei', sans-serif" font-size="14" font-weight="800" fill="#6F6157">
+    <rect x="125" y="540" width="137" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="194" y="568" text-anchor="middle">亲子半日游</text>
+    <rect x="276" y="540" width="138" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="345" y="568" text-anchor="middle">宠物友好路线</text>
+    <rect x="428" y="540" width="137" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="497" y="568" text-anchor="middle">轻松约会</text>
+    <rect x="579" y="540" width="138" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="648" y="568" text-anchor="middle">雨天也能玩</text>
+    <rect x="731" y="540" width="138" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="800" y="568" text-anchor="middle">少排队慢节奏</text>
+    <rect x="883" y="540" width="137" height="45" rx="22.5" fill="#FFFDF9" stroke="#EADFD0" filter="url(#chipShadow)"/>
+    <text x="951" y="568" text-anchor="middle">500 元以内</text>
+  </g>
+</svg>
