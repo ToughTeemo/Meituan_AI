@@ -1,0 +1,520 @@
+[
+  {
+    "poi_id": "poi_sh_natural_history_museum",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 30,
+    "adult_price": 30,
+    "child_price": 15,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 75
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_shanghai_museum",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 30,
+    "adult_price": 30,
+    "child_price": 15,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 75
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 30,
+    "adult_price": 30,
+    "child_price": 15,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 75
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 60,
+    "adult_price": 60,
+    "child_price": 30,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 150
+    },
+    "budget_level": "medium",
+    "source": "category_estimated_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 40,
+    "adult_price": 40,
+    "child_price": 20,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 100
+    },
+    "budget_level": "low",
+    "source": "manual_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 160,
+    "adult_price": 160,
+    "child_price": 100,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 420
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 207,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 518
+    },
+    "budget_level": "high",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 100,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 250
+    },
+    "budget_level": "medium",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 186,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 465
+    },
+    "budget_level": "high",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 120,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 300
+    },
+    "budget_level": "medium",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 90,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 225
+    },
+    "budget_level": "medium",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 134,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 335
+    },
+    "budget_level": "medium",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "price_type": "restaurant_avg",
+    "currency": "CNY",
+    "avg_price": 116,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 290
+    },
+    "budget_level": "medium",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "price_type": "cafe_avg",
+    "currency": "CNY",
+    "avg_price": 20,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 60
+    },
+    "budget_level": "low",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "price_type": "cafe_avg",
+    "currency": "CNY",
+    "avg_price": 35,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 105
+    },
+    "budget_level": "medium",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "price_type": "cafe_avg",
+    "currency": "CNY",
+    "avg_price": 30,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 90
+    },
+    "budget_level": "low",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "price_type": "cafe_avg",
+    "currency": "CNY",
+    "avg_price": 46,
+    "adult_price": null,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 138
+    },
+    "budget_level": "medium",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "manual_mock",
+    "confidence": 0.75
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 150,
+    "adult_price": 150,
+    "child_price": 100,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 400
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "price_type": "activity_fee",
+    "currency": "CNY",
+    "avg_price": 150,
+    "adult_price": 150,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 450
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "price_type": "activity_fee",
+    "currency": "CNY",
+    "avg_price": 314,
+    "adult_price": 314,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 942
+    },
+    "budget_level": "high",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "price_type": "activity_fee",
+    "currency": "CNY",
+    "avg_price": 184,
+    "adult_price": 184,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 552
+    },
+    "budget_level": "high",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 150,
+    "adult_price": 150,
+    "child_price": 100,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 400
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 150,
+    "adult_price": 150,
+    "child_price": 100,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 400
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "price_type": "ticket",
+    "currency": "CNY",
+    "avg_price": 160,
+    "adult_price": 160,
+    "child_price": 100,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 420
+    },
+    "budget_level": "high",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "price_type": "activity_fee",
+    "currency": "CNY",
+    "avg_price": 292,
+    "adult_price": 292,
+    "child_price": null,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 876
+    },
+    "budget_level": "high",
+    "source": "amap",
+    "confidence": 0.8
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "price_type": "free",
+    "currency": "CNY",
+    "avg_price": 0,
+    "adult_price": 0,
+    "child_price": 0,
+    "estimated_total_for_family": {
+      "2_adults_1_child": 0
+    },
+    "budget_level": "low",
+    "source": "category_estimated_mock",
+    "confidence": 0.7
+  }
+]

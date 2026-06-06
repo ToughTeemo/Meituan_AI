@@ -29,6 +29,8 @@ export function machineReducer(
       return state;
     case "COMPLETED":
       return state;
+    case "CONFIRMED":
+      return state;
     default: {
       const _exhaustive: never = state;
       return _exhaustive;

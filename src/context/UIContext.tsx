@@ -5,7 +5,7 @@ import {
   useReducer,
   type ReactNode,
 } from "react";
-import type { UIState } from "@/types/plan";
+import type { Card, UIState } from "@/types/plan";
 import { initialPlan } from "@/mock";
 import { createInitialUiState, uiReducer, type UIAction } from "@/context/uiReducer";
 
@@ -16,16 +16,22 @@ type UIContextValue = {
 
 const UIContext = createContext<UIContextValue | null>(null);
 
-function defaultFocusedCardId(): string {
-  const active = initialPlan.cards.find((c) => c.status === "active");
-  return active?.card_id ?? initialPlan.cards[0]!.card_id;
+function defaultFocusedCardId(cards: Card[]): string {
+  const active = cards.find((c) => c.status === "active");
+  return active?.card_id ?? cards[0]?.card_id ?? "c2";
 }
 
-export function UIProvider({ children }: { children: ReactNode }) {
+export function UIProvider({
+  children,
+  initialCards = initialPlan.cards,
+}: {
+  children: ReactNode;
+  initialCards?: Card[];
+}) {
   const [state, dispatch] = useReducer(
     uiReducer,
     undefined,
-    () => createInitialUiState(defaultFocusedCardId()),
+    () => createInitialUiState(defaultFocusedCardId(initialCards)),
   );
   const value = useMemo(() => ({ state, dispatch }), [state]);
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

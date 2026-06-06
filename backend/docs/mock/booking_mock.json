@@ -1,0 +1,372 @@
+[
+  {
+    "poi_id": "poi_sh_natural_history_museum",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道预约",
+    "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_shanghai_museum",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道预约",
+    "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_china_art_museum",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道预约",
+    "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_power_station_of_art",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道预约",
+    "booking_hint": "热门文化展馆建议提前预约，当前系统仅提供预约提醒，不代为预约。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_yuyuan_garden",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_the_bund",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_lujiazui_central_green",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_century_park",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_gongqing_forest_park",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_shanghai_aquarium",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_xinghualou_fuzhou",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_laojishi_tianping",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_renheguan_zhaojiabang",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_haidilao_dapuqiao",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_xibei_iapm",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_bluefrog_jingan_kerry",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_din_tai_fung_xintiandi",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往；高峰期建议提前咨询商户。",
+    "booking_hint": "餐厅通常可直接前往，但晚餐和周末高峰可能需要等位，当前系统不支持代订座。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_manner_wukang",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "咖啡店通常无需预约，周末下午可能短时排队。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_seesaw_jingan",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "咖啡店通常无需预约，周末下午可能短时排队。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_starbucks_reserve_roastery",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "咖啡店通常无需预约，周末下午可能短时排队。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_metalhands_yuyuan",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "咖啡店通常无需预约，周末下午可能短时排队。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_iapm_mall",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_jingan_kerry_centre",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_ruihong_tiandi_sun_moon",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_global_harbor",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_tianzifang",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_disneytown",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_lego_discovery_center",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_melody_ktv_xujiahui",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道确认场次或预约",
+    "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。",
+    "source": "stub",
+    "confidence": 0.6
+  },
+  {
+    "poi_id": "poi_sh_shanghai_grand_theatre",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道确认场次或预约",
+    "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。",
+    "source": "stub",
+    "confidence": 0.6
+  },
+  {
+    "poi_id": "poi_sh_mao_livehouse",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道确认场次或预约",
+    "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。",
+    "source": "stub",
+    "confidence": 0.6
+  },
+  {
+    "poi_id": "poi_sh_joypolis",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_shimao_dream_city",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_changfeng_ocean_world",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道购票或预约",
+    "booking_hint": "亲子或室内场馆周末客流较高，建议提前确认票务或预约要求。",
+    "source": "stub",
+    "confidence": 0.65
+  },
+  {
+    "poi_id": "poi_sh_paramount",
+    "booking_required": true,
+    "booking_supported_by_system": false,
+    "status": "pending_user_action",
+    "required_user_action": "前往官方渠道确认场次或预约",
+    "booking_hint": "娱乐演出类场所以场次、票务或包厢预约为准，当前系统不支持代预约。",
+    "source": "stub",
+    "confidence": 0.6
+  },
+  {
+    "poi_id": "poi_sh_fuxing_park",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  },
+  {
+    "poi_id": "poi_sh_wukang_mansion",
+    "booking_required": false,
+    "booking_supported_by_system": false,
+    "status": "not_required",
+    "required_user_action": "无需预约，可直接前往。",
+    "booking_hint": "开放空间或商圈型 POI 通常无需预约，主要风险是人流拥挤。",
+    "source": "stub",
+    "confidence": 0.7
+  }
+]

@@ -14,15 +14,10 @@ function TriggerButton({
 }) {
   const cls =
     variant === "muted"
-      ? "rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1.5 text-[11px] font-semibold text-slate-300 hover:bg-slate-900"
-      : "rounded-lg border border-amber-800/50 bg-amber-950/35 px-2.5 py-1.5 text-[11px] font-semibold text-amber-100 hover:bg-amber-950/50";
+      ? "rounded-full border border-[rgba(120,90,60,0.12)] bg-white/70 px-3 py-1.5 text-[11px] font-bold text-[#6E6259] hover:bg-white"
+      : "rounded-full border border-[rgba(120,90,60,0.12)] bg-[#FFF9F2]/80 px-3 py-1.5 text-[11px] font-bold text-[#6E6259] hover:bg-[#FFF4DE]";
   return (
-    <motion.button
-      type="button"
-      whileTap={{ scale: 0.98 }}
-      className={cls}
-      onClick={onClick}
-    >
+    <motion.button type="button" whileTap={{ scale: 0.98 }} className={cls} onClick={onClick}>
       {label}
     </motion.button>
   );
@@ -32,37 +27,53 @@ export function DemoControls() {
   const { state: ui, dispatch: uiDispatch } = useUI();
   const { triggerDemoRisk, resetDemo } = useDashboardRiskActions();
 
-  const fire = (t: DemoRiskTrigger) => () => {
-    triggerDemoRisk(t);
+  const fire = (trigger: DemoRiskTrigger) => () => {
+    triggerDemoRisk(trigger);
   };
 
   const toggleAutoRisk = () => {
     uiDispatch({ type: "SET_AUTO_RISK_ENABLED", enabled: !ui.autoRiskEnabled });
   };
 
+  const appendSituation = (message: string) => {
+    uiDispatch({ type: "APPEND_LOG", message });
+  };
+
   return (
     <div
-      className="rounded-xl border border-slate-800 bg-slate-900/90 p-3 shadow-inner"
-      aria-label="演示控制台"
+      className="rounded-[1.75rem] border border-[rgba(120,90,60,0.10)] bg-[#F7EEDF]/55 p-4 shadow-[0_8px_24px_rgba(120,80,40,0.06)]"
+      aria-label="如果情况变了"
     >
-      <p className="mb-2 text-[11px] font-semibold text-slate-300">演示控制台</p>
-      <p className="mb-3 text-[10px] leading-snug text-slate-500">
-        现场控场：与主流程解耦，评委可识别为演示入口
+      <p className="text-xs font-bold text-[#6E6259]">如果情况变了</p>
+      <p className="mt-1 text-[11px] leading-snug text-[#8A7666]">
+        模拟排队、下雨、孩子累了等临时变化，看看 AI 如何调整方案。
       </p>
 
-      <div className="mb-2 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         <TriggerButton
-          label={ui.autoRiskEnabled ? "自动风险：开" : "自动风险：关"}
+          label={ui.autoRiskEnabled ? "自动发现变化：开" : "自动发现变化：关"}
           onClick={toggleAutoRisk}
           variant="muted"
         />
-        <TriggerButton label="重置演示" onClick={resetDemo} variant="muted" />
+        <TriggerButton label="恢复初始安排" onClick={resetDemo} variant="muted" />
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        <TriggerButton label="模拟排队变长" onClick={fire("queue")} />
-        <TriggerButton label="模拟下雨" onClick={fire("rain")} />
-        <TriggerButton label="模拟孩子累了" onClick={fire("fatigue")} />
+      <div className="mt-2 flex flex-wrap gap-2">
+        <TriggerButton label="排队变长" onClick={fire("queue")} />
+        <TriggerButton label="突然下雨" onClick={fire("rain")} />
+        <TriggerButton label="孩子累了" onClick={fire("fatigue")} />
+        <TriggerButton
+          label="餐厅没位"
+          onClick={() =>
+            appendSituation("收到突发情况：餐厅没位。小助手会优先查找附近可预约餐厅。")
+          }
+        />
+        <TriggerButton
+          label="预算超了"
+          onClick={() =>
+            appendSituation("收到突发情况：预算超了。小助手会优先替换为更高性价比的选择。")
+          }
+        />
       </div>
     </div>
   );

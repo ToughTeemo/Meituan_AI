@@ -1,27 +1,217 @@
+export type Currency = "CNY";
+export type TransportMode = "subway" | "walk" | "taxi" | "drive" | "mixed";
+export type CrowdLevel = "low" | "medium" | "high" | "unknown";
+
 export type CardType = "transit" | "activity" | "dining" | "buffer";
+
+export type PlanCardType =
+  | "transport"
+  | "activity"
+  | "meal"
+  | "rest"
+  | "return"
+  | "buffer";
 
 export type CardStatus =
   | "done"
   | "active"
+  | "current"
   | "upcoming"
   | "pending"
   | "risk"
+  | "adjusted"
   | "skipped";
 
-export interface POI {
-  poi_id: string;
+export type PlanStatus =
+  | "draft"
+  | "generating"
+  | "ready"
+  | "adjusting"
+  | "confirmed"
+  | "fallback";
+
+export type PlanSource = "mock" | "api" | "llm" | "fallback";
+
+export interface GeoPoint {
+  lat: number;
+  lng: number;
+}
+
+export interface Origin {
   name: string;
+  address?: string;
+  lat?: number;
+  lng?: number;
+}
+
+export interface TimeWindow {
+  start: string;
+  end: string;
+  mustReturnBy?: string;
+}
+
+export interface Participants {
+  adults: number;
+  children: number;
+  childAges?: number[];
+  pets?: number;
+}
+
+export interface BudgetConstraint {
+  amount: number;
+  currency: Currency;
+  scope: "total" | "per_person";
+}
+
+export type SceneType =
+  | "family"
+  | "couple"
+  | "friends"
+  | "pet_friendly"
+  | "indoor_rainy"
+  | "low_queue"
+  | "budget";
+
+export interface ParsedConstraints {
+  goalText: string;
+  city?: string;
+  origin: Origin;
+  timeWindow: TimeWindow;
+  participants: Participants;
+  budget: BudgetConstraint;
+  transportPreference: TransportMode;
+  pacePreference: "relaxed" | "normal" | "packed";
+  sceneType: SceneType;
+  preferences: string[];
+  avoidances: string[];
+  weatherSensitive?: boolean;
+  createdAt?: string;
+}
+
+export type LegacyTransportMode = string;
+export type LegacyPace = string;
+
+export interface LegacyConstraints {
+  goal: string;
+  time_start: string;
+  time_end: string;
+  adults: number;
+  children: number;
+  children_age: number;
+  budget: number;
+  departure: string;
+  transport_mode: LegacyTransportMode;
+  pace: LegacyPace;
+  preference_tags: string[];
+}
+
+export interface Constraints {
+  goal: string;
+  goalText?: string;
+  city?: string;
+  origin?: Origin;
+  time_start: string;
+  time_end: string;
+  timeWindow?: TimeWindow;
+  adults: number;
+  children: number;
+  children_age: number;
+  participants?: Participants;
+  budget: number;
+  budgetDetail?: BudgetConstraint;
+  departure: string;
+  transport_mode: LegacyTransportMode;
+  transportPreference?: TransportMode;
+  pace: LegacyPace;
+  pacePreference?: "relaxed" | "normal" | "packed";
+  sceneType?: SceneType;
+  preference_tags: string[];
+  preferences?: string[];
+  avoidances?: string[];
+  weatherSensitive?: boolean;
+  createdAt?: string;
+}
+
+export type POIType =
+  | "park"
+  | "restaurant"
+  | "cafe"
+  | "mall"
+  | "bookstore"
+  | "activity"
+  | "transport"
+  | "home"
+  | "other";
+
+export type QueueLevel = CrowdLevel;
+
+export type ReservationStatus =
+  | "available"
+  | "unavailable"
+  | "waitlist"
+  | "unknown";
+
+export interface POI {
+  id?: string;
+  name: string;
+  type?: POIType;
+  categoryLabel?: string;
+  address?: string;
+  lat?: number;
+  lng?: number;
   rating: number;
+  avgPrice?: number;
+  currency?: Currency;
+  openingHours?: string;
+  queueMinutes?: number;
+  queueLevel?: QueueLevel;
+  reservationStatus?: ReservationStatus;
+  familyFriendly?: boolean;
+  petFriendly?: boolean;
+  indoor?: boolean;
+  tags?: string[];
+
+  poi_id: string;
   price_per_person: number;
   queue_minutes: number;
   category: string;
   map_position: { x: number; y: number };
   is_child_friendly: boolean;
-  /** 营业时间等补充展示 */
   hours_label?: string;
+  district?: string;
+  latitude?: number;
+  longitude?: number;
+  recommendation_reason?: string;
+  risk_labels?: string[];
+}
+
+export interface RouteSegment {
+  fromPoiId: string;
+  toPoiId: string;
+  mode: TransportMode;
+  durationMinutes: number;
+  distanceKm?: number;
+  cost?: number;
+  transferCount?: number;
+  crowdLevel?: CrowdLevel;
+  summary?: string;
 }
 
 export interface Card {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  planType?: PlanCardType;
+  startTime?: string;
+  endTime?: string;
+  durationMinutes?: number;
+  route?: RouteSegment;
+  cost?: number;
+  statusText?: string;
+  reason?: string;
+  adjustmentNote?: string;
+  risks?: RiskSignal[];
+
   card_id: string;
   type: CardType;
   status: CardStatus;
@@ -36,19 +226,7 @@ export interface Card {
   alternatives?: POI[];
 }
 
-export interface Constraints {
-  goal: string;
-  time_start: string;
-  time_end: string;
-  adults: number;
-  children: number;
-  children_age: number;
-  budget: number;
-  departure: string;
-  transport_mode: "地铁" | "驾车" | "步行";
-  pace: "轻松" | "紧凑";
-  preference_tags: string[];
-}
+export type PlanCard = Card;
 
 export interface TimelineConfig {
   pixels_per_minute: number;
@@ -61,27 +239,146 @@ export interface TimelineConfig {
   };
 }
 
+export type RiskKind =
+  | "queue"
+  | "weather"
+  | "budget"
+  | "time"
+  | "closure"
+  | "fatigue";
+
+export type ApiRiskKind =
+  | "queue"
+  | "weather"
+  | "budget"
+  | "time"
+  | "traffic"
+  | "closed"
+  | "reservation"
+  | "child_tired";
+
+export interface RiskSignal {
+  id?: string;
+  type: RiskKind;
+  level?: "low" | "medium" | "high";
+  title: string;
+  description: string;
+  affectedCardIds?: string[];
+  detectedAt?: string;
+  suggestedAction?: string;
+  requiresUserConfirm?: boolean;
+
+  risk_id: string;
+  severity: "medium" | "high";
+  affected_card_ids: string[];
+}
+
+export interface PlanSummary {
+  title: string;
+  subtitle: string;
+  totalBudget: number;
+  budgetLimit: number;
+  currency: Currency;
+  totalDurationMinutes: number;
+  expectedReturnTime: string;
+  tags: string[];
+  recommendationReason: string;
+}
+
+export interface PlanMapMarker {
+  id: string;
+  poiId?: string;
+  cardId?: string;
+  label: string;
+  lat?: number;
+  lng?: number;
+  type: "current" | "next" | "normal" | "risk";
+}
+
+export interface PlanMap {
+  currentCardId?: string;
+  routePolyline?: GeoPoint[];
+  markers?: PlanMapMarker[];
+}
+
+export interface PlanProgress {
+  currentStep: number;
+  totalSteps: number;
+  percent: number;
+  message: string;
+}
+
+export interface PlanDebugInfo {
+  traceId?: string;
+  llmUsed?: boolean;
+  fallbackReason?: string;
+}
+
 export interface PlanBundle {
+  planId?: string;
+  version?: number;
+  status?: PlanStatus;
+  source?: PlanSource;
+  constraints?: Constraints;
+  summary?: PlanSummary;
   cards: Card[];
+  risks?: RiskSignal[];
+  map?: PlanMap;
+  progress?: PlanProgress;
+  updatedAt?: string;
+  debug?: PlanDebugInfo;
+
   timeline: TimelineConfig;
 }
 
-/** 与 PRD 对齐，并扩展演示用风险类型（天气 / 疲劳） */
-export type RiskKind =
-  | "queue"
-  | "time"
-  | "budget"
-  | "closure"
-  | "weather"
-  | "fatigue";
+export interface ParseGoalRequest {
+  text: string;
+  city?: string;
+  originName?: string;
+}
 
-export interface RiskSignal {
-  risk_id: string;
-  type: RiskKind;
-  severity: "medium" | "high";
-  title: string;
-  description: string;
-  affected_card_ids: string[];
+export interface ParseGoalResponse {
+  constraints: Constraints;
+  warnings?: string[];
+}
+
+export interface GeneratePlanRequest {
+  constraints: Constraints;
+}
+
+export interface GeneratePlanResponse {
+  plan: PlanBundle;
+}
+
+export type ReplanUserAction =
+  | "accept_adjustment"
+  | "reject_adjustment"
+  | "regenerate"
+  | "change_preference";
+
+export interface ReplanRequest {
+  plan: PlanBundle;
+  risk?: RiskSignal;
+  userAction?: ReplanUserAction;
+  userMessage?: string;
+}
+
+export interface ReplanResponse {
+  plan: PlanBundle;
+  changedCardIds: string[];
+  message: string;
+}
+
+export interface ConfirmPlanRequest {
+  planId: string;
+  plan: PlanBundle;
+}
+
+export interface ConfirmPlanResponse {
+  success: boolean;
+  planId: string;
+  saved?: boolean;
+  message?: string;
 }
 
 export type MachineState =
@@ -89,9 +386,105 @@ export type MachineState =
   | "EXECUTING"
   | "RISK_DETECTED"
   | "REPLANNING"
-  | "COMPLETED";
+  | "COMPLETED"
+  | "CONFIRMED";
+
+export interface PlanApiSnapshot {
+  plan_id: string;
+  session_id?: string;
+  user_id?: string | null;
+  city?: string;
+  status: MachineState;
+  version: number;
+  constraints: Constraints;
+  timeline: TimelineConfig;
+  cards: Card[];
+  active_risk: RiskSignal | null;
+  agent_logs: AgentLogEntry[];
+  summary: {
+    title: string;
+    subtitle: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ExecutionRiskFlag {
+  type: string;
+  severity: string;
+  source: string;
+  poi_id: string | null;
+  message: string;
+  can_replan: boolean;
+}
+
+export interface ExecutionAction {
+  type?: string;
+  label?: string;
+  message?: string;
+  [key: string]: unknown;
+}
+
+export interface ExecutionCheckResponse {
+  status: string;
+  summary: string;
+  risk_flags: ExecutionRiskFlag[];
+  actions: ExecutionAction[];
+}
+
+export interface ExecutionLatestResponse extends ExecutionCheckResponse {
+  snapshot_id: string;
+  created_at: string;
+}
+
+export interface ReplanProposalPayload {
+  replanned: boolean;
+  strategy: string;
+  risk_type: string;
+  reason: string;
+  proposal_summary: string;
+  old_poi: Record<string, unknown>;
+  new_poi: Record<string, unknown>;
+  requires_user_confirmation: boolean;
+  old_card_id: string | null;
+  old_poi_id: string | null;
+}
+
+export interface ReplanProposalResponse {
+  proposal_id: string;
+  plan_id: string;
+  execution_snapshot_id: string;
+  status: string;
+  strategy: string;
+  risk_type: string;
+  accepted: boolean;
+  accepted_at: string | null;
+  created_at: string;
+  proposal: ReplanProposalPayload;
+  updated_plan: PlanApiSnapshot | null;
+}
+
+export interface ReplanProposalListItem {
+  proposal_id: string;
+  status: string;
+  strategy: string;
+  risk_type: string;
+  accepted: boolean;
+  accepted_at: string | null;
+  created_at: string;
+  proposal: ReplanProposalPayload;
+}
+
+export interface ReplanProposalListResponse {
+  plan_id: string;
+  proposals: ReplanProposalListItem[];
+}
+
+export type ApplyReplanProposalResponse = ReplanProposalResponse;
 
 export interface PlanState {
+  planId: string | null;
+  version: number;
   cards: Card[];
   timeline: TimelineConfig;
   constraints: Constraints;
@@ -100,6 +493,7 @@ export interface PlanState {
 
 export type PlanAction =
   | { type: "SET_CARDS"; cards: Card[] }
+  | { type: "SET_VERSION"; version: number }
   | { type: "PUSH_HISTORY" }
   | {
       type: "APPLY_CARD_PATCHES";
@@ -128,10 +522,7 @@ export interface UIState {
   agentLogs: AgentLogEntry[];
   riskStatusSnapshot: Record<string, CardStatus> | null;
   replanPhase: ReplanPhase;
-  /** animating 阶段用于新卡片 stagger 的顺序（仅本轮 Replan） */
   replanInsertedOrder: string[] | null;
-  /** 是否允许 5 秒自动排队风险（Demo 控场） */
   autoRiskEnabled: boolean;
-  /** 自动风险是否已在当前会话消费（Reset / 重新打开 Auto Risk 可恢复） */
   riskAutoConsumed: boolean;
 }

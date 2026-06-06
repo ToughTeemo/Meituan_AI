@@ -4,9 +4,15 @@ html,
 body,
 #root {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
   margin: 0;
-  @apply bg-slate-950 text-slate-100 antialiased;
+  @apply bg-[#FFF9F2] text-[#3C342F] antialiased;
+}
+
+* {
+  scrollbar-color: rgba(183, 140, 77, 0.35) transparent;
 }

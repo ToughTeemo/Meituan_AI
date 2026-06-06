@@ -1,0 +1,124 @@
+{
+  "case_id": "closed_poi_002",
+  "risk_flags": [
+    {
+      "type": "CLOSED_RISK",
+      "severity": "critical",
+      "poi_id": "poi_sh_century_park",
+      "message": "当前地点疑似关闭，请选择替代地点",
+      "can_replan": true
+    }
+  ],
+  "current_plan": {
+    "plan_id": "case_closed_002",
+    "current_card_id": "card_poi_sh_century_park",
+    "cards": [
+      {
+        "card_id": "card_poi_sh_century_park",
+        "type": "activity",
+        "status": "active",
+        "poi": {
+          "poi_id": "poi_sh_century_park",
+          "name": "上海世纪公园",
+          "rating": 4.8,
+          "price_per_person": 0,
+          "queue_minutes": 5,
+          "category": "park",
+          "is_indoor": false,
+          "is_child_friendly": true
+        }
+      }
+    ]
+  },
+  "provider_candidates": [
+    {
+      "poi_id": "poi_sh_global_harbor",
+      "poi": {
+        "poi_id": "poi_sh_global_harbor",
+        "name": "上海月星环球港",
+        "is_indoor": true,
+        "rating": 4.9,
+        "price_per_person": 0,
+        "queue_minutes": 5,
+        "category": "shopping_mall"
+      },
+      "hours": {
+        "hours_label": "10:00-22:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 0,
+        "estimated_total_for_family": 0
+      },
+      "queue": {
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    },
+    {
+      "poi_id": "poi_sh_jingan_kerry_centre",
+      "poi": {
+        "poi_id": "poi_sh_jingan_kerry_centre",
+        "name": "静安嘉里中心",
+        "is_indoor": true,
+        "rating": 4.9,
+        "price_per_person": 0,
+        "queue_minutes": 5,
+        "category": "shopping_mall"
+      },
+      "hours": {
+        "hours_label": "10:00-22:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 0,
+        "estimated_total_for_family": 0
+      },
+      "queue": {
+        "queue_level": "low",
+        "estimated_wait_minutes": 5
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    },
+    {
+      "poi_id": "poi_sh_natural_history_museum",
+      "poi": {
+        "poi_id": "poi_sh_natural_history_museum",
+        "name": "上海自然博物馆",
+        "is_indoor": true,
+        "rating": 4.8,
+        "price_per_person": 30,
+        "queue_minutes": 15,
+        "category": "museum"
+      },
+      "hours": {
+        "hours_label": "09:00-17:00",
+        "is_open_at_arrival": true
+      },
+      "price": {
+        "current_price": 30,
+        "estimated_total_for_family": 75
+      },
+      "queue": {
+        "queue_level": "medium",
+        "estimated_wait_minutes": 15
+      },
+      "booking": {
+        "status": "pending_user_action"
+      }
+    }
+  ],
+  "budget": 400,
+  "user_prompt": "闭店风险离线评测：请选择替代地点",
+  "expected": {
+    "target_poi_id": "poi_sh_global_harbor",
+    "strategy_contains": [
+      "ALTERNATIVE_POI"
+    ]
+  }
+}

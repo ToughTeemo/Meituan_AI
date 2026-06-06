@@ -37,7 +37,7 @@ export function createInitialUiState(focusedCardId: string): UIState {
     focusedCardId,
     activeRisk: null,
     agentMessage: null,
-    agentLogs: [makeLog("方案已加载：进入执行态（EXECUTING）。")],
+    agentLogs: [makeLog("方案已生成，正在为你关注排队、时间和预算变化。")],
     riskStatusSnapshot: null,
     replanPhase: "idle",
     replanInsertedOrder: null,
@@ -106,7 +106,7 @@ export function uiReducer(state: UIState, action: UIAction): UIState {
         riskStatusSnapshot: null,
         replanPhase: "idle",
         replanInsertedOrder: null,
-        agentLogs: [makeLog("演示已重置：回到初始方案（EXECUTING）。")],
+        agentLogs: [makeLog("已恢复初始安排，继续关注排队、时间和预算变化。")],
         riskAutoConsumed: false,
       };
     default: {

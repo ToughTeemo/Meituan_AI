@@ -2,20 +2,26 @@ import { CenterTimelineColumn } from "@/components/CenterTimelineColumn";
 import { LeftMissionColumn } from "@/components/LeftMissionColumn";
 import { RightMapColumn } from "@/components/RightMapColumn";
 
-export function ThreeColumnWorkspace() {
+interface ThreeColumnWorkspaceProps {
+  onConfirm: () => void;
+}
+
+export function ThreeColumnWorkspace({ onConfirm }: ThreeColumnWorkspaceProps) {
   return (
-    <div className="flex h-full min-h-0 min-w-[1080px] w-full flex-1 overflow-hidden bg-slate-950 text-slate-100">
-      <aside className="flex h-full w-[380px] shrink-0 flex-col border-r border-slate-800">
-        <LeftMissionColumn />
-      </aside>
+    <div className="h-full min-h-0 w-full max-w-full overflow-x-auto overflow-y-hidden p-3 text-[#3C342F]">
+      <div className="flex h-full min-h-0 min-w-[1080px] overflow-hidden">
+        <aside className="flex h-full w-[380px] shrink-0 flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(120,90,60,0.12)] bg-[#FFFDF9]/82 shadow-[0_18px_50px_rgba(120,80,40,0.10)]">
+          <LeftMissionColumn />
+        </aside>
 
-      <main className="flex min-h-0 min-w-0 flex-1 flex-col border-r border-slate-800">
-        <CenterTimelineColumn />
-      </main>
+        <main className="mx-3 flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(120,90,60,0.12)] bg-[#FFFDF9]/78 shadow-[0_18px_50px_rgba(120,80,40,0.10)]">
+          <CenterTimelineColumn onConfirm={onConfirm} />
+        </main>
 
-      <aside className="flex h-full w-[400px] shrink-0 flex-col">
-        <RightMapColumn />
-      </aside>
+        <aside className="flex h-full w-[400px] shrink-0 flex-col overflow-hidden rounded-[1.75rem] border border-[rgba(120,90,60,0.12)] bg-[#FFFDF9]/82 shadow-[0_18px_50px_rgba(120,80,40,0.10)]">
+          <RightMapColumn />
+        </aside>
+      </div>
     </div>
   );
 }
