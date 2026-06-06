@@ -36,6 +36,7 @@ export function createQueueRiskSignal(affected_card_ids: string[]): RiskSignal {
     description:
       "儿童乐园预计等待 55 分钟，可能影响后续晚餐和返程时间。",
     affected_card_ids,
+    requiresUserConfirm: true,
   };
 }
 
@@ -48,6 +49,7 @@ export function createRainRiskSignal(affected_card_ids: string[]): RiskSignal {
     description:
       "傍晚前后可能有阵雨，户外活动舒适度下降，建议保留室内备选。",
     affected_card_ids,
+    requiresUserConfirm: true,
   };
 }
 
@@ -60,6 +62,7 @@ export function createFatigueRiskSignal(affected_card_ids: string[]): RiskSignal
     description:
       "连续活动偏多，建议插入休整点，减少后续步行压力。",
     affected_card_ids,
+    requiresUserConfirm: true,
   };
 }
 

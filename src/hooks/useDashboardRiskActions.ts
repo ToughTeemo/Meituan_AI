@@ -338,6 +338,11 @@ export function useDashboardRiskActions(): {
     const risk = uiRef.current.activeRisk;
     if (!risk) return;
 
+    if (risk.requiresUserConfirm !== true) {
+      ignoreRisk();
+      return;
+    }
+
     if (machineRef.current === "REPLANNING") {
       uiDispatch({
         type: "APPEND_LOG",
@@ -417,7 +422,7 @@ export function useDashboardRiskActions(): {
       type: "APPEND_LOG",
       message: "已按你的选择开始调整方案。",
     });
-  }, [planDispatch, releaseReplanLock, send, uiDispatch]);
+  }, [ignoreRisk, planDispatch, releaseReplanLock, send, uiDispatch]);
 
   return {
     triggerDemoRisk,

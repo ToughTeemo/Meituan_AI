@@ -238,6 +238,19 @@ function planWithApiSource(plan: PlanApiSnapshot): PlanResponse {
   return { ...plan, source: "api" };
 }
 
+function requirementWithApiSource(response: RequirementResponse): RequirementResponse {
+  return {
+    ...response,
+    risk: response.risk
+      ? {
+          ...response.risk,
+          requiresUserConfirm: response.risk.requiresUserConfirm === true,
+        }
+      : null,
+    source: "api",
+  };
+}
+
 function replanResponseFromApply(
   input: {
     version: number;
@@ -528,7 +541,7 @@ export function submitRequirement(input: {
           text: input.text,
           source: "user_input",
         }),
-      }).then((response) => ({ ...response, source: "api" as const })),
+      }).then(requirementWithApiSource),
     () => mockRequirement(input.planId, input.text, input.cards),
   );
 }

@@ -8,6 +8,7 @@ interface RiskWarningBarProps {
 
 export function RiskWarningBar({ risk }: RiskWarningBarProps) {
   const { acceptRiskSuggestion, ignoreRisk } = useDashboardRiskActions();
+  const canAdjustRisk = risk.requiresUserConfirm === true;
   const title =
     risk.type === "queue" ? "发现一点小变化：排队变长了" : `发现一点小变化：${risk.title}`;
   const description =
@@ -33,18 +34,20 @@ export function RiskWarningBar({ risk }: RiskWarningBarProps) {
             type="button"
             whileTap={{ scale: 0.98 }}
             className="rounded-full bg-[#F2A65A] px-3 py-1.5 text-[11px] font-bold text-[#3C342F] hover:bg-[#F6C65B]"
-            onClick={acceptRiskSuggestion}
+            onClick={canAdjustRisk ? acceptRiskSuggestion : ignoreRisk}
           >
-            按这个调整
+            {canAdjustRisk ? "按这个调整" : "确认继续"}
           </motion.button>
-          <motion.button
-            type="button"
-            whileTap={{ scale: 0.98 }}
-            className="rounded-full border border-[#EE8F6A]/35 bg-white/55 px-3 py-1.5 text-[11px] font-bold text-[#8A5A2F]"
-            onClick={ignoreRisk}
-          >
-            暂不调整
-          </motion.button>
+          {canAdjustRisk ? (
+            <motion.button
+              type="button"
+              whileTap={{ scale: 0.98 }}
+              className="rounded-full border border-[#EE8F6A]/35 bg-white/55 px-3 py-1.5 text-[11px] font-bold text-[#8A5A2F]"
+              onClick={ignoreRisk}
+            >
+              暂不调整
+            </motion.button>
+          ) : null}
         </div>
       </div>
     </motion.div>

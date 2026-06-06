@@ -42,6 +42,7 @@ export function CenterTimelineColumn({ onConfirm }: CenterTimelineColumnProps) {
   const { acceptRiskSuggestion, ignoreRisk } = useDashboardRiskActions();
 
   const isRisk = machine === "RISK_DETECTED" && ui.activeRisk != null;
+  const canAdjustRisk = ui.activeRisk?.requiresUserConfirm === true;
   const isReplanning = machine === "REPLANNING" && ui.replanPhase !== "idle";
   const statusText = useMemo(
     () => assistantStatusText(machine, ui.replanPhase, ui.activeRisk),
@@ -101,18 +102,20 @@ export function CenterTimelineColumn({ onConfirm }: CenterTimelineColumnProps) {
             <div className="flex shrink-0 gap-2">
               <button
                 type="button"
-                onClick={acceptRiskSuggestion}
+                onClick={canAdjustRisk ? acceptRiskSuggestion : ignoreRisk}
                 className="rounded-full bg-[#F2A65A] px-3 py-1.5 text-[11px] font-bold text-[#3C342F] hover:bg-[#F6C65B]"
               >
-                按这个调整
+                {canAdjustRisk ? "按这个调整" : "确认继续"}
               </button>
-              <button
-                type="button"
-                onClick={ignoreRisk}
-                className="rounded-full border border-[#EE8F6A]/35 bg-white/55 px-3 py-1.5 text-[11px] font-bold text-[#8A5A2F]"
-              >
-                暂不调整
-              </button>
+              {canAdjustRisk ? (
+                <button
+                  type="button"
+                  onClick={ignoreRisk}
+                  className="rounded-full border border-[#EE8F6A]/35 bg-white/55 px-3 py-1.5 text-[11px] font-bold text-[#8A5A2F]"
+                >
+                  暂不调整
+                </button>
+              ) : null}
             </div>
           ) : null}
         </div>
